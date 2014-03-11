@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: pyramid | Danny Navarro's blog]]></title>
+  <link href="http://dannynavarro.net/categories/pyramid/atom.xml" rel="self"/>
+  <link href="http://dannynavarro.net/"/>
+  <updated>2014-03-11T16:31:53+01:00</updated>
+  <id>http://dannynavarro.net/</id>
+  <author>
+    <name><![CDATA[Danny Navarro]]></name>
+    <email><![CDATA[j@dannynavarro.net]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Using custom events in Pyramid]]></title>
+    <link href="http://dannynavarro.net/2011/06/12/using-custom-events-in-pyramid/"/>
+    <updated>2011-06-12T00:00:00+02:00</updated>
+    <id>http://dannynavarro.net/2011/06/12/using-custom-events-in-pyramid</id>
+    <content type="html"><![CDATA[<p><a href="http://docs.pylonsproject.org/docs/pyramid.html">Pyramid</a> is a <a href="http://webpython.codepoint.net/wsgi_tutorial">WSGI</a> application framework that primarily follows a<a href="http://docs.pylonsproject.org/projects/pyramid/1.0/narr/router.html"> request-response mechanism</a>. However, if you need to work with events you can still <a href="http://docs.pylonsproject.org/projects/pyramid/1.0/narr/events.html">use them</a>. It comes with <a href="http://docs.pylonsproject.org/projects/pyramid/1.0/api/events.html#event-types">some default event types</a> that are emitted implicitely by Pyramid as long as you have a subscriber for them. For most applications the default event types are enough, but what if you want to write your custom event type and emit it explicitly from your code? It turns out that the <a href="http://docs.pylonsproject.org/projects/pyramid/1.0/glossary.html#term-application-registry">application registry</a> that Pyramid uses by default comes with a handy <a href="https://github.com/Pylons/pyramid/blob/master/pyramid/registry.py#L36"><em>notify</em> method</a>. Pyramid <a href="https://github.com/Pylons/pyramid/blob/master/pyramid/router.py#L77">uses this method internally</a>  for its default events. Here is how you would take advantage of it:</p>
+
+<pre>from pyramid.events import subscriber
+
+class MyCustomEventType(object):
+    def __init__(self, msg):
+        self.msg = msg
+
+@subscriber(MyCustomEventType)
+def my_subscriber(event):
+    print(event.msg)
+
+def my_view(request):
+    request.registry.notify(MyCustomEventType("Here it comes"))
+    return {}
+</pre>
+
+
+<p>When running the application, every time a request goes through <em>my_view,</em> an event with a message is emitted, in this case, &ldquo;Here it comes&rdquo;. The subscriber then handles the event by printing the message, but it could do anything you want.</p>
+
+<p>Notice that I&rsquo;m using a <a href="http://docs.pylonsproject.org/projects/pyramid/1.0/narr/events.html#configuring-an-event-listener-using-a-decorator">decorator to hook</a> <em>my_subscriber</em>. In order for the decorator to work you have to make sure you <a href="http://docs.pylonsproject.org/projects/pyramid/1.0/narr/configuration.html#configuration-decorations-and-code-scanning">call the <em>scan</em> method when configuring</a> the application.</p>
+
+<p>Be aware though, that all these events are synchronous because Pyramid is primarily a request-response framework, all the events emitted block until the subscribers are done. If you want non-blocking events in Pyramid you could spawn a process from the subscriber or come with <a href="http://blog.dannynavarro.net/2011/01/14/async-web-apps-with-pyramid/">some other solution</a>.</p>
+
+<p>But the events in Pyramid are just another functionality that it offers. Pyramid is not a event-oriented framework, if you want to go all the way with async events you should look into <a href="http://twistedmatrix.com/trac/">Twisted</a> or <a href="http://www.tornadoweb.org/">Tornado</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Commenting out in Chamaleon templates]]></title>
+    <link href="http://dannynavarro.net/2011/05/18/commenting-out-in-chamaleon-templates/"/>
+    <updated>2011-05-18T00:00:00+02:00</updated>
+    <id>http://dannynavarro.net/2011/05/18/commenting-out-in-chamaleon-templates</id>
+    <content type="html"><![CDATA[<p>If you want to prevent <a href="http://chameleon.repoze.org/" title="Chameleon is an excellent HTML templating engine">Chameleon</a> from rendering some portions of an HTML template you might be tempted to do something like this:</p>
+
+<pre>
+</br>
+&lt;!-- &lt;div&gt;${context.name}&lt;/div&gt; --&gt;
+</br>
+</pre>
+
+
+<p>However Chameleon will still evaluate what&rsquo;s inside the ${&hellip;} block even if it&rsquo;s within an HTML comment. Chameleon must do this because you might want to insert conditional comments.</p>
+
+<p>This dummy tal:condition block will do the job:</p>
+
+<pre>
+</br>
+&lt;span tal:condition="None"&gt;
+  &lt;div&gt;${context.name}&lt;/div&gt;
+&lt;/span&gt;
+</br>
+</pre>
+
+
+<p>Chameleon ignore anything inside the condition block.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Async Pyramid example done right]]></title>
+    <link href="http://dannynavarro.net/2011/01/23/async-pyramid-example-done-right/"/>
+    <updated>2011-01-23T00:00:00+01:00</updated>
+    <id>http://dannynavarro.net/2011/01/23/async-pyramid-example-done-right</id>
+    <content type="html"><![CDATA[<p>After speaking with <a href="http://mg.pov.lt/blog">Marius Gedminas</a> at freenode, he gave me enough hints to rewrite <a href="http://blog.dannynavarro.net/2011/01/14/async-web-apps-with-pyramid/">my previous async <i>view</i> example </a>with <i>locks</i> instead of <i>Value</i>, which is prone to race conditions. I also added a queue to allow jobs to wait for being processed.</p>
+
+<br />
+
+
+<br />
+
+
+<pre>from multiprocessing import Process, Lock, Queue
+
+job = 0
+q = Queue(maxsize=3)
+lock = Lock()
+
+def work():
+    import time; time.sleep(8)
+    job = q.get()
+    print("Job done: {0}".format(job))
+    print("Queue size: {0}\n".format(q.qsize()))
+    if not q.empty():
+        work()
+    else:
+        lock.release()
+
+def my_view(request):
+    global job
+    if not q.full():
+        job += 1
+        q.put(job)
+        # Not running
+        if lock.acquire(False):
+            Process(target=work).start()
+            print("Job {0} submitted and working on it".format(job))
+        else:
+            print("Job {0} submitted while working".format(job))
+    else:
+        print("Queue is full")
+    print("Queue size: {0}\n".format(q.qsize()))
+    return {'project':'asyncapp'}
+<br />
+</pre>
+
+
+<p>With every request a job is sent. Here the queue accepts 3 jobs. The recursion in <i>work</i> makes sure there is only 1 process working at a time.</p>
+
+<p>I will leave <a href="http://blog.dannynavarro.net/2011/01/14/async-web-apps-with-pyramid/">my previous example</a> with <i>Value</i> because it&rsquo;s easier to understand but this version is much safer.</p>
+
+<p><strong>Update:</strong> You can avoid the use of locks by <a href="http://blog.doughellmann.com/2009/04/pymotw-multiprocessing-part-2.html"> using 2 queues</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>

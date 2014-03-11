@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: peer-review | Danny Navarro's blog]]></title>
+  <link href="http://dannynavarro.net/categories/peer-review/atom.xml" rel="self"/>
+  <link href="http://dannynavarro.net/"/>
+  <updated>2014-03-11T16:31:53+01:00</updated>
+  <id>http://dannynavarro.net/</id>
+  <author>
+    <name><![CDATA[Danny Navarro]]></name>
+    <email><![CDATA[j@dannynavarro.net]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to review supplemental material without revealing your identity]]></title>
+    <link href="http://dannynavarro.net/2010/05/25/how-to-review-supplemental-material-without-revealing-your-identity/"/>
+    <updated>2010-05-25T00:00:00+02:00</updated>
+    <id>http://dannynavarro.net/2010/05/25/how-to-review-supplemental-material-without-revealing-your-identity</id>
+    <content type="html"><![CDATA[<p>The <em>de facto</em> way to consider an article as scientifically valid is whether the publisher carried out a <a href="http://en.wikipedia.org/wiki/Peer_review">peer review</a> process or not. The reviewers are people with proven expertise in the field &ndash; by publishing peer reviewed articles in the area &ndash; who are capable of assessing the scientific value of an article. Because those reviewers can be direct competitors &ndash; who want to bog down the authors because they compete for funding or colleagues of the type: <em>you scratch my back, I scratch yours</em> &ndash; the editor doesn&rsquo;t unveil who are the reviewers. In my opinion the reviewers should be made public, both to the authors and to the readers of the article, but I would leave that for another post.</p>
+
+<p>However keeping the reviewers anonymous these days is becoming more difficult because many scientific articles include supplemental material that can&rsquo;t be attached directly to the article, i. e. a huge list of proteins identified in a proteomics experiment. This poses a problem for editors and reviewers because by watching which <a href="http://computer.howstuffworks.com/internet/basics/question549.htm">IPs</a> are accessing the machine which is hosting the data the original authors can <a href="http://whatismyipaddress.com/">guess</a> who are the reviewers.</p>
+
+<p>I have heard about this issue as a really huge problem for peer review process and from advocates of third party hosts with sophisticated technologies which anonymize reviewers. But it turns out that accessing any site in the web anonymously is not as obscure or complicated as it sounds.</p>
+
+<p>A quick way &ndash; but maybe not so reliable &ndash; of anonymizing your web traffic is by googling for &lsquo;<a href="http://www.google.com/search?q=browse+anonymously">browse anonymously.</a>&rsquo; You can find many web <a href="http://en.wikipedia.org/wiki/HTTP_proxy">proxies</a> that claim to anonymize your identity. Usually you have to paste the web site you want to access anonymously and then you&rsquo;ll be redirected to the web page normally, albeit with a much slower load. The people who are hosting the server will see, at most, an IP address where the anonymous proxy is, that won&rsquo;t probably correspond to a place where any reviewers are located.</p>
+
+<p>But I don&rsquo;t recommend using any proxy out there unless you really need to access something anonymously quickly and you have nothing in place. After all, who knows what they can do with your data, or if your IP leaks somewhere. I would recommend the use of the <a href="http://www.torproject.org/">Tor</a> network. Tor is an anonymity network where volunteers spread all over the world provide their machines to act as anonymizing proxies. Oversimplifying, Tor connects, encrypts and obfuscates the web traffic between you and the host with many of these proxies so that it becomes damn difficult to find out the original IP. When using a browser that goes through the Tor network the guys hosting the data will be seeing different random IPs all over the world with no relation whatsoever to each other.</p>
+
+<p>There are different ways to setup Tor but if you want to use it without thinking too much go to the <a href="http://www.torproject.org/easy-download.html.en">download page</a> of Tor and get the Tor browser bundle. That will come with a firefox browser which is already configured for accessing the tor network. If in your institution or company, the network policy is controlled by a <a href="http://en.wikipedia.org/wiki/Bastard_Operator_From_Hell">fascist network administrator</a> who denies everything in the firewall regardless of the true danger for security is, go to <em>settings</em> and indicate you are behind a firewall.</p>
+
+<p>By giving the link to the Tor bundle browser in the supplemental material the editor and the reviewers shouldn&rsquo;t have any problem accessing self-hosted data. Downloading the Tor bundle browser shouldn&rsquo;t be an obstacle, I haven&rsquo;t seen anyone complaining when asked to download a propietary viewer to visualize closed formats for raw data, which is quite common in proteomics.</p>
+
+<p>However with this post I&rsquo;m not advocating to host your own data instead of sharing it. Hosting it yourself and sharing are not mutually exclusive. I think sharing your scientific data is a moral imperative when you are funded with public money. I encourage sending scientific data to as many public repositories as  possible, but I also think individual researchers have the right to host their own data if they want to.</p>
+
+<p>I know it&rsquo;s hard to believe but many researchers who are funded with money coming from tax-payers are reluctanct to share their data, at least in the <a href="http://en.wikipedia.org/wiki/Proteomics">proteomics</a> community where I work. If their data is <em>stolen</em> and other people find more interesting things the original authors missed they lose the relevance necessary to keep getting funded, specially when the analyzers don&rsquo;t give enough credit to the generators of data which is quite frequent. But I will leave that for another post.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -4,8 +4,8 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>Danny Navarro's blog</title>
+  <meta name="author" content="Danny Navarro">
 
   
   
@@ -16,9 +16,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jdnavarro.github.io">
+  <link rel="canonical" href="http://dannynavarro.net">
   <link href="/favicon.png" type="image/png" rel="icon">
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="Danny Navarro's blog" type="application/atom+xml">
 
   <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
@@ -27,6 +27,18 @@
 
   <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-25821353-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
@@ -41,7 +53,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">My Octopress Blog</a>
+            <a class="navbar-brand" href="/">Danny Navarro's blog</a>
         </div>
 
         <div class="navbar-collapse collapse">
@@ -64,7 +76,7 @@
             </ul>
             
                 <form class="search navbar-form navbar-right" action="https://www.google.com/search" method="GET">
-                    <input type="hidden" name="q" value="site:jdnavarro.github.io">
+                    <input type="hidden" name="q" value="site:dannynavarro.net">
                     <div class="form-group">
                         <input class="form-control" type="text" name="q" placeholder="Search">
                     </div>
@@ -83,11 +95,672 @@
     <div class="blog-index">
       
       
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-09-20T19:07:00+02:00" pubdate data-updated="true">Sep 20<span>th</span>, 2011</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/2011/09/20/migrating-to-octopress/">Migrating to Octopress</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>I finally found some time to migrate my blog to <a href="http://wordpress.com/">Octopress</a> from
+<a href="http://octopress.org/">Wordpress.com</a>. The critical reason to migrate from Wordpress has
+been the support for nice code syntax highlighting, something I
+couldn&rsquo;t have wordpress.com, at least for free. I know there are very
+nice wordpress plugins for syntax highlighting but in order to use
+them I would have to host it myself. I don&rsquo;t want to go through the
+hassle of maintaining a typical PHP/MySQL stack or to be worried about
+being <a href="http://en.wikipedia.org/wiki/Slashdotted"><em>slashdotted</em></a>.</p>
+
+<p>Having worked with an excellent documentation tool like <a href="http://sphinx.pocoo.org/">Sphinx</a>, I
+started looking to static blog generators meant. It turned out that
+<a href="http://blog.manuelviera.es/">Manu Viera</a>, a colleague working at <a href="http://www.yaco.es/">Yaco</a> with me, shared the
+same itch and had already looked several static web generators in
+Python, which is our main language at <a href="http://www.yaco.es/">Yaco</a>. Manu found
+<a href="https://github.com/ametaireau/pelican">pelican</a> the best candidate but still I found it a bit immature,
+not something like something like <a href="https://github.com/mojombo/jekyll">Jekyll</a>.</p>
+
+<p>Then I found <a href="http://wordpress.com/">Octopress</a>, a framework built on top of <a href="https://github.com/mojombo/jekyll">Jekyll</a>
+with <a href="http://octopress.org/docs/plugins/">several plugins</a>, including syntax highlighting or automatic
+support for <a href="http://disqus.com/">disqus</a> comments.</p>
+
+<p>The migration from wordpress was not too painful. I used the default
+Jekyll script to import wordpress posts and disqus importer for the
+comments.  After some sed commands I got nice markdown formatted
+scripts.</p>
+
+<p>I had some trouble in the beginning configuring an isolated Ruby
+runtime in <a href="http://archlinux.org/">Arch Linux</a> just for Octopress but after discovering
+<a href="https://github.com/sstephenson/rbenv">rbenv</a>, everything went smooth. (I prefer rbenv instead RVM with
+rbenv I know at any moment what it&rsquo;s doing).</p>
+
+<p>Deploying an Octopress generated site to <a href="http://pages.github.com/">github pages</a> is as
+<a href="http://octopress.org/docs/deploying/index.html">easy</a> as pie.</p>
+
+<p>Aside of nice Python syntax highlighting now I have some extra
+advantages I didn&rsquo;t have with wordpress.com:</p>
+
+<ul>
+<li><p>Markdown syntax when writing my posts.</p></li>
+<li><p>I can use the best text editor to mankind: <a href="http://www.vim.org/">vim</a> :P</p></li>
+<li><p>My blog data becomes more manageable. If at some point I don&rsquo;t want
+to host it github, I could just to push it somewhere else with no
+modification.</p></li>
+<li><p>I got a very nice default theme for free, that aside of looking
+good, it&rsquo;s also very easy to tweak and maintain.</p></li>
+<li><p>Now I have a good excuse to learn Ruby outside of RoR influence.
+Ruby is one of those languages I wish I would be better at, even if
+Python remains my main working language.</p></li>
+</ul>
+
+
+<p>In any case, I must say the service provided by wordpress.com has been
+quite good but this one of those cases where you have to say: <em>“Sorry,
+it&rsquo;s not you, it&rsquo;s just me”.</em></p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-06-12T00:00:00+02:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/2011/06/12/using-custom-events-in-pyramid/">Using Custom Events in Pyramid</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p><a href="http://docs.pylonsproject.org/docs/pyramid.html">Pyramid</a> is a <a href="http://webpython.codepoint.net/wsgi_tutorial">WSGI</a> application framework that primarily follows a<a href="http://docs.pylonsproject.org/projects/pyramid/1.0/narr/router.html"> request-response mechanism</a>. However, if you need to work with events you can still <a href="http://docs.pylonsproject.org/projects/pyramid/1.0/narr/events.html">use them</a>. It comes with <a href="http://docs.pylonsproject.org/projects/pyramid/1.0/api/events.html#event-types">some default event types</a> that are emitted implicitely by Pyramid as long as you have a subscriber for them. For most applications the default event types are enough, but what if you want to write your custom event type and emit it explicitly from your code? It turns out that the <a href="http://docs.pylonsproject.org/projects/pyramid/1.0/glossary.html#term-application-registry">application registry</a> that Pyramid uses by default comes with a handy <a href="https://github.com/Pylons/pyramid/blob/master/pyramid/registry.py#L36"><em>notify</em> method</a>. Pyramid <a href="https://github.com/Pylons/pyramid/blob/master/pyramid/router.py#L77">uses this method internally</a>  for its default events. Here is how you would take advantage of it:</p>
+
+<pre>from pyramid.events import subscriber
+
+class MyCustomEventType(object):
+    def __init__(self, msg):
+        self.msg = msg
+
+@subscriber(MyCustomEventType)
+def my_subscriber(event):
+    print(event.msg)
+
+def my_view(request):
+    request.registry.notify(MyCustomEventType("Here it comes"))
+    return {}
+</pre>
+
+
+<p>When running the application, every time a request goes through <em>my_view,</em> an event with a message is emitted, in this case, &ldquo;Here it comes&rdquo;. The subscriber then handles the event by printing the message, but it could do anything you want.</p>
+
+<p>Notice that I&rsquo;m using a <a href="http://docs.pylonsproject.org/projects/pyramid/1.0/narr/events.html#configuring-an-event-listener-using-a-decorator">decorator to hook</a> <em>my_subscriber</em>. In order for the decorator to work you have to make sure you <a href="http://docs.pylonsproject.org/projects/pyramid/1.0/narr/configuration.html#configuration-decorations-and-code-scanning">call the <em>scan</em> method when configuring</a> the application.</p>
+
+<p>Be aware though, that all these events are synchronous because Pyramid is primarily a request-response framework, all the events emitted block until the subscribers are done. If you want non-blocking events in Pyramid you could spawn a process from the subscriber or come with <a href="http://blog.dannynavarro.net/2011/01/14/async-web-apps-with-pyramid/">some other solution</a>.</p>
+
+<p>But the events in Pyramid are just another functionality that it offers. Pyramid is not a event-oriented framework, if you want to go all the way with async events you should look into <a href="http://twistedmatrix.com/trac/">Twisted</a> or <a href="http://www.tornadoweb.org/">Tornado</a>.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-05-21T00:00:00+02:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/2011/05/21/why-arch-linux/">Why Arch Linux</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>I have been using <a href="http://www.archlinux.org/">Arch Linux</a> for 3 years now. I still use Debian and Ubuntu for the servers I administer but I acknowledge Arch Linux has taught many valuable lessons.</p>
+
+<p>With Arch Linux there is very little in your system that you are not aware of. You have to configure everything yourself by editing config files. The process is not that hard because all those configuration files are meant to be tweaked. You also count with an <a href="https://wiki.archlinux.org">excellent wiki</a> to help you.</p>
+
+<p>The <a href="https://wiki.archlinux.org/index.php/The_Arch_Way">Arch Linux philosophy</a> doesn&rsquo;t try to shield the user from complexity with extra layers. Instead it focuses on making the direct configuration as simply as possible. For example, writing a proper boot script is much straightforward than in other distros. At the same time if you are not careful you have more chances of really screw things up everything.</p>
+
+<p>Arch Linux aggressively updates from upstream sources. This has the advantage and disadvantages of being always in the bleeding-edge. I also like the idea of putting more responsibility about the stability of software in developers than in packagers, as long as you are aware of this as a user. As a user you have to assume the responsibility of being at the cutting-edge. Things may not go always smooth but you count with excellent tools to manage chaos.</p>
+
+<p>That brings me to the real killer feature that makes Arch Linux shine over the rest: the packaging system. <a href="https://wiki.archlinux.org/index.php/Pacman">Pacman</a>, <a href="https://wiki.archlinux.org/index.php/ABS">ABS</a>, <a href="https://wiki.archlinux.org/index.php/AUR">AUR</a>, <a href="https://wiki.archlinux.org/index.php/Makepkg">makepkg</a> and the <a href="https://wiki.archlinux.org/index.php/PKGBUILD">PKGBUILD</a> format are just great. You usually don&rsquo;t have to mess with packaging that much, everything installs nicely and dependencies are correctly handled, specially if you stick to the official repository.</p>
+
+<p>But if you don&rsquo;t like something about a package or need another version you have all the tools in place for the creation and introspection of packages without disrupting pacman bookkeeping (pacman is the equivalent of dpkg/apt-get in Debian).  Let me illustrate all this with something I had to deal with this week.</p>
+
+<p>I decide to use <a href="http://compass-style.org/blog/">Compass</a> to make my stormy relationship with CSS smoother. Compass is a Ruby gem, the usual way to install gems is through Ruby packaging system but I don&rsquo;t want to mess with the Ruby libraries already installed in the system with pacman. If I install those gems as root pacman will not be able to keep track of them, everything could break in the future, and most importantly, without an easy solution.</p>
+
+<p><a href="http://rhodesmill.org/brandon/2011/adding-compass/">A way</a> to deal with this issue is to install the Compass gem in some directory and handle the runtime somehow. You usually end up with a new runtime environment for each project you start. There are excellent tools to manage runtimes in Ruby like <a href="http://rake.rubyforge.org/">Rake</a>, but boy, I already have enough <a href="http://www.doughellmann.com/projects/virtualenvwrapper/">managing</a> my Python <a href="http://pypi.python.org/pypi/virtualenv">virtualenvs</a>.</p>
+
+<p>I see that Compass is already in AUR. <a href="http://aur.archlinux.org/">AUR</a> is a very liberal package repository where anyone can upload source packages. When you install from AUR you usually have a review the PKGBUILD, the comments of other users and check how many users have voted the package to be included in official repositories. With tools like <a href="https://wiki.archlinux.org/index.php/Yaourt">yaourt</a> the whole process is very smooth.</p>
+
+<p>Alright, the ruby-compass PKGBUILD looks good to me so I install it. Now compass is a good system citizen and can be updated, installed and uninstalled through pacman. Compass works as expected but it turns out that the most interesting feature I wanted to use in Compass is only available in the latest version of Compass, the version in AUR is not the latest one.</p>
+
+<p>No problem, it&rsquo;ll probably be some version bumps and I&rsquo;ll be done. I download the PKGBUILD, bump the versions and build the package again but then I realize that the new version depends on new Ruby gems that are not in AUR.</p>
+
+<p>At this point I would avoid getting into a dependency hell and go for Rake, but wait, I&rsquo;m using Arch Linux, let&rsquo;s see what happens if I continue with the Arch flow.</p>
+
+<p>I take the PKGBUILD of Compass as a template, which is generic enough for any Ruby gem, and use them for the Ruby dependencies. I update licences, versions checksums, build them and done, everything works. They are all coming from <a href="http://rubyforge.org/">rubyforge</a> and follow the same building conventions, making my life easy as a packager.</p>
+
+<p>I upload the PKGBUILDs to AUR with just one <a href="https://bbs.archlinux.org/viewtopic.php?id=97137">burp</a> command. Now I can install the latest version of compass through pacman without any issue. I then send my modified version of PKGBUILD to the original Compass packager who updates it. That&rsquo;s it, now anyone can install the latest version of Compass with all its dependencies from AUR. I now can install Compass at home with just one command: just <em>yaourt -Sy ruby-compass.</em></p>
+
+<p>Now I just have to keep an eye in new updates on the dependencies I&rsquo;m now maintaining in AUR but rubyforge offers an excellent notification system for gem updates.</p>
+
+<p>That&rsquo;s it. The whole thing took less than 30 minutes.</p>
+
+<p>I don&rsquo;t know if nowadays writing a DEB package spec is that hard, I acknowledge I never tried. The tutorials I found about them drove me away when I considered it some years ago.</p>
+
+<p>It&rsquo;s not only the packaging format itself, there is also the community and policy aspects. Editing your PKGBUILDs is something that every Arch Linux user does. For AUR there is very little regulating making the packaging smoother process at the expense of shifting the trust on the packages to the user. In general, most packages in AUR are good enough but for production machines I still value more the trust the Debian and Ubuntu package maintainers.</p>
+
+<p>That&rsquo;s where open source community shines, you have many choices.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-05-18T00:00:00+02:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/2011/05/18/commenting-out-in-chamaleon-templates/">Commenting Out in Chamaleon Templates</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>If you want to prevent <a href="http://chameleon.repoze.org/" title="Chameleon is an excellent HTML templating engine">Chameleon</a> from rendering some portions of an HTML template you might be tempted to do something like this:</p>
+
+<pre>
+</br>
+&lt;!-- &lt;div&gt;${context.name}&lt;/div&gt; --&gt;
+</br>
+</pre>
+
+
+<p>However Chameleon will still evaluate what&rsquo;s inside the ${&hellip;} block even if it&rsquo;s within an HTML comment. Chameleon must do this because you might want to insert conditional comments.</p>
+
+<p>This dummy tal:condition block will do the job:</p>
+
+<pre>
+</br>
+&lt;span tal:condition="None"&gt;
+  &lt;div&gt;${context.name}&lt;/div&gt;
+&lt;/span&gt;
+</br>
+</pre>
+
+
+<p>Chameleon ignore anything inside the condition block.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-05-15T00:00:00+02:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/2011/05/15/moving-to-spain/">Moving to Spain</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>After almost 3 years in The Netherlands working as <a href="http://en.wikipedia.org/wiki/Proteomics">proteomics</a> informatician at <a href="http://bioms.chem.uu.nl/">Albert Heck&rsquo;s lab</a>, I&rsquo;m moving to <a href="http://en.wikipedia.org/wiki/Sevilla">Seville</a>, Spain, to work as a web developer for<a href="http://yaco.es/"> Yaco Sistemas</a>, a fresh and dynamic open source friendly company.</p>
+
+<p>This is an important shift in my career since I won&rsquo;t be working on proteomics informatics and academic research anymore. I have mixed feelings about leaving proteomics. On one hand I like the area because there are plenty of tough challenges to be solved. But on the other hand I&rsquo;m glad I can dedicate all my time to develop web applications, that might not be as sophisticated as proteomics software, but that will be immediately useful for the <em>masses</em>. I love web development and the Python community but within proteomics I could only intersect with the Python web development community quite sporadically. Now I&rsquo;ll have the chance to be part of it full time.</p>
+
+<p>Personally, The Netherlands is the most comfortable and easy-going country I ever lived. Here I had the chance to work with very smart people and made friends that will never forget. What I have learned during these years is priceless.</p>
+
+<p>But I can&rsquo;t deny my origins, Spain is where I feel at home even if sometimes I don&rsquo;t find it too exciting because I&rsquo;m too familiar with the culture. However Seville is quite far from <a title="Pamplona" href="http://en.wikipedia.org/wiki/Pamplona">my hometown</a>, in the North of Spain. The culture in the South is very different from the North, so in a way, I&rsquo;ll be another foreigner excited about the peculiarities I discover about Andalusian culture.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-01-23T00:00:00+01:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/2011/01/23/async-pyramid-example-done-right/">Async Pyramid Example Done Right</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>After speaking with <a href="http://mg.pov.lt/blog">Marius Gedminas</a> at freenode, he gave me enough hints to rewrite <a href="http://blog.dannynavarro.net/2011/01/14/async-web-apps-with-pyramid/">my previous async <i>view</i> example </a>with <i>locks</i> instead of <i>Value</i>, which is prone to race conditions. I also added a queue to allow jobs to wait for being processed.</p>
+
+<br />
+
+
+<br />
+
+
+<pre>from multiprocessing import Process, Lock, Queue
+
+job = 0
+q = Queue(maxsize=3)
+lock = Lock()
+
+def work():
+    import time; time.sleep(8)
+    job = q.get()
+    print("Job done: {0}".format(job))
+    print("Queue size: {0}\n".format(q.qsize()))
+    if not q.empty():
+        work()
+    else:
+        lock.release()
+
+def my_view(request):
+    global job
+    if not q.full():
+        job += 1
+        q.put(job)
+        # Not running
+        if lock.acquire(False):
+            Process(target=work).start()
+            print("Job {0} submitted and working on it".format(job))
+        else:
+            print("Job {0} submitted while working".format(job))
+    else:
+        print("Queue is full")
+    print("Queue size: {0}\n".format(q.qsize()))
+    return {'project':'asyncapp'}
+<br />
+</pre>
+
+
+<p>With every request a job is sent. Here the queue accepts 3 jobs. The recursion in <i>work</i> makes sure there is only 1 process working at a time.</p>
+
+<p>I will leave <a href="http://blog.dannynavarro.net/2011/01/14/async-web-apps-with-pyramid/">my previous example</a> with <i>Value</i> because it&rsquo;s easier to understand but this version is much safer.</p>
+
+<p><strong>Update:</strong> You can avoid the use of locks by <a href="http://blog.doughellmann.com/2009/04/pymotw-multiprocessing-part-2.html"> using 2 queues</a>.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-01-14T00:00:00+01:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/2011/01/14/async-web-apps-with-pyramid/">Async Web Apps With Pyramid?</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>For the last few months I&rsquo;ve been working in a kind of <a href="http://en.wikipedia.org/wiki/Content_management_system">CMS</a> for <a href="http://en.wikipedia.org/wiki/Proteomics">proteomics</a> results using <a href="http://docs.pylonsproject.org/projects/pyramid/dev/">pyramid</a> (in reality I started it with <a href="http://bfg.repoze.org/">repoze.bfg</a> which became pyramid after joining the pylons project).</p>
+
+<p>My experience with pyramid has been really smooth until I had to write a form to parse huge input files in order to build <em>experiment sites</em>.</p>
+
+<p>In an average view for an <em>add form</em> I would return a response redirecting to the newly created <a title="models were renamed to resources after a long thread" href="http://www.mail-archive.com/pylons-devel@googlegroups.com/index.html#00910"><del>model</del> resource</a>. But in this case, the proteomics files can be quite large. I needed some way of having the view returning a response while the files were being parsed. Here is a simplified representation of how I made it work:</p>
+
+<pre><span id="LC1">from multiprocessing import Value, Process</span>
+
+<span id="LC3">is_parsing = Value('B', 0)</span>
+
+<span id="LC5">def parse():</span>
+<span id="LC6">    print "Parsing started"</span>
+<span id="LC7">    import time; time.sleep(10)</span>
+<span id="LC8">    print "Parsing is done"</span>
+<span id="LC9">    is_parsing.value = False</span>
+
+<span id="LC11">def my_view(request):</span>
+<span id="LC13">    if not is_parsing.value:</span>
+<span id="LC14">        is_parsing.value = True</span>
+<span id="LC15">        Process(target=parse).start()</span>
+<span id="LC16">    else:</span>
+<span id="LC17">        print("Still parsing...")</span>
+<span id="LC18">    return {'project':'asyncapp',</span>
+<span id="LC10">            'is_parsing': is_parsing.value}</span></pre>
+
+
+<br />
+
+
+<br />
+
+
+<p>Here I&rsquo;m launching another process to do the parsing while the web app returns the response without the parsing being done. The <em>is_building </em>variable is shared in both processes (no need of <em>global</em> statement). In my case I only want to run one parsing process at a time, so I didn&rsquo;t have the need for locks or queues.</p>
+
+<p>In the template of this view I can either offer a form to create <em>an experiment </em>or inform that there is already a experiment site being built. When building I can have the browser <a href="http://plugins.jquery.com/project/refresh">polling</a> to check if the parsing is done.</p>
+
+<p>That&rsquo;s enough in my case, I don&rsquo;t need to scale to thousands of users parsing multiple files at the same time, but I was curious about how to deal with that problem if I had to. I played a bit with different ideas I was given in the always supportive #repoze channel at <a href="http://freenode.net/">freenode</a>.</p>
+
+<p>First, instead of multiple processes I tried <strong>OS threads, </strong>I know about the <a href="http://blip.tv/file/2232410">infamous GIL</a> but want to see it with my own eyes. However I got some intimidating random errors from paster/pyramid that were enough to drive me off that path.</p>
+
+<p>I also <a href="http://eventlet.net/doc/patching.html#monkeypatching-the-standard-library">monkeypatched</a> the standard library with <a href="http://eventlet.net/">eventlet</a> so that the OS threads would become <strong>green threads</strong>. The dummy example I show above seemed to run fine but when trying in my real application I ran into more cryptic thread errors from monkeypatched <a href="http://www.zodb.org/">ZODB</a>, which is what I use in my real app. I also tried <a href="http://www.gevent.org/">gevent</a> with similar results. <del datetime="2011-01-23T10:04:41+00:00">If you want to use eventlet or gevent you have to find another storage mechanism that works with green threads.</del> <strong>Update:</strong> I was monkeypatching incorrectly, <a href="http://braintrace.ru">Andrey Popp</a>&rsquo;s <a href="http://blog.dannynavarro.net/2011/01/14/async-web-apps-with-pyramid/#comment-58">comment</a> explains how to do it.</p>
+
+<p>Another potential source of problems when scaling with<strong> long polling</strong>, specially if you would like to add a nice responsive progress bar and a kind of log showing what is being done while parsing.</p>
+
+<p><a href="http://en.wikipedia.org/wiki/WebSockets">WebSockets</a> are being regarded as the ultimate solution to deal with this kind of problems. First of all, let&rsquo;s pretend websockets would be supported by all major browsers soon.</p>
+
+<p>How can websockets be handled in pyramid? It turns out that dealing with websockets within <a href="http://www.python.org/dev/peps/pep-3333/">the WSGI protocol</a> is <a href="http://groups.google.com/group/paste-users/browse_thread/thread/2f3a5ba33b857c6c/2d63769fd9db6da3">messy</a>. However eventlet and gevent <a href="http://eventlet.net/doc/modules/websocket.html">have</a> <a href="http://www.gelens.org/code/gevent-websocket/">ways</a> to have websockets working within WSGI. Theoretically you could run a monkeypatched pyramid application behind <a href="http://gunicorn.org/">gunicorn</a> which can make the websockets <a href="https://github.com/benoitc/gunicorn/tree/master/examples/websocket">accessible</a> in the <em>request.environ</em> in pyramid. There is still some websocket protocol tasks (i.e. handshaking, closing socket, etc.) which would make writing something looking like a normal pyramid view hard.</p>
+
+<p>But it happens that <a href="https://github.com/boothead">Ben Ford</a> has a already written a wrapper to take care of that problem:  <a href="https://github.com/boothead/stargate">stargate</a> (as he says, <em>communication for pyramids</em>). With stargate, in your pyramid app you create <em>websocket view</em> by subclassing from a base class that deals with the minutiae of the websocket protocol (up to v76, the latest version at the time of writing). In a websocket view, instead of returning anything from that view, you just write a handler to catch what is coming from the websocket. The great advantage of stargate is that you don&rsquo;t need to run another process to deal with websockets, you can handle websockets from within pyramid. Additionally, stargate has 100% unit test coverage and some <a href="http://boothead.github.com/stargate/">documentation</a>.</p>
+
+<p>While websockets look like the way forward I think it&rsquo;s going to take some time for websockets to become mainstream in all browser, specially after mozilla announced it won&rsquo;t support websockets in the next release of firefox because of <a href="http://hacks.mozilla.org/2010/12/websockets-disabled-in-firefox-4/">security issues</a>.</p>
+
+<p>However, with <a href="http://nodejs.org/">node.js</a>, it seems finally event driven web frameworks are becoming mainstream, bringing projects like <a href="http://socket.io/">Socket.IO</a>. Socket.IO provides an abstraction layer to the developer to write event driven web applications. Socket.IO gives the same way of writing regardless of what the browser supports, being websockets, long polling or Flash; the developer writes the app the same way.</p>
+
+<p>Although initially Socket.IO is meant to be used with node.js, there is something available for the server side in Python: <a href="https://github.com/SocketTornadIO/SocketTornad.IO">SocketTornad.IO</a>. It&rsquo;s built on top of <a href="http://www.tornadoweb.org/">Tornado web framework</a>. In spite of Tornado having <a href="https://github.com/facebook/tornado/blob/master/tornado/wsgi.py#L194">some WSGI support</a>, I&rsquo;m afraid it <a href="http://www.tornadoweb.org/documentation#wsgi-and-google-appengine">won&rsquo;t be easy</a> to have the async features when in WSGI mode.</p>
+
+<p>If I were to support now many concurrent users in a highly responsive application I would probably ditch pyramid  and go directly with SocketTornado.IO. Perhaps I will still be using pyramid for the non async part and have a front web server dispatching requests accordingly.</p>
+
+<p>But it turns out that this is just a fun thought experiment, the multiprocess solution is fine for me because, like most web developers or bioinformaticians, for now I don&rsquo;t need to write highly responsive applications for thousands of users.</p>
+
+<p><strong>Update: </strong><a href="http://mg.pov.lt/blog">Marius Gedminas</a> pointed out a better way to do this with locks. I will leave the code snippet using Value because is quite illustrative but you shouldn&rsquo;t use Value if you to do something similar, instead check a better example I wrote in <a href="http://blog.dannynavarro.net/2011/01/23/async-pyramid-example-done-right/">another post</a>.</p>
+
+<p><strong>Update: </strong> Check <a href="https://github.com/abourget/pyramid_socketio">pyramid_socketio</a> for a newer version of async apps.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-01-11T00:00:00+01:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/2011/01/11/the-bioinformatics-curse/">The Bioinformatics Curse</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>As a bioinformatician you will be considered a programmer by biologists and a biologist by programmers. When talking with programmers you will suck at programming, when talking with biologists you will suck at biology. Biologists don&rsquo;t want to know much about computing, understandably, they want to get their job done. Programmers might show some curiosity in biology but tend to shield themselves from biology complexity in order to get to get work done. As a bioinformatician you have to know enough of biology to be in the cutting-edge so what you research continues being relevant and keep improving your programming skills so you are still productive for what is expected of a programmer nowadays.</p>
+
+<p>Some influential bioinformaticians group try to define the bioinformatics field as if it were precisely the research they are doing, frowning upon bioinformatics research not similar to theirs (or similar but superior to theirs). The followers of these groups try to imitate them so that they can be some day become <em>experts</em> in the field. I see also other bioinformaticians gathering together just because they work in biology using a computer, regardless of how little overlap there is in the things they do. It&rsquo;s like group therapy, sharing experiences with people marginalized for the same reason.</p>
+
+<p>Bioinformatics field is still in the very beginning. The field is very broad and will eventually be fragmented in multiple <em>official</em> fields. Working in an emerging field can be very exciting because you don&rsquo;t have the constrains rules of an established field. But if social recognition is important to you, think twice when getting into bioinformatics. You&rsquo;d likely feel out-of-place wherever you go.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2010-10-16T00:00:00+02:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/2010/10/16/zsh-prompt-for-virtualenv-git-and-bzr/">ZSH Prompt for Virtualenv, Git and Bzr</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Some of my colleagues are surprised I don&rsquo;t use NetBeans or Eclipse or some other fat IDE. In fact, I believe the most <a href="http://mg.pov.lt/blog/unix-is-an-ide.html">powerful IDE is UNIX</a>.</p>
+
+<p>I also acknowledge that fine-tuning all your UNIX tools to your exact requirements can be cumbersome. But you don&rsquo;t need to customize everything from scratch. Open source is great because you can <em><a href="http://vimeo.com/4763707">steal</a></em> what other people are sharing and put it altogether as you like.</p>
+
+<p>Lately I have been reading <a href="http://briancarper.net/blog/570/git-info-in-your-zsh-prompt">some</a> <a href="http://tech.blog.aknin.name/2010/10/14/zsh-and-virtualenv/">great</a> <a href="http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/">posts</a> about customization <a href="http://en.wikipedia.org/wiki/Zsh">ZSH</a>. I consider the shell prompt a fundamental part of the UNIX IDE. In the screenshot below I show how my customized ZSH prompt plays nicely with <a href="http://bazaar.canonical.com/">bzr</a>, <a href="http://git-scm.com/">git</a> and <a href="http://www.doughellmann.com/projects/virtualenvwrapper/">virtualenvwrapper</a>.</p>
+
+<p><img class="alignnone size-full wp-image-109" title="zsh_demo" src="http://jdnavarro.files.wordpress.com/2010/10/zsh_demo1.png" alt="" width="536" height="754" /></p>
+
+<p>I barely have done anything from scratch. I just stitched configurations and tips from these sources:</p>
+
+<ol>
+    <li>Prompt decorations: <a href="http://aperiodic.net/phil/prompt/">http://aperiodic.net/phil/prompt/</a>, <a href="http://git.sysphere.org/dotfiles/tree/zshrc">http://git.sysphere.org/dotfiles/tree/zshrc</a></li>
+    <li>Zenburn theme: <a href="http://git.sysphere.org/dotfiles/tree/Xdefaults">http://git.sysphere.org/dotfiles/tree/Xdefaults</a></li>
+    <li>git prompt hack: <a href="http://briancarper.net/blog/570/git-info-in-your-zsh-prompt">http://briancarper.net/blog/570/git-info-in-your-zsh-prompt</a></li>
+    <li>virtualenv prompt hack: <a href="http://www.doughellmann.com/docs/virtualenvwrapper/tips.html#zsh-prompt">http://www.doughellmann.com/docs/virtualenvwrapper/tips.html#zsh-prompt</a></li>
+    <li>bzr prompt hack: from scratch imitating git hack.</li>
+</ol>
+
+
+<p>End results:</p>
+
+<ol>
+    <li><a href="http://github.com/jdnavarro/dotfiles/blob/master/.zshrc#L164">.zshrc</a></li>
+    <li>virtualenwrapper <a href="http://github.com/jdnavarro/dotfiles/blob/master/sandbox/virtualenvs/postactivate">postactivate</a> and <a href="http://github.com/jdnavarro/dotfiles/blob/master/sandbox/virtualenvs/postdeactivate">postdeactivate</a></li>
+</ol>
+
+
+<p>Isn&rsquo;t open source great? I would be flattered if you also can steal my configuration files ;)</p>
+
+<p>In another blog post I&rsquo;ll write about my customizations for Vim, <a href="http://software.schmorp.de/pkg/rxvt-unicode.html">urxvt</a> and <a href="http://awesome.naquadah.org/">awesomewm</a> to reach the ultimate UNIX IDE.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2010-08-06T00:00:00+02:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/2010/08/06/the-value-of-wasting-your-time/">The Value of &#8216;Wasting&#8217; Your Time</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>I&rsquo;m the kind of guy who likes to learn just about everything just for fun. I have the feeling I don&rsquo;t really grasp something until I have real experience with it. That&rsquo;s why redoing something other people have done is the best activity I can think for learning what&rsquo;s the matter really about. But it seems some people have difficulties tolerating my views about learning. I sometimes hear things like:</p>
+
+<p><em>Why do you reinvent the wheel? Why do you want to waste your time?</em></p>
+
+<p>Well, if I hadn&rsquo;t &lsquo;wasted&rsquo; so much time during all these years I would still be doing terrible things like <a href="http://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/1732454#1732454">using regex to parse HTML</a> with a crippled Perl scripts. The skills for what I&rsquo;m getting my salary are mostly from wasted time. I wouldn&rsquo;t be nowhere with only my <em>formal</em> training.</p>
+
+<p>Information technology nowadays is mostly about about <strong>knowledge</strong> investment. Doing stuff is not as hard as learning how to do stuff orders of magnitude more efficiently. Learning is kind of accumulative, the more you learn the better you are at learning and the faster your efficiency grows. With computers is really hard to hit a physical limit where it&rsquo;s not possible to improve significantly more by learning.</p>
+
+<p>It&rsquo;s <a href="http://en.wikipedia.org/wiki/The_Mythical_Man-Month">well known</a> that few highly productive people can beat large corporations made of people who work linearly with the skills they once learned in order to get a job.</p>
+</div>
+  
+  
+
+
+        </article>
+      
     </div>
 
     <ul class="pager">
       
-        <li class="previous disabled"><a href="#">&larr;&nbsp;Older</a></li>
+        <li class="previous"><a href="/blog/page/2/">&larr;&nbsp;Older</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
       
@@ -106,7 +779,50 @@
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/2011/09/20/migrating-to-octopress/">Migrating to Octopress</a>
+    
+    <a class="list-group-item " href="/2011/06/12/using-custom-events-in-pyramid/">Using Custom Events in Pyramid</a>
+    
+    <a class="list-group-item " href="/2011/05/21/why-arch-linux/">Why Arch Linux</a>
+    
+    <a class="list-group-item " href="/2011/05/18/commenting-out-in-chamaleon-templates/">Commenting Out in Chamaleon Templates</a>
+    
+    <a class="list-group-item " href="/2011/05/15/moving-to-spain/">Moving to Spain</a>
+    
   </div>
+</section>
+
+<section class="panel panel-default clearfix">
+  <div class="panel-heading">
+      <h3 class="panel-title">GitHub Repos</h3>
+  </div>
+  <div class="list-group" id="gh_repos">
+    <p class="loading">Status updating&#8230;</p>
+  </div>
+  
+    <div class="gh-profile-link pull-right text-muted">
+      <a href="https://github.com/jdnavarro">@jdnavarro</a> on GitHub
+    </div>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jdnavarro',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
 
@@ -124,7 +840,7 @@
     </div>
     <footer role="contentinfo"><div class="container">
     <p class="text-muted credits">
-  Copyright &copy; 2014 - Your Name<br>
+  Copyright &copy; 2014 - Danny Navarro<br>
   <small>
       <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
       <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
@@ -136,6 +852,19 @@
     <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/javascripts/modernizr-2.0.js"></script>
 
+
+<script type="text/javascript">
+      var disqus_shortname = 'dannynavarrosblog';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: bzr | Danny Navarro's blog]]></title>
+  <link href="http://dannynavarro.net/categories/bzr/atom.xml" rel="self"/>
+  <link href="http://dannynavarro.net/"/>
+  <updated>2014-03-11T16:31:53+01:00</updated>
+  <id>http://dannynavarro.net/</id>
+  <author>
+    <name><![CDATA[Danny Navarro]]></name>
+    <email><![CDATA[j@dannynavarro.net]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ZSH prompt for virtualenv, git and bzr]]></title>
+    <link href="http://dannynavarro.net/2010/10/16/zsh-prompt-for-virtualenv-git-and-bzr/"/>
+    <updated>2010-10-16T00:00:00+02:00</updated>
+    <id>http://dannynavarro.net/2010/10/16/zsh-prompt-for-virtualenv-git-and-bzr</id>
+    <content type="html"><![CDATA[<p>Some of my colleagues are surprised I don&rsquo;t use NetBeans or Eclipse or some other fat IDE. In fact, I believe the most <a href="http://mg.pov.lt/blog/unix-is-an-ide.html">powerful IDE is UNIX</a>.</p>
+
+<p>I also acknowledge that fine-tuning all your UNIX tools to your exact requirements can be cumbersome. But you don&rsquo;t need to customize everything from scratch. Open source is great because you can <em><a href="http://vimeo.com/4763707">steal</a></em> what other people are sharing and put it altogether as you like.</p>
+
+<p>Lately I have been reading <a href="http://briancarper.net/blog/570/git-info-in-your-zsh-prompt">some</a> <a href="http://tech.blog.aknin.name/2010/10/14/zsh-and-virtualenv/">great</a> <a href="http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/">posts</a> about customization <a href="http://en.wikipedia.org/wiki/Zsh">ZSH</a>. I consider the shell prompt a fundamental part of the UNIX IDE. In the screenshot below I show how my customized ZSH prompt plays nicely with <a href="http://bazaar.canonical.com/">bzr</a>, <a href="http://git-scm.com/">git</a> and <a href="http://www.doughellmann.com/projects/virtualenvwrapper/">virtualenvwrapper</a>.</p>
+
+<p><img class="alignnone size-full wp-image-109" title="zsh_demo" src="http://jdnavarro.files.wordpress.com/2010/10/zsh_demo1.png" alt="" width="536" height="754" /></p>
+
+<p>I barely have done anything from scratch. I just stitched configurations and tips from these sources:</p>
+
+<ol>
+    <li>Prompt decorations: <a href="http://aperiodic.net/phil/prompt/">http://aperiodic.net/phil/prompt/</a>, <a href="http://git.sysphere.org/dotfiles/tree/zshrc">http://git.sysphere.org/dotfiles/tree/zshrc</a></li>
+    <li>Zenburn theme: <a href="http://git.sysphere.org/dotfiles/tree/Xdefaults">http://git.sysphere.org/dotfiles/tree/Xdefaults</a></li>
+    <li>git prompt hack: <a href="http://briancarper.net/blog/570/git-info-in-your-zsh-prompt">http://briancarper.net/blog/570/git-info-in-your-zsh-prompt</a></li>
+    <li>virtualenv prompt hack: <a href="http://www.doughellmann.com/docs/virtualenvwrapper/tips.html#zsh-prompt">http://www.doughellmann.com/docs/virtualenvwrapper/tips.html#zsh-prompt</a></li>
+    <li>bzr prompt hack: from scratch imitating git hack.</li>
+</ol>
+
+
+<p>End results:</p>
+
+<ol>
+    <li><a href="http://github.com/jdnavarro/dotfiles/blob/master/.zshrc#L164">.zshrc</a></li>
+    <li>virtualenwrapper <a href="http://github.com/jdnavarro/dotfiles/blob/master/sandbox/virtualenvs/postactivate">postactivate</a> and <a href="http://github.com/jdnavarro/dotfiles/blob/master/sandbox/virtualenvs/postdeactivate">postdeactivate</a></li>
+</ol>
+
+
+<p>Isn&rsquo;t open source great? I would be flattered if you also can steal my configuration files ;)</p>
+
+<p>In another blog post I&rsquo;ll write about my customizations for Vim, <a href="http://software.schmorp.de/pkg/rxvt-unicode.html">urxvt</a> and <a href="http://awesome.naquadah.org/">awesomewm</a> to reach the ultimate UNIX IDE.</p>
+]]></content>
+  </entry>
+  
+</feed>

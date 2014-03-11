@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://jdnavarro.github.io/sitemap.xml 
+Sitemap: http://dannynavarro.net/sitemap.xml 

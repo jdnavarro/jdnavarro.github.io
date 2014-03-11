@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ZSH prompt for virtualenv, git and bzr - Danny Navarro's blog</title>
+  <meta name="author" content="Danny Navarro">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://dannynavarro.net/2010/10/16/zsh-prompt-for-virtualenv-git-and-bzr">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Danny Navarro's blog" type="application/atom+xml">
+
+  <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+
+  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-25821353-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+  <body   >
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Danny Navarro's blog</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="search navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="q" value="site:dannynavarro.net">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9">
+    <article class="hentry" role="article">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2010-10-16T00:00:00+02:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title">
+        ZSH Prompt for Virtualenv, Git and Bzr
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix"><p>Some of my colleagues are surprised I don&rsquo;t use NetBeans or Eclipse or some other fat IDE. In fact, I believe the most <a href="http://mg.pov.lt/blog/unix-is-an-ide.html">powerful IDE is UNIX</a>.</p>
+
+<p>I also acknowledge that fine-tuning all your UNIX tools to your exact requirements can be cumbersome. But you don&rsquo;t need to customize everything from scratch. Open source is great because you can <em><a href="http://vimeo.com/4763707">steal</a></em> what other people are sharing and put it altogether as you like.</p>
+
+<p>Lately I have been reading <a href="http://briancarper.net/blog/570/git-info-in-your-zsh-prompt">some</a> <a href="http://tech.blog.aknin.name/2010/10/14/zsh-and-virtualenv/">great</a> <a href="http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/">posts</a> about customization <a href="http://en.wikipedia.org/wiki/Zsh">ZSH</a>. I consider the shell prompt a fundamental part of the UNIX IDE. In the screenshot below I show how my customized ZSH prompt plays nicely with <a href="http://bazaar.canonical.com/">bzr</a>, <a href="http://git-scm.com/">git</a> and <a href="http://www.doughellmann.com/projects/virtualenvwrapper/">virtualenvwrapper</a>.</p>
+
+<p><img class="alignnone size-full wp-image-109" title="zsh_demo" src="http://jdnavarro.files.wordpress.com/2010/10/zsh_demo1.png" alt="" width="536" height="754" /></p>
+
+<p>I barely have done anything from scratch. I just stitched configurations and tips from these sources:</p>
+
+<ol>
+    <li>Prompt decorations: <a href="http://aperiodic.net/phil/prompt/">http://aperiodic.net/phil/prompt/</a>, <a href="http://git.sysphere.org/dotfiles/tree/zshrc">http://git.sysphere.org/dotfiles/tree/zshrc</a></li>
+    <li>Zenburn theme: <a href="http://git.sysphere.org/dotfiles/tree/Xdefaults">http://git.sysphere.org/dotfiles/tree/Xdefaults</a></li>
+    <li>git prompt hack: <a href="http://briancarper.net/blog/570/git-info-in-your-zsh-prompt">http://briancarper.net/blog/570/git-info-in-your-zsh-prompt</a></li>
+    <li>virtualenv prompt hack: <a href="http://www.doughellmann.com/docs/virtualenvwrapper/tips.html#zsh-prompt">http://www.doughellmann.com/docs/virtualenvwrapper/tips.html#zsh-prompt</a></li>
+    <li>bzr prompt hack: from scratch imitating git hack.</li>
+</ol>
+
+
+<p>End results:</p>
+
+<ol>
+    <li><a href="http://github.com/jdnavarro/dotfiles/blob/master/.zshrc#L164">.zshrc</a></li>
+    <li>virtualenwrapper <a href="http://github.com/jdnavarro/dotfiles/blob/master/sandbox/virtualenvs/postactivate">postactivate</a> and <a href="http://github.com/jdnavarro/dotfiles/blob/master/sandbox/virtualenvs/postdeactivate">postdeactivate</a></li>
+</ol>
+
+
+<p>Isn&rsquo;t open source great? I would be flattered if you also can steal my configuration files ;)</p>
+
+<p>In another blog post I&rsquo;ll write about my customizations for Vim, <a href="http://software.schmorp.de/pkg/rxvt-unicode.html">urxvt</a> and <a href="http://awesome.naquadah.org/">awesomewm</a> to reach the ultimate UNIX IDE.</p>
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard">Posted by <span class="fn">Danny Navarro</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2010-10-16T00:00:00+02:00" pubdate data-updated="true"></time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/categories/bzr/'>bzr</a>, <a class='category' href='/categories/git/'>git</a>, <a class='category' href='/categories/hacking/'>hacking</a>, <a class='category' href='/categories/python/'>python</a>, <a class='category' href='/categories/unix/'>unix</a>, <a class='category' href='/categories/virtualenv/'>virtualenv</a>, <a class='category' href='/categories/virtualenvwrapper/'>virtualenvwrapper</a>, <a class='category' href='/categories/zsh/'>zsh</a>
+  
+</span>
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://dannynavarro.net/2010/10/16/zsh-prompt-for-virtualenv-git-and-bzr/" data-via="vimes656" data-counturl="http://dannynavarro.net/2010/10/16/zsh-prompt-for-virtualenv-git-and-bzr/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/2010/08/06/the-value-of-wasting-your-time/" title="Previous Post: The value of 'wasting' your time">&laquo; The value of 'wasting' your time</a></li>
+            
+            
+            <li class="next"><a href="/2011/01/11/the-bioinformatics-curse/" title="Next Post: The bioinformatics curse">The bioinformatics curse &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/2011/09/20/migrating-to-octopress/">Migrating to Octopress</a>
+    
+    <a class="list-group-item " href="/2011/06/12/using-custom-events-in-pyramid/">Using Custom Events in Pyramid</a>
+    
+    <a class="list-group-item " href="/2011/05/21/why-arch-linux/">Why Arch Linux</a>
+    
+    <a class="list-group-item " href="/2011/05/18/commenting-out-in-chamaleon-templates/">Commenting Out in Chamaleon Templates</a>
+    
+    <a class="list-group-item " href="/2011/05/15/moving-to-spain/">Moving to Spain</a>
+    
+  </div>
+</section>
+
+<section class="panel panel-default clearfix">
+  <div class="panel-heading">
+      <h3 class="panel-title">GitHub Repos</h3>
+  </div>
+  <div class="list-group" id="gh_repos">
+    <p class="loading">Status updating...</p>
+  </div>
+  
+    <div class="gh-profile-link pull-right text-muted">
+      <a href="https://github.com/jdnavarro">@jdnavarro</a> on GitHub
+    </div>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jdnavarro',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2014 - Danny Navarro<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr-2.0.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'dannynavarrosblog';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </body>
+</html>
