@@ -4,7 +4,7 @@
   <title><![CDATA[Danny Navarro's blog]]></title>
   <link href="http://dannynavarro.net/atom.xml" rel="self"/>
   <link href="http://dannynavarro.net/"/>
-  <updated>2014-03-11T19:39:38+01:00</updated>
+  <updated>2014-03-12T11:50:59+01:00</updated>
   <id>http://dannynavarro.net/</id>
   <author>
     <name><![CDATA[Danny Navarro]]></name>
@@ -12,6 +12,114 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Improving readability with the Maybe Foldable instance]]></title>
+    <link href="http://dannynavarro.net/2014/03/12/improving-readability-with-the-maybe-foldable-instance/"/>
+    <updated>2014-03-12T12:00:00+01:00</updated>
+    <id>http://dannynavarro.net/2014/03/12/improving-readability-with-the-maybe-foldable-instance</id>
+    <content type="html"><![CDATA[<p>One recommendation you often hear when reaching an acceptable level of basic
+Haskell is to make your code more polymorphic. The Haskell <a href="http://hackage.haskell.org/package/base/docs/Prelude.html"><code>Prelude</code></a> is
+heavily biased towards lists, so an immediate gain in polymorphism is to make
+your code work not only for lists but for any instance of <a href="http://hackage.haskell.org/package/base/docs/Data-Traversable.html"><code>Traversable</code></a> or
+<a href="http://hackage.haskell.org/package/base/docs/Data-Foldable.html"><code>Foldable</code></a>.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+
+<p>Since a Haskell list is an instance of <a href="http://hackage.haskell.org/package/base/docs/Data-Traversable.html"><code>Traversable</code></a> and <a href="http://hackage.haskell.org/package/base/docs/Data-Foldable.html"><code>Foldable</code></a>, we can
+still operate as usual on lists with the new polymorphic code:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="kr">import</span> <span class="k">qualified</span> <span class="nn">Data.Foldable</span> <span class="k">as</span> <span class="n">F</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="n">mapM_</span> <span class="n">print</span> <span class="p">[</span><span class="n">&#39;a&#39;</span><span class="o">..</span><span class="n">&#39;c&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="n">&#39;a&#39;</span>
+</span><span class='line'><span class="n">&#39;b&#39;</span>
+</span><span class='line'><span class="n">&#39;c&#39;</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="kt">F</span><span class="o">.</span><span class="n">traverse_</span> <span class="n">print</span> <span class="p">[</span><span class="n">&#39;a&#39;</span><span class="o">..</span><span class="n">&#39;c&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="n">&#39;a&#39;</span>
+</span><span class='line'><span class="n">&#39;b&#39;</span>
+</span><span class='line'><span class="n">&#39;c&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Notice here that we&rsquo;ve gained the extra advantage of being able to use <code>Applicative</code>
+instead of <code>Monad</code>. Here, we don&rsquo;t need the extra power of <code>Monad</code>, and the
+<code>Applicative</code>, by being weaker, is also more generalizable.</p>
+
+<p>But aside of lists, there is another instance of <code>Traversable</code>/<code>Foldable</code>
+defined by default for us: <code>Maybe</code>. You could think of a <code>Maybe</code> as a list of 1
+or 0 elements, so when you are traversing it you either do something with the
+element if present or do the default <code>Applicative</code>/<code>Monad</code> action (<code>pure</code> and
+<code>return</code> respectively) if not present. How is this useful then? Have you ever
+found yourself writing case expressions like this?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="kt">:</span><span class="p">{</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="kr">let</span> <span class="n">printM</span> <span class="n">m</span> <span class="ow">=</span> <span class="kr">case</span> <span class="n">m</span> <span class="kr">of</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span>                     <span class="kt">Just</span> <span class="n">n</span>  <span class="ow">-&gt;</span> <span class="n">print</span> <span class="n">n</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span>                     <span class="kt">Nothing</span> <span class="ow">-&gt;</span> <span class="n">return</span> <span class="nb">()</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="kt">:</span><span class="p">}</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="kr">let</span> <span class="n">m1</span> <span class="ow">=</span> <span class="kt">Just</span> <span class="mi">1</span> <span class="ow">::</span> <span class="kt">Maybe</span> <span class="kt">Int</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="kr">let</span> <span class="n">m_</span> <span class="ow">=</span> <span class="kt">Nothing</span> <span class="ow">::</span> <span class="kt">Maybe</span> <span class="kt">Int</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="n">printM</span> <span class="n">m1</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="n">printM</span> <span class="n">m_</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The function <a href="http://hackage.haskell.org/package/base-4.6.0.1/docs/Data-Maybe.html#v:maybe"><code>maybe</code></a> would improve a bit, syntactically speaking: <code>maybe
+(return ()) print</code>.</p>
+
+<p>Maybe it&rsquo;s just me, but that <code>return ()</code> <a href="https://en.wikipedia.org/wiki/Code_smell">smells</a> too much of a default
+behavior to me. Somehow, there should be a way to avoid it. Well, here is where
+<a href="http://hackage.haskell.org/package/base/docs/Data-Foldable.html"><code>Foldable</code></a> instance of <code>Maybe</code> comes handy:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="kt">:</span><span class="n">set</span> <span class="o">-</span><span class="kt">XScopedTypeVariables</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="kr">let</span> <span class="n">printM&#39;</span> <span class="ow">::</span> <span class="kt">Maybe</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="nb">()</span> <span class="ow">=</span> <span class="kt">F</span><span class="o">.</span><span class="n">traverse_</span> <span class="n">print</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="n">printM&#39;</span> <span class="n">m1</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="n">printM&#39;</span> <span class="n">m_</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To be fair, for this trivial example, it would be a bit frivolous to use the
+<code>Maybe</code> <code>Foldable</code> instance just to avoid the case expression, but when you are
+in an intricate case expression ladder, this idiom can make your code much more
+readable.</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>Roughly speaking, the <code>Traversable</code> instance would be used for operations that do something on each element of the structure while maintaining same structure in the output. A <code>Foldable</code> instance would be used for collapsing the elements into anything else.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Migrating to Octopress]]></title>
