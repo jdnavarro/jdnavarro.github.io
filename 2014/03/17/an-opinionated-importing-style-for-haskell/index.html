@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Danny Navarro's blog</title>
+  <title>An opinionated importing style for Haskell - Danny Navarro's blog</title>
   <meta name="author" content="Danny Navarro">
 
   
@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://dannynavarro.net">
+  <link rel="canonical" href="http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Danny Navarro's blog" type="application/atom+xml">
 
@@ -92,12 +92,8 @@
         <div id="content">
           <div class="row">
   <div class="page-content col-md-9">
-    <div class="blog-index">
+    <article class="hentry" role="article">
       
-      
-      
-        <article class="post">
-          
   <header class="page-header">
     
       <p class="meta text-muted text-uppercase">
@@ -119,12 +115,15 @@
       </p>
     
     
-      <h1 class="entry-title"><a href="/2014/03/17/an-opinionated-importing-style-for-haskell/">An opinionated importing style for Haskell</a></h1>
+    <h1 class="entry-title">
+        An opinionated importing style for Haskell
+        
+    </h1>
     
   </header>
 
 
-  <div class="entry-content clearfix"><p>Large part of <a href="http://haskell.org">Haskell</a> code is just about imports. In many programming
+<div class="entry-content clearfix"><p>Large part of <a href="http://haskell.org">Haskell</a> code is just about imports. In many programming
 languages there is no ambiguity left about how to import, but <a href="http://haskell.org">Haskell</a>
 leaves some room for personal style in this regard. There are some
 recommendations out there about importing style, but most is left to
@@ -649,155 +648,16 @@ vim: textwidth=74
 </div>
 
 </div>
-  
-  
 
 
-        </article>
-      
-      
-        <article class="post">
+      <footer>
+        <p class="meta text-muted">
           
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-03-12T12:00:00+01:00" pubdate data-updated="true">Mar 12<span>th</span>, 2014</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/2014/03/12/improving-readability-with-the-maybe-foldable-instance/">Improving readability with the Maybe Foldable instance</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>One recommendation you often hear when reaching an acceptable level of basic
-Haskell is to make your code more polymorphic. The Haskell <a href="http://hackage.haskell.org/package/base/docs/Prelude.html"><code>Prelude</code></a> is
-heavily biased towards lists, so an immediate gain in polymorphism is to make
-your code work not only for lists but for any instance of <a href="http://hackage.haskell.org/package/base/docs/Data-Traversable.html"><code>Traversable</code></a> or
-<a href="http://hackage.haskell.org/package/base/docs/Data-Foldable.html"><code>Foldable</code></a>.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
-
-<p>Since a Haskell list is an instance of <a href="http://hackage.haskell.org/package/base/docs/Data-Traversable.html"><code>Traversable</code></a> and <a href="http://hackage.haskell.org/package/base/docs/Data-Foldable.html"><code>Foldable</code></a>, we can
-still operate as usual on lists with the new polymorphic code:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="kr">import</span> <span class="k">qualified</span> <span class="nn">Data.Foldable</span> <span class="k">as</span> <span class="n">F</span>
-</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="n">mapM_</span> <span class="n">print</span> <span class="p">[</span><span class="n">&#39;a&#39;</span><span class="o">..</span><span class="n">&#39;c&#39;</span><span class="p">]</span>
-</span><span class='line'><span class="n">&#39;a&#39;</span>
-</span><span class='line'><span class="n">&#39;b&#39;</span>
-</span><span class='line'><span class="n">&#39;c&#39;</span>
-</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="kt">F</span><span class="o">.</span><span class="n">traverse_</span> <span class="n">print</span> <span class="p">[</span><span class="n">&#39;a&#39;</span><span class="o">..</span><span class="n">&#39;c&#39;</span><span class="p">]</span>
-</span><span class='line'><span class="n">&#39;a&#39;</span>
-</span><span class='line'><span class="n">&#39;b&#39;</span>
-</span><span class='line'><span class="n">&#39;c&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Notice here that we&rsquo;ve gained the extra advantage of being able to use <code>Applicative</code>
-instead of <code>Monad</code>. Here, we don&rsquo;t need the extra power of <code>Monad</code>, and the
-<code>Applicative</code>, by being weaker, is also more generalizable.</p>
-
-<p>But aside of lists, there is another instance of <code>Traversable</code>/<code>Foldable</code>
-defined by default for us: <code>Maybe</code>. You could think of a <code>Maybe</code> as a list of 1
-or 0 elements, so when you are traversing it you either do something with the
-element if present or do the default <code>Applicative</code>/<code>Monad</code> action (<code>pure</code> and
-<code>return</code> respectively) if not present. How is this useful then? Have you ever
-found yourself writing case expressions like this?</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="kt">:</span><span class="p">{</span>
-</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="kr">let</span> <span class="n">printM</span> <span class="n">m</span> <span class="ow">=</span> <span class="kr">case</span> <span class="n">m</span> <span class="kr">of</span>
-</span><span class='line'><span class="o">&gt;&gt;&gt;</span>                     <span class="kt">Just</span> <span class="n">n</span>  <span class="ow">-&gt;</span> <span class="n">print</span> <span class="n">n</span>
-</span><span class='line'><span class="o">&gt;&gt;&gt;</span>                     <span class="kt">Nothing</span> <span class="ow">-&gt;</span> <span class="n">return</span> <span class="nb">()</span>
-</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="kt">:</span><span class="p">}</span>
-</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="kr">let</span> <span class="n">m1</span> <span class="ow">=</span> <span class="kt">Just</span> <span class="mi">1</span> <span class="ow">::</span> <span class="kt">Maybe</span> <span class="kt">Int</span>
-</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="kr">let</span> <span class="n">m_</span> <span class="ow">=</span> <span class="kt">Nothing</span> <span class="ow">::</span> <span class="kt">Maybe</span> <span class="kt">Int</span>
-</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="n">printM</span> <span class="n">m1</span>
-</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span>
-</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="n">printM</span> <span class="n">m_</span>
-</span><span class='line'><span class="o">&gt;&gt;&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The function <a href="http://hackage.haskell.org/package/base-4.6.0.1/docs/Data-Maybe.html#v:maybe"><code>maybe</code></a> would improve a bit, syntactically speaking: <code>maybe
-(return ()) print</code>.</p>
-
-<p>Maybe it&rsquo;s just me, but that <code>return ()</code> <a href="https://en.wikipedia.org/wiki/Code_smell">smells</a> too much of a default
-behavior to me. Somehow, there should be a way to avoid it. Well, here is where
-<a href="http://hackage.haskell.org/package/base/docs/Data-Foldable.html"><code>Foldable</code></a> instance of <code>Maybe</code> comes handy:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="kt">:</span><span class="n">set</span> <span class="o">-</span><span class="kt">XScopedTypeVariables</span>
-</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="kr">let</span> <span class="n">printM&#39;</span> <span class="ow">::</span> <span class="kt">Maybe</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="nb">()</span> <span class="ow">=</span> <span class="kt">F</span><span class="o">.</span><span class="n">traverse_</span> <span class="n">print</span>
-</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="n">printM&#39;</span> <span class="n">m1</span>
-</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span>
-</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="n">printM&#39;</span> <span class="n">m_</span>
-</span><span class='line'><span class="o">&gt;&gt;&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>To be fair, for this trivial example, it would be a bit frivolous to use the
-<code>Maybe</code> <code>Foldable</code> instance just to avoid the case expression, but when you are
-in an intricate case expression ladder, this idiom can make your code much more
-readable.</p>
-<div class="footnotes">
-<hr/>
-<ol>
-<li id="fn:1">
-<p>Roughly speaking, the <code>Traversable</code> instance would be used for operations that do something on each element of the structure while maintaining same structure in the output. A <code>Foldable</code> instance would be used for collapsing the elements into anything else.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
-</ol>
-</div>
-
-</div>
-  
   
 
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard">Posted by <span class="fn">Danny Navarro</span></span>
 
-        </article>
-      
-      
-        <article class="post">
           
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
 
 
 
@@ -810,561 +670,58 @@ readable.</p>
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-09-20T19:07:00+02:00" pubdate data-updated="true">Sep 20<span>th</span>, 2011</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/2011/09/20/migrating-to-octopress/">Migrating to Octopress</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>I finally found some time to migrate my blog to <a href="http://wordpress.com/">Octopress</a> from
-<a href="http://octopress.org/">Wordpress.com</a>. The critical reason to migrate from Wordpress has
-been the support for nice code syntax highlighting, something I
-couldn&rsquo;t have wordpress.com, at least for free. I know there are very
-nice wordpress plugins for syntax highlighting but in order to use
-them I would have to host it myself. I don&rsquo;t want to go through the
-hassle of maintaining a typical PHP/MySQL stack or to be worried about
-being <a href="http://en.wikipedia.org/wiki/Slashdotted"><em>slashdotted</em></a>.</p>
-
-<p>Having worked with an excellent documentation tool like <a href="http://sphinx.pocoo.org/">Sphinx</a>, I
-started looking to static blog generators meant. It turned out that
-<a href="http://blog.manuelviera.es/">Manu Viera</a>, a colleague working at <a href="http://www.yaco.es/">Yaco</a> with me, shared the
-same itch and had already looked several static web generators in
-Python, which is our main language at <a href="http://www.yaco.es/">Yaco</a>. Manu found
-<a href="https://github.com/ametaireau/pelican">pelican</a> the best candidate but still I found it a bit immature,
-not something like something like <a href="https://github.com/mojombo/jekyll">Jekyll</a>.</p>
-
-<p>Then I found <a href="http://wordpress.com/">Octopress</a>, a framework built on top of <a href="https://github.com/mojombo/jekyll">Jekyll</a>
-with <a href="http://octopress.org/docs/plugins/">several plugins</a>, including syntax highlighting or automatic
-support for <a href="http://disqus.com/">disqus</a> comments.</p>
-
-<p>The migration from wordpress was not too painful. I used the default
-Jekyll script to import wordpress posts and disqus importer for the
-comments.  After some sed commands I got nice markdown formatted
-scripts.</p>
-
-<p>I had some trouble in the beginning configuring an isolated Ruby
-runtime in <a href="http://archlinux.org/">Arch Linux</a> just for Octopress but after discovering
-<a href="https://github.com/sstephenson/rbenv">rbenv</a>, everything went smooth. (I prefer rbenv instead RVM with
-rbenv I know at any moment what it&rsquo;s doing).</p>
-
-<p>Deploying an Octopress generated site to <a href="http://pages.github.com/">github pages</a> is as
-<a href="http://octopress.org/docs/deploying/index.html">easy</a> as pie.</p>
-
-<p>Aside of nice Python syntax highlighting now I have some extra
-advantages I didn&rsquo;t have with wordpress.com:</p>
-
-<ul>
-<li><p>Markdown syntax when writing my posts.</p></li>
-<li><p>I can use the best text editor to mankind: <a href="http://www.vim.org/">vim</a> :P</p></li>
-<li><p>My blog data becomes more manageable. If at some point I don&rsquo;t want
-to host it github, I could just to push it somewhere else with no
-modification.</p></li>
-<li><p>I got a very nice default theme for free, that aside of looking
-good, it&rsquo;s also very easy to tweak and maintain.</p></li>
-<li><p>Now I have a good excuse to learn Ruby outside of RoR influence.
-Ruby is one of those languages I wish I would be better at, even if
-Python remains my main working language.</p></li>
-</ul>
-
-
-<p>In any case, I must say the service provided by wordpress.com has been
-quite good but this one of those cases where you have to say: <em>“Sorry,
-it&rsquo;s not you, it&rsquo;s just me”.</em></p>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-03-17T21:17:15+01:00" pubdate data-updated="true">Mar 17<span>th</span>, 2014</time>
           
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/categories/haskell/'>haskell</a>
+  
+</span>
+
+
+        </p>
         
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-06-12T00:00:00+02:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/2011/06/12/using-custom-events-in-pyramid/">Using custom events in Pyramid</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p><a href="http://docs.pylonsproject.org/docs/pyramid.html">Pyramid</a> is a <a href="http://webpython.codepoint.net/wsgi_tutorial">WSGI</a> application framework that primarily follows a<a href="http://docs.pylonsproject.org/projects/pyramid/1.0/narr/router.html"> request-response mechanism</a>. However, if you need to work with events you can still <a href="http://docs.pylonsproject.org/projects/pyramid/1.0/narr/events.html">use them</a>. It comes with <a href="http://docs.pylonsproject.org/projects/pyramid/1.0/api/events.html#event-types">some default event types</a> that are emitted implicitely by Pyramid as long as you have a subscriber for them. For most applications the default event types are enough, but what if you want to write your custom event type and emit it explicitly from your code? It turns out that the <a href="http://docs.pylonsproject.org/projects/pyramid/1.0/glossary.html#term-application-registry">application registry</a> that Pyramid uses by default comes with a handy <a href="https://github.com/Pylons/pyramid/blob/master/pyramid/registry.py#L36"><em>notify</em> method</a>. Pyramid <a href="https://github.com/Pylons/pyramid/blob/master/pyramid/router.py#L77">uses this method internally</a>  for its default events. Here is how you would take advantage of it:</p>
-
-<pre>from pyramid.events import subscriber
-
-class MyCustomEventType(object):
-    def __init__(self, msg):
-        self.msg = msg
-
-@subscriber(MyCustomEventType)
-def my_subscriber(event):
-    print(event.msg)
-
-def my_view(request):
-    request.registry.notify(MyCustomEventType("Here it comes"))
-    return {}
-</pre>
-
-
-<p>When running the application, every time a request goes through <em>my_view,</em> an event with a message is emitted, in this case, &ldquo;Here it comes&rdquo;. The subscriber then handles the event by printing the message, but it could do anything you want.</p>
-
-<p>Notice that I&rsquo;m using a <a href="http://docs.pylonsproject.org/projects/pyramid/1.0/narr/events.html#configuring-an-event-listener-using-a-decorator">decorator to hook</a> <em>my_subscriber</em>. In order for the decorator to work you have to make sure you <a href="http://docs.pylonsproject.org/projects/pyramid/1.0/narr/configuration.html#configuration-decorations-and-code-scanning">call the <em>scan</em> method when configuring</a> the application.</p>
-
-<p>Be aware though, that all these events are synchronous because Pyramid is primarily a request-response framework, all the events emitted block until the subscribers are done. If you want non-blocking events in Pyramid you could spawn a process from the subscriber or come with <a href="http://blog.dannynavarro.net/2011/01/14/async-web-apps-with-pyramid/">some other solution</a>.</p>
-
-<p>But the events in Pyramid are just another functionality that it offers. Pyramid is not a event-oriented framework, if you want to go all the way with async events you should look into <a href="http://twistedmatrix.com/trac/">Twisted</a> or <a href="http://www.tornadoweb.org/">Tornado</a>.</p>
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/" data-via="vimes656" data-counturl="http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
 
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
         
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-05-21T00:00:00+02:00" pubdate data-updated="true"></time>
         
-      </p>
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/2014/03/12/improving-readability-with-the-maybe-foldable-instance/" title="Previous Post: Improving readability with the Maybe Foldable instance">&laquo; Improving readability with the Maybe Foldable instance</a></li>
+            
+            
+          </ul>
+        
+      </footer>
+    </article>
     
-    
-      <h1 class="entry-title"><a href="/2011/05/21/why-arch-linux/">Why Arch Linux</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>I have been using <a href="http://www.archlinux.org/">Arch Linux</a> for 3 years now. I still use Debian and Ubuntu for the servers I administer but I acknowledge Arch Linux has taught many valuable lessons.</p>
-
-<p>With Arch Linux there is very little in your system that you are not aware of. You have to configure everything yourself by editing config files. The process is not that hard because all those configuration files are meant to be tweaked. You also count with an <a href="https://wiki.archlinux.org">excellent wiki</a> to help you.</p>
-
-<p>The <a href="https://wiki.archlinux.org/index.php/The_Arch_Way">Arch Linux philosophy</a> doesn&rsquo;t try to shield the user from complexity with extra layers. Instead it focuses on making the direct configuration as simply as possible. For example, writing a proper boot script is much straightforward than in other distros. At the same time if you are not careful you have more chances of really screw things up everything.</p>
-
-<p>Arch Linux aggressively updates from upstream sources. This has the advantage and disadvantages of being always in the bleeding-edge. I also like the idea of putting more responsibility about the stability of software in developers than in packagers, as long as you are aware of this as a user. As a user you have to assume the responsibility of being at the cutting-edge. Things may not go always smooth but you count with excellent tools to manage chaos.</p>
-
-<p>That brings me to the real killer feature that makes Arch Linux shine over the rest: the packaging system. <a href="https://wiki.archlinux.org/index.php/Pacman">Pacman</a>, <a href="https://wiki.archlinux.org/index.php/ABS">ABS</a>, <a href="https://wiki.archlinux.org/index.php/AUR">AUR</a>, <a href="https://wiki.archlinux.org/index.php/Makepkg">makepkg</a> and the <a href="https://wiki.archlinux.org/index.php/PKGBUILD">PKGBUILD</a> format are just great. You usually don&rsquo;t have to mess with packaging that much, everything installs nicely and dependencies are correctly handled, specially if you stick to the official repository.</p>
-
-<p>But if you don&rsquo;t like something about a package or need another version you have all the tools in place for the creation and introspection of packages without disrupting pacman bookkeeping (pacman is the equivalent of dpkg/apt-get in Debian).  Let me illustrate all this with something I had to deal with this week.</p>
-
-<p>I decide to use <a href="http://compass-style.org/blog/">Compass</a> to make my stormy relationship with CSS smoother. Compass is a Ruby gem, the usual way to install gems is through Ruby packaging system but I don&rsquo;t want to mess with the Ruby libraries already installed in the system with pacman. If I install those gems as root pacman will not be able to keep track of them, everything could break in the future, and most importantly, without an easy solution.</p>
-
-<p><a href="http://rhodesmill.org/brandon/2011/adding-compass/">A way</a> to deal with this issue is to install the Compass gem in some directory and handle the runtime somehow. You usually end up with a new runtime environment for each project you start. There are excellent tools to manage runtimes in Ruby like <a href="http://rake.rubyforge.org/">Rake</a>, but boy, I already have enough <a href="http://www.doughellmann.com/projects/virtualenvwrapper/">managing</a> my Python <a href="http://pypi.python.org/pypi/virtualenv">virtualenvs</a>.</p>
-
-<p>I see that Compass is already in AUR. <a href="http://aur.archlinux.org/">AUR</a> is a very liberal package repository where anyone can upload source packages. When you install from AUR you usually have a review the PKGBUILD, the comments of other users and check how many users have voted the package to be included in official repositories. With tools like <a href="https://wiki.archlinux.org/index.php/Yaourt">yaourt</a> the whole process is very smooth.</p>
-
-<p>Alright, the ruby-compass PKGBUILD looks good to me so I install it. Now compass is a good system citizen and can be updated, installed and uninstalled through pacman. Compass works as expected but it turns out that the most interesting feature I wanted to use in Compass is only available in the latest version of Compass, the version in AUR is not the latest one.</p>
-
-<p>No problem, it&rsquo;ll probably be some version bumps and I&rsquo;ll be done. I download the PKGBUILD, bump the versions and build the package again but then I realize that the new version depends on new Ruby gems that are not in AUR.</p>
-
-<p>At this point I would avoid getting into a dependency hell and go for Rake, but wait, I&rsquo;m using Arch Linux, let&rsquo;s see what happens if I continue with the Arch flow.</p>
-
-<p>I take the PKGBUILD of Compass as a template, which is generic enough for any Ruby gem, and use them for the Ruby dependencies. I update licences, versions checksums, build them and done, everything works. They are all coming from <a href="http://rubyforge.org/">rubyforge</a> and follow the same building conventions, making my life easy as a packager.</p>
-
-<p>I upload the PKGBUILDs to AUR with just one <a href="https://bbs.archlinux.org/viewtopic.php?id=97137">burp</a> command. Now I can install the latest version of compass through pacman without any issue. I then send my modified version of PKGBUILD to the original Compass packager who updates it. That&rsquo;s it, now anyone can install the latest version of Compass with all its dependencies from AUR. I now can install Compass at home with just one command: just <em>yaourt -Sy ruby-compass.</em></p>
-
-<p>Now I just have to keep an eye in new updates on the dependencies I&rsquo;m now maintaining in AUR but rubyforge offers an excellent notification system for gem updates.</p>
-
-<p>That&rsquo;s it. The whole thing took less than 30 minutes.</p>
-
-<p>I don&rsquo;t know if nowadays writing a DEB package spec is that hard, I acknowledge I never tried. The tutorials I found about them drove me away when I considered it some years ago.</p>
-
-<p>It&rsquo;s not only the packaging format itself, there is also the community and policy aspects. Editing your PKGBUILDs is something that every Arch Linux user does. For AUR there is very little regulating making the packaging smoother process at the expense of shifting the trust on the packages to the user. In general, most packages in AUR are good enough but for production machines I still value more the trust the Debian and Ubuntu package maintainers.</p>
-
-<p>That&rsquo;s where open source community shines, you have many choices.</p>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
+      </section>
     
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-05-18T00:00:00+02:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/2011/05/18/commenting-out-in-chamaleon-templates/">Commenting out in Chamaleon templates</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>If you want to prevent <a href="http://chameleon.repoze.org/" title="Chameleon is an excellent HTML templating engine">Chameleon</a> from rendering some portions of an HTML template you might be tempted to do something like this:</p>
-
-<pre>
-</br>
-&lt;!-- &lt;div&gt;${context.name}&lt;/div&gt; --&gt;
-</br>
-</pre>
-
-
-<p>However Chameleon will still evaluate what&rsquo;s inside the ${&hellip;} block even if it&rsquo;s within an HTML comment. Chameleon must do this because you might want to insert conditional comments.</p>
-
-<p>This dummy tal:condition block will do the job:</p>
-
-<pre>
-</br>
-&lt;span tal:condition="None"&gt;
-  &lt;div&gt;${context.name}&lt;/div&gt;
-&lt;/span&gt;
-</br>
-</pre>
-
-
-<p>Chameleon ignore anything inside the condition block.</p>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-05-15T00:00:00+02:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/2011/05/15/moving-to-spain/">Moving to Spain</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>After almost 3 years in The Netherlands working as <a href="http://en.wikipedia.org/wiki/Proteomics">proteomics</a> informatician at <a href="http://bioms.chem.uu.nl/">Albert Heck&rsquo;s lab</a>, I&rsquo;m moving to <a href="http://en.wikipedia.org/wiki/Sevilla">Seville</a>, Spain, to work as a web developer for<a href="http://yaco.es/"> Yaco Sistemas</a>, a fresh and dynamic open source friendly company.</p>
-
-<p>This is an important shift in my career since I won&rsquo;t be working on proteomics informatics and academic research anymore. I have mixed feelings about leaving proteomics. On one hand I like the area because there are plenty of tough challenges to be solved. But on the other hand I&rsquo;m glad I can dedicate all my time to develop web applications, that might not be as sophisticated as proteomics software, but that will be immediately useful for the <em>masses</em>. I love web development and the Python community but within proteomics I could only intersect with the Python web development community quite sporadically. Now I&rsquo;ll have the chance to be part of it full time.</p>
-
-<p>Personally, The Netherlands is the most comfortable and easy-going country I ever lived. Here I had the chance to work with very smart people and made friends that will never forget. What I have learned during these years is priceless.</p>
-
-<p>But I can&rsquo;t deny my origins, Spain is where I feel at home even if sometimes I don&rsquo;t find it too exciting because I&rsquo;m too familiar with the culture. However Seville is quite far from <a title="Pamplona" href="http://en.wikipedia.org/wiki/Pamplona">my hometown</a>, in the North of Spain. The culture in the South is very different from the North, so in a way, I&rsquo;ll be another foreigner excited about the peculiarities I discover about Andalusian culture.</p>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-01-23T00:00:00+01:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/2011/01/23/async-pyramid-example-done-right/">Async Pyramid example done right</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>After speaking with <a href="http://mg.pov.lt/blog">Marius Gedminas</a> at freenode, he gave me enough hints to rewrite <a href="http://blog.dannynavarro.net/2011/01/14/async-web-apps-with-pyramid/">my previous async <i>view</i> example </a>with <i>locks</i> instead of <i>Value</i>, which is prone to race conditions. I also added a queue to allow jobs to wait for being processed.</p>
-
-<br />
-
-
-<br />
-
-
-<pre>from multiprocessing import Process, Lock, Queue
-
-job = 0
-q = Queue(maxsize=3)
-lock = Lock()
-
-def work():
-    import time; time.sleep(8)
-    job = q.get()
-    print("Job done: {0}".format(job))
-    print("Queue size: {0}\n".format(q.qsize()))
-    if not q.empty():
-        work()
-    else:
-        lock.release()
-
-def my_view(request):
-    global job
-    if not q.full():
-        job += 1
-        q.put(job)
-        # Not running
-        if lock.acquire(False):
-            Process(target=work).start()
-            print("Job {0} submitted and working on it".format(job))
-        else:
-            print("Job {0} submitted while working".format(job))
-    else:
-        print("Queue is full")
-    print("Queue size: {0}\n".format(q.qsize()))
-    return {'project':'asyncapp'}
-<br />
-</pre>
-
-
-<p>With every request a job is sent. Here the queue accepts 3 jobs. The recursion in <i>work</i> makes sure there is only 1 process working at a time.</p>
-
-<p>I will leave <a href="http://blog.dannynavarro.net/2011/01/14/async-web-apps-with-pyramid/">my previous example</a> with <i>Value</i> because it&rsquo;s easier to understand but this version is much safer.</p>
-
-<p><strong>Update:</strong> You can avoid the use of locks by <a href="http://blog.doughellmann.com/2009/04/pymotw-multiprocessing-part-2.html"> using 2 queues</a>.</p>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-01-14T00:00:00+01:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/2011/01/14/async-web-apps-with-pyramid/">Async web apps with Pyramid?</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>For the last few months I&rsquo;ve been working in a kind of <a href="http://en.wikipedia.org/wiki/Content_management_system">CMS</a> for <a href="http://en.wikipedia.org/wiki/Proteomics">proteomics</a> results using <a href="http://docs.pylonsproject.org/projects/pyramid/dev/">pyramid</a> (in reality I started it with <a href="http://bfg.repoze.org/">repoze.bfg</a> which became pyramid after joining the pylons project).</p>
-
-<p>My experience with pyramid has been really smooth until I had to write a form to parse huge input files in order to build <em>experiment sites</em>.</p>
-
-<p>In an average view for an <em>add form</em> I would return a response redirecting to the newly created <a title="models were renamed to resources after a long thread" href="http://www.mail-archive.com/pylons-devel@googlegroups.com/index.html#00910"><del>model</del> resource</a>. But in this case, the proteomics files can be quite large. I needed some way of having the view returning a response while the files were being parsed. Here is a simplified representation of how I made it work:</p>
-
-<pre><span id="LC1">from multiprocessing import Value, Process</span>
-
-<span id="LC3">is_parsing = Value('B', 0)</span>
-
-<span id="LC5">def parse():</span>
-<span id="LC6">    print "Parsing started"</span>
-<span id="LC7">    import time; time.sleep(10)</span>
-<span id="LC8">    print "Parsing is done"</span>
-<span id="LC9">    is_parsing.value = False</span>
-
-<span id="LC11">def my_view(request):</span>
-<span id="LC13">    if not is_parsing.value:</span>
-<span id="LC14">        is_parsing.value = True</span>
-<span id="LC15">        Process(target=parse).start()</span>
-<span id="LC16">    else:</span>
-<span id="LC17">        print("Still parsing...")</span>
-<span id="LC18">    return {'project':'asyncapp',</span>
-<span id="LC10">            'is_parsing': is_parsing.value}</span></pre>
-
-
-<br />
-
-
-<br />
-
-
-<p>Here I&rsquo;m launching another process to do the parsing while the web app returns the response without the parsing being done. The <em>is_building </em>variable is shared in both processes (no need of <em>global</em> statement). In my case I only want to run one parsing process at a time, so I didn&rsquo;t have the need for locks or queues.</p>
-
-<p>In the template of this view I can either offer a form to create <em>an experiment </em>or inform that there is already a experiment site being built. When building I can have the browser <a href="http://plugins.jquery.com/project/refresh">polling</a> to check if the parsing is done.</p>
-
-<p>That&rsquo;s enough in my case, I don&rsquo;t need to scale to thousands of users parsing multiple files at the same time, but I was curious about how to deal with that problem if I had to. I played a bit with different ideas I was given in the always supportive #repoze channel at <a href="http://freenode.net/">freenode</a>.</p>
-
-<p>First, instead of multiple processes I tried <strong>OS threads, </strong>I know about the <a href="http://blip.tv/file/2232410">infamous GIL</a> but want to see it with my own eyes. However I got some intimidating random errors from paster/pyramid that were enough to drive me off that path.</p>
-
-<p>I also <a href="http://eventlet.net/doc/patching.html#monkeypatching-the-standard-library">monkeypatched</a> the standard library with <a href="http://eventlet.net/">eventlet</a> so that the OS threads would become <strong>green threads</strong>. The dummy example I show above seemed to run fine but when trying in my real application I ran into more cryptic thread errors from monkeypatched <a href="http://www.zodb.org/">ZODB</a>, which is what I use in my real app. I also tried <a href="http://www.gevent.org/">gevent</a> with similar results. <del datetime="2011-01-23T10:04:41+00:00">If you want to use eventlet or gevent you have to find another storage mechanism that works with green threads.</del> <strong>Update:</strong> I was monkeypatching incorrectly, <a href="http://braintrace.ru">Andrey Popp</a>&rsquo;s <a href="http://blog.dannynavarro.net/2011/01/14/async-web-apps-with-pyramid/#comment-58">comment</a> explains how to do it.</p>
-
-<p>Another potential source of problems when scaling with<strong> long polling</strong>, specially if you would like to add a nice responsive progress bar and a kind of log showing what is being done while parsing.</p>
-
-<p><a href="http://en.wikipedia.org/wiki/WebSockets">WebSockets</a> are being regarded as the ultimate solution to deal with this kind of problems. First of all, let&rsquo;s pretend websockets would be supported by all major browsers soon.</p>
-
-<p>How can websockets be handled in pyramid? It turns out that dealing with websockets within <a href="http://www.python.org/dev/peps/pep-3333/">the WSGI protocol</a> is <a href="http://groups.google.com/group/paste-users/browse_thread/thread/2f3a5ba33b857c6c/2d63769fd9db6da3">messy</a>. However eventlet and gevent <a href="http://eventlet.net/doc/modules/websocket.html">have</a> <a href="http://www.gelens.org/code/gevent-websocket/">ways</a> to have websockets working within WSGI. Theoretically you could run a monkeypatched pyramid application behind <a href="http://gunicorn.org/">gunicorn</a> which can make the websockets <a href="https://github.com/benoitc/gunicorn/tree/master/examples/websocket">accessible</a> in the <em>request.environ</em> in pyramid. There is still some websocket protocol tasks (i.e. handshaking, closing socket, etc.) which would make writing something looking like a normal pyramid view hard.</p>
-
-<p>But it happens that <a href="https://github.com/boothead">Ben Ford</a> has a already written a wrapper to take care of that problem:  <a href="https://github.com/boothead/stargate">stargate</a> (as he says, <em>communication for pyramids</em>). With stargate, in your pyramid app you create <em>websocket view</em> by subclassing from a base class that deals with the minutiae of the websocket protocol (up to v76, the latest version at the time of writing). In a websocket view, instead of returning anything from that view, you just write a handler to catch what is coming from the websocket. The great advantage of stargate is that you don&rsquo;t need to run another process to deal with websockets, you can handle websockets from within pyramid. Additionally, stargate has 100% unit test coverage and some <a href="http://boothead.github.com/stargate/">documentation</a>.</p>
-
-<p>While websockets look like the way forward I think it&rsquo;s going to take some time for websockets to become mainstream in all browser, specially after mozilla announced it won&rsquo;t support websockets in the next release of firefox because of <a href="http://hacks.mozilla.org/2010/12/websockets-disabled-in-firefox-4/">security issues</a>.</p>
-
-<p>However, with <a href="http://nodejs.org/">node.js</a>, it seems finally event driven web frameworks are becoming mainstream, bringing projects like <a href="http://socket.io/">Socket.IO</a>. Socket.IO provides an abstraction layer to the developer to write event driven web applications. Socket.IO gives the same way of writing regardless of what the browser supports, being websockets, long polling or Flash; the developer writes the app the same way.</p>
-
-<p>Although initially Socket.IO is meant to be used with node.js, there is something available for the server side in Python: <a href="https://github.com/SocketTornadIO/SocketTornad.IO">SocketTornad.IO</a>. It&rsquo;s built on top of <a href="http://www.tornadoweb.org/">Tornado web framework</a>. In spite of Tornado having <a href="https://github.com/facebook/tornado/blob/master/tornado/wsgi.py#L194">some WSGI support</a>, I&rsquo;m afraid it <a href="http://www.tornadoweb.org/documentation#wsgi-and-google-appengine">won&rsquo;t be easy</a> to have the async features when in WSGI mode.</p>
-
-<p>If I were to support now many concurrent users in a highly responsive application I would probably ditch pyramid  and go directly with SocketTornado.IO. Perhaps I will still be using pyramid for the non async part and have a front web server dispatching requests accordingly.</p>
-
-<p>But it turns out that this is just a fun thought experiment, the multiprocess solution is fine for me because, like most web developers or bioinformaticians, for now I don&rsquo;t need to write highly responsive applications for thousands of users.</p>
-
-<p><strong>Update: </strong><a href="http://mg.pov.lt/blog">Marius Gedminas</a> pointed out a better way to do this with locks. I will leave the code snippet using Value because is quite illustrative but you shouldn&rsquo;t use Value if you to do something similar, instead check a better example I wrote in <a href="http://blog.dannynavarro.net/2011/01/23/async-pyramid-example-done-right/">another post</a>.</p>
-
-<p><strong>Update: </strong> Check <a href="https://github.com/abourget/pyramid_socketio">pyramid_socketio</a> for a newer version of async apps.</p>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-01-11T00:00:00+01:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/2011/01/11/the-bioinformatics-curse/">The bioinformatics curse</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>As a bioinformatician you will be considered a programmer by biologists and a biologist by programmers. When talking with programmers you will suck at programming, when talking with biologists you will suck at biology. Biologists don&rsquo;t want to know much about computing, understandably, they want to get their job done. Programmers might show some curiosity in biology but tend to shield themselves from biology complexity in order to get to get work done. As a bioinformatician you have to know enough of biology to be in the cutting-edge so what you research continues being relevant and keep improving your programming skills so you are still productive for what is expected of a programmer nowadays.</p>
-
-<p>Some influential bioinformaticians group try to define the bioinformatics field as if it were precisely the research they are doing, frowning upon bioinformatics research not similar to theirs (or similar but superior to theirs). The followers of these groups try to imitate them so that they can be some day become <em>experts</em> in the field. I see also other bioinformaticians gathering together just because they work in biology using a computer, regardless of how little overlap there is in the things they do. It&rsquo;s like group therapy, sharing experiences with people marginalized for the same reason.</p>
-
-<p>Bioinformatics field is still in the very beginning. The field is very broad and will eventually be fragmented in multiple <em>official</em> fields. Working in an emerging field can be very exciting because you don&rsquo;t have the constrains rules of an established field. But if social recognition is important to you, think twice when getting into bioinformatics. You&rsquo;d likely feel out-of-place wherever you go.</p>
-</div>
-  
-  
-
-
-        </article>
-      
-    </div>
-
-    <ul class="pager">
-      
-        <li class="previous"><a href="/blog/page/2/">&larr;&nbsp;Older</a></li>
-      
-      <li><a href="/blog/archives">Blog Archives</a></li>
-      
-        <li class="next disabled"><a href="#">Newer&nbsp;&rarr;</a></li>
-      
-    </ul>
   </div>
 
   
-    <aside class="sidebar col-md-3">
-      
-        <section class="panel panel-default">
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Recent Posts</h3>
   </div>
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/2014/03/17/an-opinionated-importing-style-for-haskell/">An opinionated importing style for Haskell</a>
+    <a class="list-group-item active" href="/2014/03/17/an-opinionated-importing-style-for-haskell/">An opinionated importing style for Haskell</a>
     
     <a class="list-group-item " href="/2014/03/12/improving-readability-with-the-maybe-foldable-instance/">Improving readability with the Maybe Foldable instance</a>
     
@@ -1382,7 +739,7 @@ def my_view(request):
       <h3 class="panel-title">GitHub Repos</h3>
   </div>
   <div class="list-group" id="gh_repos">
-    <p class="loading">Status updating&#8230;</p>
+    <p class="loading">Status updating...</p>
   </div>
   
     <div class="gh-profile-link pull-right text-muted">
@@ -1415,8 +772,8 @@ def my_view(request):
 
 
 
-      
-    </aside>
+    
+  </aside>
   
 </div>
 
@@ -1442,7 +799,10 @@ def my_view(request):
       var disqus_shortname = 'dannynavarrosblog';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/';
+        var disqus_url = 'http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

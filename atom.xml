@@ -4,7 +4,7 @@
   <title><![CDATA[Danny Navarro's blog]]></title>
   <link href="http://dannynavarro.net/atom.xml" rel="self"/>
   <link href="http://dannynavarro.net/"/>
-  <updated>2014-03-12T16:31:15+01:00</updated>
+  <updated>2014-03-17T23:23:17+01:00</updated>
   <id>http://dannynavarro.net/</id>
   <author>
     <name><![CDATA[Danny Navarro]]></name>
@@ -12,6 +12,538 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[An opinionated importing style for Haskell]]></title>
+    <link href="http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/"/>
+    <updated>2014-03-17T21:17:15+01:00</updated>
+    <id>http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell</id>
+    <content type="html"><![CDATA[<p>Large part of <a href="http://haskell.org">Haskell</a> code is just about imports. In many programming
+languages there is no ambiguity left about how to import, but <a href="http://haskell.org">Haskell</a>
+leaves some room for personal style in this regard. There are some
+recommendations out there about importing style, but most is left to
+common sense. Your own judgment, once you are comfortable with <a href="http://haskell.org">Haskell</a>,
+should be perfectly fine, but newcomers who care about style consistency
+might feel a bit lost when writing the import list for their own packages
+<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>, specially since there are many slightly different styles in the wild
+for <a href="http://haskell.org">Haskell</a> imports. In this post, I&rsquo;ll try to explain the rationale of
+the style I follow.</p>
+
+<p>One basic principle I&rsquo;ll be following for all my criteria is that, like I
+guess most programmers, code style is about reading code, not writing it.
+When writing, you can make the assumption that someone editing the code
+has access to editing tools, whereas this assumption doesn&rsquo;t hold so
+easily for the readers of your code.</p>
+
+<h2>Explicit imports</h2>
+
+<p>Anyone reading the <a href="http://python.org">Python</a> <a href="http://docs.python.org/3/tutorial/index.html">official tutorial</a>
+for the first time has to read through this when reaching the section
+about <a href="http://docs.python.org/3/tutorial/modules.html#modules">modules</a>:</p>
+
+<blockquote><p>There is even a variant to import all names that a module defines:</p></blockquote>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">fibo</span> <span class="kn">import</span> <span class="o">*</span>
+</span><span class='line'><span class="n">fib</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>This imports all names except those beginning with an underscore (<code>_</code>). In
+most cases Python programmers do not use this facility since it introduces an
+unknown set of names into the interpreter, possibly hiding some things you
+have already defined.</p>
+
+<p>Note that in general <strong>the practice of importing <code>*</code> from a module or package is
+frowned upon</strong>, since it often causes poorly readable code. However, it is okay
+to use it to save typing in interactive sessions.</p></blockquote>
+
+<p>This means that anything but a small <em>built-in</em> language core, which it
+can be easily memorized, has to be explicitly exported to be in scope.
+This is great for newcomers reading any Python code, you are always aware,
+with no extra tools, where everything is coming from.</p>
+
+<p>Considering that <a href="http://python.org">Python</a> is my programming language I learned first, you
+can understand why I get a bit annoyed when I&rsquo;m reading other language I&rsquo;m
+not so familiar with, and names just pop up in scope without knowing where
+they come from. And no, I don&rsquo;t want to use <a href="https://en.wikipedia.org/wiki/Ctags">ctags</a> or a full blown IDE
+every time I&rsquo;m reading casually some code on the GitHub.</p>
+
+<p>So then, why <a href="http://haskell.org">Haskell</a>, a language with such a great reputation for being
+so well designed, doesn&rsquo;t follow these <a href="http://python.org">Python</a> principles, which look so
+advantageously obvious? To be fair with <a href="http://haskell.org">Haskell</a>, we have to understand
+that the class system in <a href="http://python.org">Python</a> is frequently <em>(ab)</em>used<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> just for
+organizational purposes. <a href="http://haskell.org">Haskell</a>, by being a <a href="https://en.wikipedia.org/wiki/Pure_functional_language">pure functional
+programming language</a>, doesn&rsquo;t add all the cruft of <a href="https://en.wikipedia.org/wiki/Class_(computer_programming)">OOP classes</a> just to
+deal with this issue. Instead, it uses a very limited module system which
+could be argued is a weakness of the language, but I believe it fits
+nicely with the unofficial <a href="http://haskell.org">Haskell</a> slogan of <a href="http://www.reddit.com/r/programming/comments/77z8h/avoid_success_at_all_costs_the_unofficial_slogan/"><em>avoid success at all
+costs</em></a>.</p>
+
+<p>From my understanding, this means that if there is not an optimal solution
+for a core language feature, it&rsquo;s preferable to keep the bare minimum
+everyone agrees on and don&rsquo;t try to impose a half-baked solution that will
+have to be maintained forever for legacy reasons. Taking this into
+account, I&rsquo;d rather have a dumb module system easy to understand, than
+having to deal forever with the complexity of historical design
+accidents.<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></p>
+
+<p>So in <a href="http://haskell.org">Haskell</a> we have to bite the bullet and accept that the imports
+lists are going to be quite complex, and making absolutely every import
+explicit like in <a href="http://python.org">Python</a> would be too cumbersome on the programmer who is
+coding, so we have to reach some kind of trade-off between explicitness
+for the reader vs convenience for the writer.</p>
+
+<h3>Internal imports</h3>
+
+<p>A popular style recommendation like <a href="https://github.com/tibbe/haskell-style-guide/blob/master/haskell-style.md#imports">the one from Johan Tibell</a> is to import explicitly everything outside the package, and
+make internal imports implicit.</p>
+
+<p>I consider Tibell&rsquo;s way a good rule to follow for most projects. It&rsquo;s a
+good compromise because when reading a module from a givne package, it&rsquo;s
+reasonable to assume the rest of modules of such package are usually nearby.</p>
+
+<p>The other popular way <a href="https://ghc.haskell.org/trac/ghc/wiki/Commentary/CodingStyle#ExportsandImports">recommended in GHC</a> is to make
+everything implicit. Breaking Tibell&rsquo;s rule in the case of GHC may be
+understandable because in a project as large as <a href="https://www.haskell.org/ghc">GHC</a>, the import lists
+would tend to be quite complex. I&rsquo;d also assume anyone trying to hack on
+<a href="https://www.haskell.org/ghc">GHC</a> is above beginner&rsquo;s level and should be familiar with internals of the
+project. But for most projects, I think <a href="https://github.com/tibbe/haskell-style-guide/blob/master/haskell-style.md#imports">Tibell&rsquo;s
+recommendation</a> is a good default.</p>
+
+<p>It could be argued that if there are many internal modules being imported
+in the same module, it could become difficult to follow from which module
+comes each name. It&rsquo;s true that this sometimes happens, but most of the
+time I&rsquo;d attribute to a <a href="https://en.wikipedia.org/wiki/Code_smell">smell</a>. When this happens, I&rsquo;d look
+for the following:</p>
+
+<ul>
+<li><em>Are modules not modular enough?</em> For good modularity the
+communication between them should be as minimal as possible. Perhaps
+the code needs to be rearranged in entirely different modules to
+allow better separation of concerns.</li>
+<li><em>Is the package too large?</em> Maybe it&rsquo;s time to separate the packages in
+more subpackages.</li>
+<li><em>Are you always importing a group of modules that somehow can be
+logically grouped together?</em> All these modules could be consolidated in
+a single module that just re-exports everything for the module group.
+This, in fact, a very used pattern in <a href="http://haskell.org">Haskell</a> for code organization.</li>
+</ul>
+
+
+<p>The only exception to external explicit importing is <code>Prelude</code>, which is
+almost always implicitly imported. <code>Prelude</code> is the closest you get to
+<code>built-ins</code> in <a href="http://haskell.org">Haskell</a>.</p>
+
+<p>Whenever I have some name clash with a <code>Prelude</code> name I don&rsquo;t hesitate to
+hide the <code>Prelude</code> version if the context makes it clear that the imported
+name is not the same as the one in <code>Prelude</code>. For example, I&rsquo;d hide the
+<code>Prelude.span</code>, if I&rsquo;m not using it and if the imported <code>span</code> deals, for
+example, with an span HTML element. But I wouldn&rsquo;t hide
+<code>Prelude.writeFile</code> for <code>Data.Bytestring.writeFile</code> because it&rsquo;d be
+misleading. In case of not hiding, I&rsquo;d use a qualified import, but I&rsquo;ll
+comment more about them below.</p>
+
+<p>Some people also give the <code>built-in</code> status to other very frequently used
+modules such as <code>Control.Monad</code> or <code>Data.Monoid</code> in the <a href="http://hackage.haskell.org/package/base"><code>base</code>
+package</a>. Even admitting that anyone with some experience with
+<a href="http://haskell.org">Haskell</a> wouldn&rsquo;t have any trouble with these imports being implicit, I
+still import them explicitly. I consider that, for experienced programmers
+who are not familiar with Haskell, the names in <code>Prelude</code> are enough to
+keep in mind, so, in my opinion, asking to memorize more modules  rises
+too much the barrier of entry. I suffered this myself when learning
+<a href="http://haskell.org">Haskell</a> for the first time, so I swore to myself I wouldn&rsquo;t do it in the
+future.</p>
+
+<h3>Constructors</h3>
+
+<p>The usual convention for importing type constructors is to import them
+implicitly using the <code>(..)</code> notation, but I don&rsquo;t follow this convention
+because if many type constructors are brought into scope, we have the same
+problem as with the scope of functions.</p>
+
+<p>I only use <code>A(..)</code> if there is only a constructor for type <code>A</code> and it&rsquo;s
+named <code>A</code> as well, which is the usual convention. If that&rsquo;s not the case I
+also import the single constructor explicitly.<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup></p>
+
+<h3>Qualified imports</h3>
+
+<p>They are frequently cited as the solution to module organization. However
+I&rsquo;m uneasy about them and try to use them the least I can.</p>
+
+<h4>Maintainability</h4>
+
+<p>When there is a very long list of imports it&rsquo;s often argued that it&rsquo;s
+better for maintainability to just use a single qualified import,
+otherwise it&rsquo;s too much work to change the list of imports anytime there
+is an API change in an external module. But I think it&rsquo;s the other way
+around, maintaining that list makes sure you are using the API properly,
+and if you get an error when upgrading the API, you are more likely to get
+an import error which can be easily spotted. On the other hand, with a
+qualified import, the module being upgraded can inadvertently introduce
+names in scope provoking clash errors which may be harder to debug.</p>
+
+<p>It&rsquo;s true that it&rsquo;s a bit extra effort to be constantly maintaining a long
+list of imports, but with a decent code editor it shouldn&rsquo;t be too much of
+a problem. I usually toggle between implicit and explicit imports while
+finding out a good solution to some code I&rsquo;m writing, when I&rsquo;m satisfied I
+make sure everything is exported explicitly again.</p>
+
+<h4><a href="https://en.wikipedia.org/wiki/Word_search">Letter soup</a></h4>
+
+<p>It&rsquo;s quite usual to find qualified imports with a capital letter like:
+<code>import qualified Data.ByteString as B</code> or <code>import qualified
+Data.ByteString as S</code> or <code>import qualified Data.ByteString.Lazy as B</code> or
+<code>import Data.Binary as B</code>&hellip; you get where I&rsquo;m going.</p>
+
+<p>The problem with qualified names with just a few characters, it&rsquo;s that the
+chance of clashing is very high, so the same qualified import ends up with
+different letters depending on the module, something I find confusing,
+specially when you get used to associate a particular character to a
+particular module. Aside of this, I don&rsquo;t find aesthetically pleasing to
+read all over the code single capital letters followed by some function,
+but this may be just me.</p>
+
+<p>There are exceptions to this recommendation, of course, which I&rsquo;ll explain
+below.</p>
+
+<h4>Verbosity</h4>
+
+<p>One obvious solution to the problem described below is to not use short
+qualified names but full words like <code>ByteString</code> instead of <code>B</code>, <code>Binary</code>
+instead of <code>B</code> or <code>Text</code> instead of <code>T</code>. But then, what happens when you
+have a module using everywhere <code>Data.ByteString</code> and
+<code>Data.ByteString.Lazy</code>? Do you write prepend every function with
+<code>ByteString</code> an <code>ByteStringLazy</code>? Common sense would tell us that this is
+too verbose, specially for a language like <a href="http://haskell.org">Haskell</a> where terseness is
+one of its most touted features. I&rsquo;ll explain when to use long names for
+qualified imports below.</p>
+
+<h4>Import list as an introduction</h4>
+
+<p>When I&rsquo;m opening a module, I like going through the list of imports to
+prepare my mind for the context of the module. When I find something like
+<code>import qualified Data.Binary as Binary</code>, the first thing I think to
+myself is: <em>is this module going use just one function from <code>Binary</code> or is it
+going to use many of them?</em>. I know I can have a quick glance at the rest
+of the module to get an idea, but this adds just more friction for cases
+where, for example, I want to quickly navigate through all the modules of
+a package in order to get quick overview.</p>
+
+<p>That&rsquo;s why I prefer to have explicit lists, even when qualified imports
+are being used. For such case, however, I acknowledge that I don&rsquo;t always
+follow my own advice. I consider them nice to have, not very important.</p>
+
+<h4>When qualified imports are OK</h4>
+
+<p>The first broad scenario has to do with <code>Prelude</code>. Is the module being
+imported going to clash with several other functions from <code>Prelude</code> that
+I&rsquo;ll also be using or are difficult to distinguish by context? If this is
+the case then I&rsquo;ll try to use a qualified import, specially when the
+original author recommends it. The usual suspects in this list are imports
+like <code>Data.Foldable</code> (<code>F</code>), <code>Data.Traversable</code> (<code>T</code>), <code>bytestring</code> (<code>B</code>,
+<code>B8</code>, <code>L</code>, <code>L8</code>), <code>text</code> (<code>T</code>, <code>TIO</code>, <code>TL</code>), <code>containers</code> (<code>Map</code>, <code>Set</code>),
+<code>pipes</code> (<code>P</code>, <code>PP</code>), etc. I try to follow the same letter convention
+everywhere. But notice that if I know I won&rsquo;t use the <code>Prelude</code> version at
+all and from the context it can be clearly distinguished that is not the
+<code>Prelude</code> function, then I&rsquo;ll hide it as I explained above for the <code>span</code>
+example. It&rsquo;s import to notice that for these packages, the types can be
+usually imported unqualified without any issue.</p>
+
+<p>The second scenario is when 2 imported modules clash with the same names.
+In this case I&rsquo;d use qualified names for just the conflicting functions.
+For example, <code>Binary.decode</code> and <code>Cereal.decode</code>. If the modules are the
+usual candidates for single letter qualified names like like <code>bytestring</code>
+and <code>text</code> I&rsquo;ll keep using the single letter, otherwise I&rsquo;d use a long
+name.</p>
+
+<p>There is one last case where using long qualified names would be OK with
+me. For example, when the function uses a very vague name where it&rsquo;s
+difficult to guess what&rsquo;s really about, it may be appropriate to prepend
+it with the module name. For example, the <code>get</code> and <code>put</code> functions from
+the <code>State</code> monad are much easier to identify when writing them as
+<code>State.get</code> and <code>State.put</code>.</p>
+
+<h2>Order of imports</h2>
+
+<p>Some criteria for ordering imports is important because it makes it
+possible to predict in which order modules appear. If you get used to
+the same pattern of appearance, you can quickly find what&rsquo;s in the module
+and what is not.</p>
+
+<h3>Modules</h3>
+
+<p>In <a href="https://github.com/tibbe/haskell-style-guide/blob/master/haskell-style.md#imports">Tibell&rsquo;s guide</a> it&rsquo;s recommended to group the
+imports by standard library, third party software, and local package
+imports. I follow this too, but, firstly, I distinguish in the standard
+library the modules coming from <a href="http://hackage.haskell.org/package/base"><code>base</code></a>, <a href="https://www.haskell.org/ghc">GHC</a> libraries and packages
+belonging to the <a href="http://www.haskell.org/platform">Haskell Platform</a>. Secondly, where Tibell recommends to
+sort alphabetically between groups, I try to follow the rule of which
+package is (or should be) most frequently used overall, and within each
+package which module is most prominent. When this is not obvious then
+alphabetical sorting should be used.</p>
+
+<p>Of course, there is no precise way to define which package is more
+frequently used. I&rsquo;d leave this entirely to your own personal experience
+but you can get some idea by checking the <a href="http://packdeps.haskellers.com">reverse dependencies</a> of a
+package, or the downloads in <a href="http://hackage.haskell.org">Hackage</a>, or <code>grep &lt;module&gt; | wc</code> a bunch
+popular packages.</p>
+
+<p>The main purpose of this rule is to try to make it easier to skim through
+the most usual imports first and focus at the end on the rare module
+exports. This is also important when trying to minimize dependencies, you
+can quickly spot which ones you can try to drop.</p>
+
+<p>For example:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kr">import</span> <span class="nn">Control.Applicative</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Control.Monad</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Data.Monoid</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Data.Foldable</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here, I put <code>Applicative</code> before <code>Monad</code> because even though, in practice,
+it might be less used, my own judgement tells me it&rsquo;s more general than a
+<code>Monad</code>, so it <em>should</em> be more frequent. Between the <code>Control</code> and the
+<code>Data</code> module names I choose to sort them alphabetically, I don&rsquo;t know
+which one is most usual. Whatever you decide, it&rsquo;s always better to stick
+with the same preference everywhere.</p>
+
+<p>Notice also that I don&rsquo;t take into account the length of the export list
+or how frequent are the functions appear in the module itself. That would,
+perhaps, be valid criteria but they wouldn&rsquo;t make the import list very
+repeatable.</p>
+
+<h3>Types and functions</h3>
+
+<p>I group first the <code>Types</code> with their constructors; next, <a href="http://www.haskell.org/haskellwiki/Infix_operator">infix functions</a>
+and lastly, all other functions.</p>
+
+<p>When there is a mixture of qualified and unqualified imports for the same
+import I still group them together, with the unqualified names going
+first. I don&rsquo;t like having the qualified imports and unqualified imports
+grouped separately because usually I find myself moving back and forth
+some functions between them.</p>
+
+<p>There is an exception here though. When the module being imported is
+re-exporting names defined in other modules I then group them after the
+ones which are defined directly in the imported module.</p>
+
+<h2>Formatting</h2>
+
+<p>I use multiple lines when the list of imports overpasses the specified
+text width and a indentation of 2 spaces when happening.</p>
+
+<p>I also add spaces to module lists but not for constructors, just to give a
+quick hint that they are constructors. For example:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kr">import</span> <span class="nn">module1</span> <span class="p">(</span><span class="kt">A</span><span class="p">(</span><span class="kt">A1</span><span class="p">,</span><span class="kt">A2</span><span class="p">),</span> <span class="kt">B</span><span class="p">,</span> <span class="p">(</span><span class="o">-|-</span><span class="p">),</span> <span class="n">func1</span><span class="p">,</span> <span class="n">func2</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&hellip; unless the constructors are multiline, which is not that frequent though:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kr">import</span> <span class="nn">module</span>
+</span><span class='line'>  <span class="p">(</span> <span class="kt">A</span> <span class="p">(</span> <span class="kt">A1</span>
+</span><span class='line'>      <span class="p">,</span> <span class="kt">A2</span>
+</span><span class='line'>      <span class="p">,</span> <span class="kt">AN</span>
+</span><span class='line'>      <span class="p">)</span>
+</span><span class='line'>  <span class="p">,</span> <span class="kt">B</span>
+</span><span class='line'>  <span class="p">,</span> <span class="n">func1</span>
+</span><span class='line'>  <span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I know of editing tools to make vertical alignment very simple, but,
+personally, I don&rsquo;t find vertical alignment improving that much in
+readability. The words in the same line tend to be too separated.</p>
+
+<h2>Canonical example</h2>
+
+<p>The import style followed by <a href="http://haskell-distributed.github.io">Cloud Haskell</a> packages aligns quite well
+with my particular style. This is a modified version taken from
+<a href="https://github.com/haskell-distributed/distributed-process/blob/master/src/Control/Distributed/Process/Node.hs#L16"><code>Control.Distributed.Process.Node</code></a>: <sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kr">import</span> <span class="nn">Prelude</span> <span class="k">hiding</span> <span class="p">(</span><span class="nf">catch</span><span class="p">)</span>
+</span><span class='line'><span class="c1">-- &#39;base&#39; imports</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Control.Category</span> <span class="p">((</span><span class="o">&gt;&gt;&gt;</span><span class="p">))</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Control.Applicative</span> <span class="p">((</span><span class="o">&lt;$&gt;</span><span class="p">))</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Control.Monad</span> <span class="p">(</span><span class="nf">void</span><span class="p">,</span> <span class="nf">when</span><span class="p">)</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Control.Concurrent</span> <span class="p">(</span><span class="nf">forkIO</span><span class="p">)</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Data.Foldable</span> <span class="p">(</span><span class="nf">forM_</span><span class="p">)</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Data.Maybe</span> <span class="p">(</span><span class="nf">isJust</span><span class="p">,</span> <span class="nf">isNothing</span><span class="p">,</span> <span class="nf">catMaybes</span><span class="p">)</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Data.Typeable</span> <span class="p">(</span><span class="kt">Typeable</span><span class="p">)</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Control.Exception</span> <span class="p">(</span><span class="nf">throwIO</span><span class="p">,</span> <span class="kt">SomeException</span><span class="p">,</span> <span class="kt">Exception</span><span class="p">,</span> <span class="nf">throwTo</span><span class="p">,</span> <span class="nf">catch</span><span class="p">)</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">System.IO</span> <span class="p">(</span><span class="nf">fixIO</span><span class="p">,</span> <span class="nf">hPutStrLn</span><span class="p">,</span> <span class="nf">stderr</span><span class="p">)</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">System.Mem.Weak</span> <span class="p">(</span><span class="kt">Weak</span><span class="p">,</span> <span class="nf">deRefWeak</span><span class="p">)</span>
+</span><span class='line'><span class="c1">-- imports from the rest of the Haskell Platform</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Control.Monad.IO.Class</span> <span class="p">(</span><span class="kt">MonadIO</span><span class="p">,</span> <span class="nf">liftIO</span><span class="p">)</span> <span class="c1">-- &#39;transformers&#39; package</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Control.Monad.State.Strict</span> <span class="p">(</span><span class="kt">MonadState</span><span class="p">,</span> <span class="kt">StateT</span><span class="p">,</span> <span class="nf">evalStateT</span><span class="p">,</span> <span class="nf">gets</span><span class="p">)</span>
+</span><span class='line'><span class="c1">-- these are likely to clash with local bindings</span>
+</span><span class='line'><span class="kr">import</span> <span class="k">qualified</span> <span class="nn">Control.Monad.State.Strict</span> <span class="k">as</span> <span class="n">StateT</span> <span class="p">(</span><span class="n">get</span><span class="p">,</span> <span class="n">put</span><span class="p">)</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Control.Monad.Reader</span> <span class="p">(</span><span class="kt">MonadReader</span><span class="p">,</span> <span class="kt">ReaderT</span><span class="p">,</span> <span class="nf">runReaderT</span><span class="p">,</span> <span class="nf">ask</span><span class="p">)</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Data.ByteString.Lazy</span> <span class="p">(</span><span class="nf">fromChunks</span><span class="p">)</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Data.Map</span> <span class="p">(</span><span class="kt">Map</span><span class="p">,</span> <span class="nf">partitionWithKey</span><span class="p">,</span> <span class="nf">filterWithKey</span><span class="p">,</span> <span class="nf">foldlWithKey</span><span class="p">)</span>
+</span><span class='line'><span class="c1">-- these are likely to clash with other names</span>
+</span><span class='line'><span class="kr">import</span> <span class="k">qualified</span> <span class="nn">Data.Map</span> <span class="k">as</span> <span class="n">Map</span>
+</span><span class='line'>  <span class="p">(</span> <span class="n">empty</span>
+</span><span class='line'>  <span class="p">,</span> <span class="n">toList</span>
+</span><span class='line'>  <span class="p">,</span> <span class="n">fromList</span>
+</span><span class='line'>  <span class="p">,</span> <span class="n">filter</span>
+</span><span class='line'>  <span class="p">,</span> <span class="n">elems</span>
+</span><span class='line'>  <span class="p">)</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Data.Set</span> <span class="p">(</span><span class="kt">Set</span><span class="p">)</span>
+</span><span class='line'><span class="kr">import</span> <span class="k">qualified</span> <span class="nn">Data.Set</span> <span class="k">as</span> <span class="n">Set</span>
+</span><span class='line'>  <span class="p">(</span> <span class="n">empty</span>
+</span><span class='line'>  <span class="p">,</span> <span class="n">insert</span>
+</span><span class='line'>  <span class="p">,</span> <span class="n">delete</span>
+</span><span class='line'>  <span class="p">,</span> <span class="n">member</span>
+</span><span class='line'>  <span class="p">,</span> <span class="n">toList</span>
+</span><span class='line'>  <span class="p">)</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Data.Binary</span> <span class="p">(</span><span class="nf">decode</span><span class="p">)</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Network.Transport</span>
+</span><span class='line'>  <span class="p">(</span> <span class="kt">Transport</span>
+</span><span class='line'>  <span class="p">,</span> <span class="kt">EndPoint</span>
+</span><span class='line'>    <span class="c1">-- Assuming there is only the &#39;Event&#39; constructor</span>
+</span><span class='line'>  <span class="p">,</span> <span class="kt">Event</span><span class="p">(</span><span class="o">..</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">,</span> <span class="kt">EventErrorCode</span><span class="p">(</span><span class="o">..</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">,</span> <span class="kt">TransportError</span><span class="p">(</span><span class="o">..</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">,</span> <span class="kt">ConnectionId</span>
+</span><span class='line'>  <span class="p">,</span> <span class="kt">Connection</span>
+</span><span class='line'>  <span class="p">,</span> <span class="nf">newEndPoint</span>
+</span><span class='line'>  <span class="p">,</span> <span class="nf">closeEndPoint</span>
+</span><span class='line'>    <span class="c1">-- This would re-exports in &#39;Network.transport&#39;</span>
+</span><span class='line'>  <span class="p">,</span> <span class="kt">EndPointAddress</span>
+</span><span class='line'>  <span class="p">,</span> <span class="kt">Reliability</span><span class="p">(</span><span class="kt">ReliableOrdered</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">)</span>
+</span><span class='line'><span class="c1">-- qualified because names are too vague</span>
+</span><span class='line'><span class="kr">import</span> <span class="k">qualified</span> <span class="nn">Network.Transport</span> <span class="k">as</span> <span class="n">NT</span>
+</span><span class='line'>  <span class="p">(</span> <span class="n">receive</span>
+</span><span class='line'>  <span class="p">,</span> <span class="n">address</span>
+</span><span class='line'>  <span class="p">,</span> <span class="n">close</span>
+</span><span class='line'>  <span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Conclusion</h2>
+
+<p>I was keeping all these rules in my head until after a constructive
+discussion with <a href="http://ro-che.info">Roman Cheplyaka</a> about the topic, I decided to write them
+down in a post that I could use as a reference for myself and for my
+colleagues. But, by no means, I&rsquo;m trying to claim my style is better than
+any other, this is what I follow as of today, and will surely evolve as my
+experience in <a href="http://haskell.org">Haskell</a> grows.</p>
+
+<p>If you just got into <a href="http://haskell.org">Haskell</a> and find yourself trying to follow some
+consistent importing style through your code, but lack the hands-on
+experience to assess what&rsquo;s best for you (and if you are control freak
+like me), you might want to follow this blindly until you have more skin
+in the game and can make a more confident decision of what style you
+prefer to stick with. One advantage of this style is that, even if other
+Haskell programmers don&rsquo;t like it because of its extra editing work, it&rsquo;s
+still easily readable.</p>
+
+<p>But remember one thing, all this doesn&rsquo;t matter if a project already
+follows its own style. Consistency is always better for readability, even
+if you don&rsquo;t like the style. So always trust more your common sense than
+any styling guide for which it&rsquo;s impossible to define every scenario you
+may encounter in real life.</p>
+
+<!---
+vim: textwidth=74
+-->
+
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>For code contributions it&rsquo;s easy, just follow what the original author is already doing.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>This could be arguable considered the main use case for OOP in most languages.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>There is <a href="http://plv.mpi-sws.org/backpack">some research</a> going on but still a long way to reach consensus.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>For exports I think it&rsquo;s alright to always use <code>(..)</code>, the constructors are in the same module.<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+<li id="fn:5">
+<p>My modifications will surely break the code, this is just a sample demonstration.<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Improving readability with the Maybe Foldable instance]]></title>
