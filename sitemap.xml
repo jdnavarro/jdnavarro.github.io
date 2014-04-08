@@ -2,116 +2,120 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://dannynavarro.net/2010/03/24/the-blogging-itch/</loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://dannynavarro.net/2010/05/25/how-to-review-supplemental-material-without-revealing-your-identity/
         </loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://dannynavarro.net/2010/07/31/sharing-proteomics-data-trickier-than-it-seems/
         </loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/2010/08/06/the-value-of-wasting-your-time/</loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/2010/10/16/zsh-prompt-for-virtualenv-git-and-bzr/</loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/2011/01/11/the-bioinformatics-curse/</loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/2011/01/14/async-web-apps-with-pyramid/</loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/2011/01/23/async-pyramid-example-done-right/</loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/2011/05/15/moving-to-spain/</loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/2011/05/18/commenting-out-in-chamaleon-templates/</loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/2011/05/21/why-arch-linux/</loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/2011/06/12/using-custom-events-in-pyramid/</loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/2011/09/20/migrating-to-octopress/</loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://dannynavarro.net/2014/03/12/improving-readability-with-the-maybe-foldable-instance/
         </loc>
-        <lastmod>2014-03-12T16:48:43+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/</loc>
-        <lastmod>2014-03-17T23:17:04+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/2014/03/26/podcast-tribute/</loc>
-        <lastmod>2014-03-26T20:54:04+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://dannynavarro.net/2014/04/08/haskell-role-in-fp-paradigm-shift/</loc>
+        <lastmod>2014-04-08T14:19:50+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/assets/bootstrap/docs/about.html</loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/assets/bootstrap/docs/components.html</loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/assets/bootstrap/docs/css.html</loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/assets/bootstrap/docs/customize.html</loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/assets/bootstrap/docs/getting-started.html</loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/assets/bootstrap/docs/</loc>
-        <lastmod>2014-03-26T20:54:04+01:00</lastmod>
+        <lastmod>2014-04-08T14:19:50+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/assets/bootstrap/docs/javascript.html</loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/assets/bootstrap/docs/migration.html</loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/blog/archives/</loc>
-        <lastmod>2014-03-26T20:54:04+01:00</lastmod>
+        <lastmod>2014-04-08T14:19:50+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/</loc>
-        <lastmod>2014-03-26T20:54:04+01:00</lastmod>
+        <lastmod>2014-04-08T14:19:50+02:00</lastmod>
     </url>
     <url>
         <loc>http://dannynavarro.net/robots.txt</loc>
-        <lastmod>2014-03-12T16:48:13+01:00</lastmod>
+        <lastmod>2014-04-08T10:39:20+02:00</lastmod>
     </url>
 </urlset>

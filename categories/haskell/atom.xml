@@ -4,7 +4,7 @@
   <title><![CDATA[Category: haskell | Danny Navarro's blog]]></title>
   <link href="http://dannynavarro.net/categories/haskell/atom.xml" rel="self"/>
   <link href="http://dannynavarro.net/"/>
-  <updated>2014-03-26T20:55:37+01:00</updated>
+  <updated>2014-04-08T14:20:41+02:00</updated>
   <id>http://dannynavarro.net/</id>
   <author>
     <name><![CDATA[Danny Navarro]]></name>
@@ -12,6 +12,78 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Haskell role in FP paradigm shift]]></title>
+    <link href="http://dannynavarro.net/2014/04/08/haskell-role-in-fp-paradigm-shift/"/>
+    <updated>2014-04-08T13:44:28+02:00</updated>
+    <id>http://dannynavarro.net/2014/04/08/haskell-role-in-fp-paradigm-shift</id>
+    <content type="html"><![CDATA[<p>I was listening to <a href="https://en.wikipedia.org/wiki/Bruce_Tate">Bruce Tate</a> in <a href="http://mostlyerlang.com/">Mostly Erlang</a> podcast, when, around
+the 57th minute of <a href="http://mostlyerlang.com/2014/03/04/031-bruce-tate/">the episode</a>, the topic of the conversation
+became the feasibility of <a href="https://en.wikipedia.org/wiki/Functional_programming">FP</a> becoming mainstream. He explains that <a href="https://en.wikipedia.org/wiki/Functional_programming">FP</a>
+has not emerged yet, but it&rsquo;s reluctantly about to do so, being the end of
+Moore&rsquo;s law the main driver as concurrent/parallel programming becomes
+more critical.</p>
+
+<p>I agree with him about this trend, although I also think it&rsquo;s easy to
+overestimate the time it will take. I think it&rsquo;s going to be very slow.</p>
+
+<p>Another interesting idea, he mentions is that within the <a href="https://en.wikipedia.org/wiki/Functional_programming">FP</a> field, a clear
+<em>winner</em> may arise, as it happened with the C/C++, and all its descendants. The
+four candidates he postulates are:</p>
+
+<ul>
+<li><a href="http://www.erlang.org/">Erlang</a>/<a href="http://elixir-lang.org/">Elixir</a></li>
+<li><a href="http://clojure.org/">Clojure</a></li>
+<li><a href="http://www.scala-lang.org/">Scala</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Javascript">JavaScript</a></li>
+</ul>
+
+
+<p>He dismisses <a href="http://www.haskell.org/">Haskell</a> for not being approachable enough, similarly to when
+<a href="https://en.wikipedia.org/wiki/Lisp_(programming_language)">Lisp</a> came out.</p>
+
+<p>I also think there&rsquo;ll be a <em>winner</em>, understanding for <em>winner</em>, the
+language most programmers and companies will use (i.e. Java would be a
+<em>winner</em> now). But I don&rsquo;t see being a  <em>winner</em> language, in this sense,
+so relevant. To me, what&rsquo;s really important is to see how prominent is
+going to be the software written in that language, and how much of current
+business will be run in code written in such language. A language could be
+considered not mainstream by programmers and companies, but there may be
+several critical widespread software that wouldn&rsquo;t be possible without it.
+For example, I see this trend going on with <a href="http://www.erlang.org/">Erlang</a> being used in
+critical <a href="https://en.wikipedia.org/wiki/Instant_messaging">IM</a> services, distributed databases, message queuing systems,
+etc. Current shops with expertise in <a href="http://www.erlang.org/">Erlang</a>, even if not mainstream,
+have a clear competitive advantage when writing scalable systems.</p>
+
+<p>In this sense, I think <a href="http://www.haskell.org/">Haskell</a> may never be a <em>winner</em>, but the question
+is still open about how crucial will it be in the future. What will be the
+business perspectives for the few companies proficient in <a href="http://www.haskell.org/">Haskell</a>? Who
+cares if there are few proficient <a href="http://www.haskell.org/">Haskell</a> programmers as long as there
+is a pool of <a href="http://www.haskell.org/">Haskell</a> programmers to hire (which currently it seems there
+is) and taking into account the strong hint that if someone is proficient
+<a href="http://www.haskell.org/">Haskell</a> she has already very high chances of being a very productive
+programmer?</p>
+
+<p>I guess this <a href="http://paulgraham.com/avg.html">same argument</a> was the same used with <a href="https://en.wikipedia.org/wiki/Lisp_(programming_language)">Lisp</a>, but now
+there are some differences. <a href="https://en.wikipedia.org/wiki/Lisp_(programming_language)">Lisp</a> idioms are, inherently, very
+heterogeneous, whereas <a href="http://www.haskell.org/">Haskell</a>, in spite of not having the equivalent of
+being <a href="http://blog.startifact.com/posts/older/what-is-pythonic.html">Pythonic</a>, is much more understandable among programmers working in
+different projects. Secondly, there are certain
+parallelization/concurrency problems that are very hard to get them right
+with traditional languages, for example, <a href="https://en.wikipedia.org/wiki/Software_transactional_memory">STM</a>. I&rsquo;m not an expert in
+<a href="https://en.wikipedia.org/wiki/Lisp_(programming_language)">Lisp</a> but I guess it lacked the killer feature that make using it a need,
+more than just a nice advantage.</p>
+
+<p>In conclusion, my opinion is that <a href="http://www.haskell.org/">Haskell</a> has a very good chance of
+becoming very relevant even if it doesn&rsquo;t become the <a href="https://en.wikipedia.org/wiki/Functional_programming">FP</a> language
+<em>winner</em>. I see its <a href="https://en.wikipedia.org/wiki/Purely_functional">purity</a> and side-effect management as enablers of
+killer features in the area of concurrent/parallel programming. Somehow,
+the vibrancy of the <a href="http://www.haskell.org/">Haskell</a> community these days, reminds me of the
+[Python] community before Google made it popular. Will all
+this be enough to make <a href="http://www.haskell.org/">Haskell</a> relevant? I guess time will tell.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[An opinionated importing style for Haskell]]></title>

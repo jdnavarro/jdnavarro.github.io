@@ -114,6 +114,105 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-01-14T00:00:00+01:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/2011/01/14/async-web-apps-with-pyramid/">Async web apps with Pyramid?</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>For the last few months I&rsquo;ve been working in a kind of <a href="http://en.wikipedia.org/wiki/Content_management_system">CMS</a> for <a href="http://en.wikipedia.org/wiki/Proteomics">proteomics</a> results using <a href="http://docs.pylonsproject.org/projects/pyramid/dev/">pyramid</a> (in reality I started it with <a href="http://bfg.repoze.org/">repoze.bfg</a> which became pyramid after joining the pylons project).</p>
+
+<p>My experience with pyramid has been really smooth until I had to write a form to parse huge input files in order to build <em>experiment sites</em>.</p>
+
+<p>In an average view for an <em>add form</em> I would return a response redirecting to the newly created <a title="models were renamed to resources after a long thread" href="http://www.mail-archive.com/pylons-devel@googlegroups.com/index.html#00910"><del>model</del> resource</a>. But in this case, the proteomics files can be quite large. I needed some way of having the view returning a response while the files were being parsed. Here is a simplified representation of how I made it work:</p>
+
+<pre><span id="LC1">from multiprocessing import Value, Process</span>
+
+<span id="LC3">is_parsing = Value('B', 0)</span>
+
+<span id="LC5">def parse():</span>
+<span id="LC6">    print "Parsing started"</span>
+<span id="LC7">    import time; time.sleep(10)</span>
+<span id="LC8">    print "Parsing is done"</span>
+<span id="LC9">    is_parsing.value = False</span>
+
+<span id="LC11">def my_view(request):</span>
+<span id="LC13">    if not is_parsing.value:</span>
+<span id="LC14">        is_parsing.value = True</span>
+<span id="LC15">        Process(target=parse).start()</span>
+<span id="LC16">    else:</span>
+<span id="LC17">        print("Still parsing...")</span>
+<span id="LC18">    return {'project':'asyncapp',</span>
+<span id="LC10">            'is_parsing': is_parsing.value}</span></pre>
+
+
+<br />
+
+
+<br />
+
+
+<p>Here I&rsquo;m launching another process to do the parsing while the web app returns the response without the parsing being done. The <em>is_building </em>variable is shared in both processes (no need of <em>global</em> statement). In my case I only want to run one parsing process at a time, so I didn&rsquo;t have the need for locks or queues.</p>
+
+<p>In the template of this view I can either offer a form to create <em>an experiment </em>or inform that there is already a experiment site being built. When building I can have the browser <a href="http://plugins.jquery.com/project/refresh">polling</a> to check if the parsing is done.</p>
+
+<p>That&rsquo;s enough in my case, I don&rsquo;t need to scale to thousands of users parsing multiple files at the same time, but I was curious about how to deal with that problem if I had to. I played a bit with different ideas I was given in the always supportive #repoze channel at <a href="http://freenode.net/">freenode</a>.</p>
+
+<p>First, instead of multiple processes I tried <strong>OS threads, </strong>I know about the <a href="http://blip.tv/file/2232410">infamous GIL</a> but want to see it with my own eyes. However I got some intimidating random errors from paster/pyramid that were enough to drive me off that path.</p>
+
+<p>I also <a href="http://eventlet.net/doc/patching.html#monkeypatching-the-standard-library">monkeypatched</a> the standard library with <a href="http://eventlet.net/">eventlet</a> so that the OS threads would become <strong>green threads</strong>. The dummy example I show above seemed to run fine but when trying in my real application I ran into more cryptic thread errors from monkeypatched <a href="http://www.zodb.org/">ZODB</a>, which is what I use in my real app. I also tried <a href="http://www.gevent.org/">gevent</a> with similar results. <del datetime="2011-01-23T10:04:41+00:00">If you want to use eventlet or gevent you have to find another storage mechanism that works with green threads.</del> <strong>Update:</strong> I was monkeypatching incorrectly, <a href="http://braintrace.ru">Andrey Popp</a>&rsquo;s <a href="http://blog.dannynavarro.net/2011/01/14/async-web-apps-with-pyramid/#comment-58">comment</a> explains how to do it.</p>
+
+<p>Another potential source of problems when scaling with<strong> long polling</strong>, specially if you would like to add a nice responsive progress bar and a kind of log showing what is being done while parsing.</p>
+
+<p><a href="http://en.wikipedia.org/wiki/WebSockets">WebSockets</a> are being regarded as the ultimate solution to deal with this kind of problems. First of all, let&rsquo;s pretend websockets would be supported by all major browsers soon.</p>
+
+<p>How can websockets be handled in pyramid? It turns out that dealing with websockets within <a href="http://www.python.org/dev/peps/pep-3333/">the WSGI protocol</a> is <a href="http://groups.google.com/group/paste-users/browse_thread/thread/2f3a5ba33b857c6c/2d63769fd9db6da3">messy</a>. However eventlet and gevent <a href="http://eventlet.net/doc/modules/websocket.html">have</a> <a href="http://www.gelens.org/code/gevent-websocket/">ways</a> to have websockets working within WSGI. Theoretically you could run a monkeypatched pyramid application behind <a href="http://gunicorn.org/">gunicorn</a> which can make the websockets <a href="https://github.com/benoitc/gunicorn/tree/master/examples/websocket">accessible</a> in the <em>request.environ</em> in pyramid. There is still some websocket protocol tasks (i.e. handshaking, closing socket, etc.) which would make writing something looking like a normal pyramid view hard.</p>
+
+<p>But it happens that <a href="https://github.com/boothead">Ben Ford</a> has a already written a wrapper to take care of that problem:  <a href="https://github.com/boothead/stargate">stargate</a> (as he says, <em>communication for pyramids</em>). With stargate, in your pyramid app you create <em>websocket view</em> by subclassing from a base class that deals with the minutiae of the websocket protocol (up to v76, the latest version at the time of writing). In a websocket view, instead of returning anything from that view, you just write a handler to catch what is coming from the websocket. The great advantage of stargate is that you don&rsquo;t need to run another process to deal with websockets, you can handle websockets from within pyramid. Additionally, stargate has 100% unit test coverage and some <a href="http://boothead.github.com/stargate/">documentation</a>.</p>
+
+<p>While websockets look like the way forward I think it&rsquo;s going to take some time for websockets to become mainstream in all browser, specially after mozilla announced it won&rsquo;t support websockets in the next release of firefox because of <a href="http://hacks.mozilla.org/2010/12/websockets-disabled-in-firefox-4/">security issues</a>.</p>
+
+<p>However, with <a href="http://nodejs.org/">node.js</a>, it seems finally event driven web frameworks are becoming mainstream, bringing projects like <a href="http://socket.io/">Socket.IO</a>. Socket.IO provides an abstraction layer to the developer to write event driven web applications. Socket.IO gives the same way of writing regardless of what the browser supports, being websockets, long polling or Flash; the developer writes the app the same way.</p>
+
+<p>Although initially Socket.IO is meant to be used with node.js, there is something available for the server side in Python: <a href="https://github.com/SocketTornadIO/SocketTornad.IO">SocketTornad.IO</a>. It&rsquo;s built on top of <a href="http://www.tornadoweb.org/">Tornado web framework</a>. In spite of Tornado having <a href="https://github.com/facebook/tornado/blob/master/tornado/wsgi.py#L194">some WSGI support</a>, I&rsquo;m afraid it <a href="http://www.tornadoweb.org/documentation#wsgi-and-google-appengine">won&rsquo;t be easy</a> to have the async features when in WSGI mode.</p>
+
+<p>If I were to support now many concurrent users in a highly responsive application I would probably ditch pyramid  and go directly with SocketTornado.IO. Perhaps I will still be using pyramid for the non async part and have a front web server dispatching requests accordingly.</p>
+
+<p>But it turns out that this is just a fun thought experiment, the multiprocess solution is fine for me because, like most web developers or bioinformaticians, for now I don&rsquo;t need to write highly responsive applications for thousands of users.</p>
+
+<p><strong>Update: </strong><a href="http://mg.pov.lt/blog">Marius Gedminas</a> pointed out a better way to do this with locks. I will leave the code snippet using Value because is quite illustrative but you shouldn&rsquo;t use Value if you to do something similar, instead check a better example I wrote in <a href="http://blog.dannynavarro.net/2011/01/23/async-pyramid-example-done-right/">another post</a>.</p>
+
+<p><strong>Update: </strong> Check <a href="https://github.com/abourget/pyramid_socketio">pyramid_socketio</a> for a newer version of async apps.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-01-11T00:00:00+01:00" pubdate data-updated="true"></time>
         
       </p>
@@ -477,6 +576,8 @@
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/2014/04/08/haskell-role-in-fp-paradigm-shift/">Haskell role in FP paradigm shift</a>
+    
     <a class="list-group-item " href="/2014/03/26/podcast-tribute/">Podcast tribute</a>
     
     <a class="list-group-item " href="/2014/03/17/an-opinionated-importing-style-for-haskell/">An opinionated importing style for Haskell</a>
@@ -484,8 +585,6 @@
     <a class="list-group-item " href="/2014/03/12/improving-readability-with-the-maybe-foldable-instance/">Improving readability with the Maybe Foldable instance</a>
     
     <a class="list-group-item " href="/2011/09/20/migrating-to-octopress/">Migrating to Octopress</a>
-    
-    <a class="list-group-item " href="/2011/06/12/using-custom-events-in-pyramid/">Using custom events in Pyramid</a>
     
   </div>
 </section>
