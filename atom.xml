@@ -5,9 +5,275 @@
     <description>Mostly Haskell ramblings</description>
     <link>http://dannynavarro.net/</link>
     <atom:link href="http://dannynavarro.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 09 Aug 2015 18:07:58 +0200</pubDate>
-    <lastBuildDate>Sun, 09 Aug 2015 18:07:58 +0200</lastBuildDate>
+    <pubDate>Wed, 12 Aug 2015 17:13:56 +0200</pubDate>
+    <lastBuildDate>Wed, 12 Aug 2015 17:13:56 +0200</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Picking Lower Bounds Versions for your Dependencies</title>
+        <description>&lt;p&gt;I always get an uneasy feeling when explaining this topic to new
+programmers. I limit myself to something along these lines: “In this case
+I’m choosing these versions because of &lt;em&gt;this&lt;/em&gt; and &lt;em&gt;that&lt;/em&gt;, were the
+circumstances different I would probably have chosen differently”. In
+these sessions I try to stick to the act of coding so I try to not digress
+too much into such hairy matters as version management. Nevertheless, I
+think a decent criterion for picking these versions is something important
+for a developer expected to work independently.&lt;/p&gt;
+
+&lt;p&gt;I don’t think a precise guide could be written on the topic. The ability
+comes naturally with experience and some common sense. In this post I’ll try
+try to bring forward some factors to weight in when choosing the minimal
+dependency versions.&lt;/p&gt;
+
+&lt;p&gt;For concrete examples I’m focusing on the Haskell ecosystem, where I’m
+spending most of my time these days, but I guess it could be directly
+translated to other ecosystems.&lt;/p&gt;
+
+&lt;p&gt;I’m assuming the word &lt;em&gt;package&lt;/em&gt; is a unit of code shipped with a version
+number. In Haskell this is a &lt;a href=&quot;https://www.haskell.org/cabal/&quot;&gt;Cabal package&lt;/a&gt;, but it could be a
+&lt;a href=&quot;http://pythonwheels.com/&quot;&gt;Python wheel&lt;/a&gt;, a &lt;a href=&quot;http://guides.rubygems.org/rubygems-basics/&quot;&gt;Ruby gem&lt;/a&gt;, or a &lt;a href=&quot;https://crates.io/&quot;&gt;Rust crate&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;deployment&quot;&gt;Deployment&lt;/h2&gt;
+
+&lt;p&gt;There are 2 non-mutually exclusive broad categories here, although the
+distinction can get quite blurry.&lt;/p&gt;
+
+&lt;h3 id=&quot;push-based&quot;&gt;Push-based&lt;/h3&gt;
+
+&lt;p&gt;In this kind of deployment you are directly &lt;em&gt;pushing&lt;/em&gt; your code into an
+environment where it’ll be built&lt;sup id=&quot;fnref:e&quot;&gt;&lt;a href=&quot;#fn:e&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; and executed. Here you have precise
+knowledge of the environment where your code will run.&lt;/p&gt;
+
+&lt;p&gt;This is the typical setting for web server applications. In this case, version
+bounds are not so important, it’s alright to just set the minimum versions
+to the ones you are using for development. However in this scenario it’s
+almost always a good idea to pin all the dependency when building. You
+want deterministic repeatable builds and avoid nasty surprises, specially
+when dependencies get updated. For most packaging systems there is always
+some mechanism for freezing versions outside the package specification.  In
+Haskell you can manually&lt;sup id=&quot;fnref:f&quot;&gt;&lt;a href=&quot;#fn:f&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; pin dependency versions in the &lt;code&gt;cabal.config&lt;/code&gt; or you
+can use &lt;a href=&quot;https://www.stackage.org/&quot;&gt;Stackage&lt;/a&gt; and &lt;a href=&quot;https://github.com/commercialhaskell/stack&quot;&gt;stack&lt;/a&gt; to manage version dependency sets smoothly.&lt;/p&gt;
+
+&lt;p&gt;At the package level you want to maintain maximum flexibility so that you can
+test different dependency versions easily, specially to get early warnings when
+dependencies are updated. You could think of the versions limits in the core
+package specification as the versions that will never be picked, no matter the
+circumstance.&lt;/p&gt;
+
+&lt;h3 id=&quot;pull-based&quot;&gt;Pull-based&lt;/h3&gt;
+
+&lt;p&gt;In this case you are packing your code and uploading it to some kind of
+central package repository. Consumers will &lt;em&gt;pull&lt;/em&gt; the package and install
+it on their system. Your code will run on systems that are outside of your
+control.&lt;/p&gt;
+
+&lt;p&gt;A frequent use case is to support as many target users as possible.
+Often enough, the users will run your code on very heterogeneous
+environments and you don’t want them to step into any problems when trying
+your new shiny package.&lt;/p&gt;
+
+&lt;p&gt;By default it’s wise to aim for low dependency versions, but you don’t need
+to go as far low as possible. It’s usually a good idea to target the
+lowest versions that are still getting maintenance upgrades (more about
+this later). For example, in the case of Haskell, unless you have a
+specific reason, I think it’s reasonable to tell your users that you are
+not supporting GHC-7.4.3 (Haskell compiler) anymore. You can select
+the version cut-off based on the fact that the oldest GHC version of the
+major Linux distributions, is &lt;a href=&quot;https://packages.debian.org/jessie/ghc&quot;&gt;GHC-7.6.3&lt;/a&gt;, in Debian Jessie&lt;sup id=&quot;fnref:a&quot;&gt;&lt;a href=&quot;#fn:a&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;. But your
+mileage may vary, it all depends on the users you are targeting. The more
+data you have about them, the better you’d be able to make these kind of
+decisions.&lt;/p&gt;
+
+&lt;p&gt;In my experience, for pull-based packages, it’s best to build and test
+your code with both the maximum and minimum versions at the same time. If
+running both tests takes too long, you can move one test suite, the
+minimum one usually, to a &lt;a href=&quot;https://en.wikipedia.org/wiki/Continuous_integration&quot;&gt;CI&lt;/a&gt; system. In any case, it only makes sense to test
+both the latest and the oldest sets of dependencies, don’t bother trying
+different set combinations unless you have a very specific reason, I’ll explain
+why below.
+&lt;!---
+In the case of GHC, I often use Debian as the central authority I trust to
+set the minimum lower bounds. But your choice of maintenance authority can
+be very different. Ideally, having real data of the environment your users
+users have will help you make better decisions. You&#39;d also have to take
+into account factors like whether you want to force users to upgrade? Did you
+give them enough deprecation warnings with enough time to not piss them
+off? But handling API upgrades is outside the scope of this post.
+--&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;release-channels&quot;&gt;Release Channels&lt;/h2&gt;
+
+&lt;p&gt;For new libraries there is just a single channel following the latest
+version, but for more mature ones you can usually identify at least an
+extra channel with more conservative releases. Notice here that even if
+the original authors don’t explicitly maintain multiple channels, you can
+still find downstream packagers that do keep releasing
+security/performance fixes while maintaining a frozen API. And even
+without 3rd party packagers it’s possible to distinguish virtual
+channels with some implicit knowledge gained by social means. For example,
+do you know which version is mostly used by the community? or what early
+adopters are reporting when trying newer versions? It’s good to follow bug
+reports, mailing lists or relevant forums to get a sense of the stability of
+the packages.&lt;/p&gt;
+
+&lt;p&gt;How aggressively new features get released on each channel vary greatly
+between authors and communities. Some communities are notoriously
+disciplined about maintaining strict release policies but you should
+always keep an eye for authors breaking ranks. In general, you can always
+assume that with new features inevitably come new bugs.&lt;/p&gt;
+
+&lt;p&gt;Sometimes, the build with the minimum version dependencies represents the most
+stable &lt;em&gt;edition&lt;/em&gt; of your code (instead of just providing extended backwards
+compatibility), so it’s a good rule of thumb to keep it in sync with a
+conservative but still active channel that you trust. If you find a &lt;em&gt;killer&lt;/em&gt;
+feature that you absolutely need in production, you should be aware of the
+responsibilities coming with living in the bleeding-edge. For example, is the
+upstream author responsive to bug reports? Do I have the capability to fix bugs
+if push comes to shove?  Notice that, although ugly and cumbersome, there are
+mechanisms to get conditional compilation based on the dependency version being
+present while building. In Haskell this is done with &lt;a href=&quot;http://projects.haskell.org/cpphs&quot;&gt;CPP macros&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;While thinking about this, it’s also a good moment to consider any security
+implications. Can you afford the risks of the bleeding-edge? Perhaps your
+application is a prototype, but are you sure it’ll remain one? What would need
+to be done if it goes into production?&lt;/p&gt;
+
+&lt;h2 id=&quot;known-working-sets&quot;&gt;Known Working Sets&lt;/h2&gt;
+
+&lt;p&gt;Identifying individual channels for each package doesn’t guarantee they
+will work together. What you need is a &lt;em&gt;distribution&lt;/em&gt; of packages with
+versions that are frequently tested together for compatibility. These
+&lt;em&gt;distributions&lt;/em&gt; usually have their own release channels as well.&lt;/p&gt;
+
+&lt;p&gt;Theoretically, you could pick and choose different channels for each
+package, and although this approach may work for projects with few
+dependencies, in practice this quickly spirals out of control as the
+number dependencies grows. If you avoid running into &lt;a href=&quot;https://en.wikipedia.org/wiki/Dependency_hell&quot;&gt;dependency hell&lt;/a&gt;, the
+combination of versions can make your build so unique that any potential bugs
+you find may be irrelevant or hard to reproduce for the rest of the community.
+By sticking to a trusted &lt;em&gt;distribution&lt;/em&gt; you take advantage of more people
+looking for bugs in the same build you are working or if you discover the bugs
+yourself you’ll get better support if your working set of dependencies is a
+common one. This could be considered a weaker version of the &lt;a href=&quot;https://en.wikipedia.org/wiki/Linus&#39;s_Law&quot;&gt;Linus’s
+Law&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;When choosing a &lt;em&gt;distribution&lt;/em&gt; it’s often helpful to distinguish 2 rough
+categories: language runtime specific but system agnostic, and system specific
+but language runtime agnostic&lt;sup id=&quot;fnref:b&quot;&gt;&lt;a href=&quot;#fn:b&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;p&gt;For example, in Haskell, &lt;a href=&quot;http://www.stackage.org/lts&quot;&gt;Stackage LTS&lt;/a&gt;, or even the &lt;a href=&quot;https://www.haskell.org/platform/&quot;&gt;Haskell Platform&lt;/a&gt;,
+can be considered examples of the first kind. No matter what OS or
+hardware architecture you are on (provided GHC supports it), if you pick
+the minimum versions from any of those sets, you can be pretty
+confident that there won’t be compatibility issues. This type of
+distributions work very well when your whole codebase is written for the
+same language runtime. However, when the number of dependencies not
+included in the distribution grows (for example, dependencies coming from
+a different language runtime), your chances of running into problems grows,
+too.&lt;/p&gt;
+
+&lt;p&gt;The other kind of &lt;em&gt;distributions&lt;/em&gt; are the ones providing full system
+integration for a given hardware architecture, with kernel and userspace
+applications being released together. Here I have in mind the typical
+Linux distributions and the BSDs&lt;sup id=&quot;fnref:c&quot;&gt;&lt;a href=&quot;#fn:c&quot; class=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;p&gt;System distributions provide the strongest guarantees that all moving
+parts work together, specially if you get your package included in the
+distribution. But doing so can be quite hard, you’ll have to make sure your
+packages adheres to all the distributions policies, which usually are
+quite strict.&lt;/p&gt;
+
+&lt;p&gt;That’s why integrating your code into an system distribution can sometimes
+add non-trivial overhead. Also, focusing on just one OS distribution can
+reduce drastically the users you can target. This is not an issue for push
+based deployments though.&lt;/p&gt;
+
+&lt;p&gt;Even if you don’t use system distributions directly, you can still extract
+a good known working set from the versions they selected.  You have to
+keep an eye on any patches the packagers may have introduced that are not
+included upstream. If those changes are not distribution specific, they
+are usually propagated upstream, but sometimes for whatever reason,
+upstream authors don’t accept them.&lt;/p&gt;
+
+&lt;h2 id=&quot;closing-thoughts&quot;&gt;Closing thoughts&lt;/h2&gt;
+
+&lt;p&gt;For the lower bounds of pull-based Haskell packages, I usually follow the
+Debian stable channel which usually has oldest set of versions still being
+maintained.&lt;/p&gt;
+
+&lt;p&gt;For push based deployments, a very popular system distribution within the
+Haskell community is &lt;a href=&quot;https://nixos.org/&quot;&gt;NixOS&lt;/a&gt;. Aside of the many advantages the &lt;a href=&quot;https://nixos.org/nix/&quot;&gt;Nix&lt;/a&gt;
+package manager over conventional managers, from a curation perspective,
+the &lt;a href=&quot;https://nixos.org/&quot;&gt;NixOS&lt;/a&gt; community is extremely responsive and provides a very smooth
+barrier of entry for new Haskell packages&lt;sup id=&quot;fnref:d&quot;&gt;&lt;a href=&quot;#fn:d&quot; class=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;p&gt;It’s also worth mentioning that the latest upstream versions of every
+dependencies can be considered a virtual quasi-distribution. Although this
+target obviously moves very fast, it might not be as chaotic as you might
+expect. Most upstream developers give priority to the latest version, so
+they usually make sure their software works well with the latest versions
+of other dependencies. This is not a bad choice for experimental and
+prototype projects, and even if you are relying exclusively on pinned
+versions, it’s always useful to test against the latest dependencies as a
+way of getting a heads up on what needs to be done to keep your code
+up-to-date.&lt;/p&gt;
+
+&lt;p&gt;I deliberately omitted writing about new projects like &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt; or &lt;a href=&quot;https://developer.ubuntu.com/en/snappy/&quot;&gt;Snappy
+Ubuntu&lt;/a&gt; that claim to solve many all our deployment issues with container
+superpowers. I do believe container based deployments, both for server and
+for end users, are the right trend but I’m still, as of today, not sold on
+using Docker for production. But that’s a story for another day.&lt;/p&gt;
+
+&lt;p&gt;I also don’t want to get into the topic of upper version bounds because
+it’s a whole different debate, and there are many valid arguments pro and
+against. I personally lean towards not putting any restrictions because it
+makes upgrading new packages an easy process, even at the cost of having
+some users getting broken builds when new dependencies come out. This
+shouldn’t be a problem for production systems because I’m assuming prudent
+users should be using pinned versions and building their packages before
+deployment. However if for some reason, your package is broken and you
+know you can’t fix it soon enough, I’d say it’s OK to make a quick release
+with upper version bounds if you already know it will break. I know there
+are many counterarguments to my position, like for example, when you want
+to make sure a package released today will be buildable in 20 years at
+that particular version. I’d mark that old version as deprecated and
+forget about it, but that’s sacrilege for some. In the end this is all
+&lt;a href=&quot;https://en.wiktionary.org/wiki/bikeshedding&quot;&gt;bikeshedding&lt;/a&gt; to me, so even if I’d rather have no upper limits, I don’t
+think it’s a big deal having to handle them.&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:e&quot;&gt;
+      &lt;p&gt;Or wherever you build it, it should be equivalent to building it on the target system. &lt;a href=&quot;#fnref:e&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:f&quot;&gt;
+      &lt;p&gt;You could use &lt;code&gt;cabal freeze&lt;/code&gt; for quick and dirty pinning, but don’t recommend it when strict control of versions is desired. &lt;a href=&quot;#fnref:f&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:a&quot;&gt;
+      &lt;p&gt;In Wheezy GHC-7.4.3, is still officially maintained in extended support if you really want to go back. &lt;a href=&quot;#fnref:a&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:b&quot;&gt;
+      &lt;p&gt;A particular underrated package management system that is both language and OS portable is &lt;a href=&quot;https://www.pkgsrc.org/&quot;&gt;pkgsrc&lt;/a&gt;. Unfortunately, although Haskell curation is improving, it’s still far from other distributions. &lt;a href=&quot;#fnref:b&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:c&quot;&gt;
+      &lt;p&gt;You could stretch the concept to include commercial app stores, or even runtime environments such as GNOME or frameworks like RxJS. &lt;a href=&quot;#fnref:c&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:d&quot;&gt;
+      &lt;p&gt;yes, creating Nix expressions adds overhead, but believe me, it’s much more accessible than creating good deb or rpm source packages. &lt;a href=&quot;#fnref:d&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Wed, 12 Aug 2015 15:10:56 +0200</pubDate>
+        <link>http://dannynavarro.net/2015/08/12/picking-lower-bounds-version-for-your-dependencies/</link>
+        <guid isPermaLink="true">http://dannynavarro.net/2015/08/12/picking-lower-bounds-version-for-your-dependencies/</guid>
+        
+        
+        <category>haskell</category>
+        
+        <category>sysadmin</category>
+        
+      </item>
     
       <item>
         <title>Haskell role in FP paradigm shift</title>
@@ -970,68 +1236,6 @@ def my_view(request):
         <category>spain</category>
         
         <category>yaco</category>
-        
-      </item>
-    
-      <item>
-        <title>Async Pyramid example done right</title>
-        <description>&lt;p&gt;After speaking with &lt;a href=&quot;http://mg.pov.lt/blog&quot;&gt;Marius Gedminas&lt;/a&gt; at freenode, he gave me enough hints to rewrite &lt;a href=&quot;http://blog.dannynavarro.net/2011/01/14/async-web-apps-with-pyramid/&quot;&gt;my previous async &lt;i&gt;view&lt;/i&gt; example &lt;/a&gt;with &lt;i&gt;locks&lt;/i&gt; instead of &lt;i&gt;Value&lt;/i&gt;, which is prone to race conditions. I also added a queue to allow jobs to wait for being processed.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;pre&gt;from multiprocessing import Process, Lock, Queue
-
-job = 0
-q = Queue(maxsize=3)
-lock = Lock()
-
-def work():
-    import time; time.sleep(8)
-    job = q.get()
-    print(&quot;Job done: {0}&quot;.format(job))
-    print(&quot;Queue size: {0}\n&quot;.format(q.qsize()))
-    if not q.empty():
-        work()
-    else:
-        lock.release()
-
-def my_view(request):
-    global job
-    if not q.full():
-        job += 1
-        q.put(job)
-        # Not running
-        if lock.acquire(False):
-            Process(target=work).start()
-            print(&quot;Job {0} submitted and working on it&quot;.format(job))
-        else:
-            print(&quot;Job {0} submitted while working&quot;.format(job))
-    else:
-        print(&quot;Queue is full&quot;)
-    print(&quot;Queue size: {0}\n&quot;.format(q.qsize()))
-    return {&#39;project&#39;:&#39;asyncapp&#39;}
-&lt;br /&gt;
-&lt;/pre&gt;
-
-&lt;p&gt;With every request a job is sent. Here the queue accepts 3 jobs. The recursion in &lt;i&gt;work&lt;/i&gt; makes sure there is only 1 process working at a time.&lt;/p&gt;
-
-&lt;p&gt;I will leave &lt;a href=&quot;http://blog.dannynavarro.net/2011/01/14/async-web-apps-with-pyramid/&quot;&gt;my previous example&lt;/a&gt; with &lt;i&gt;Value&lt;/i&gt; because it’s easier to understand but this version is much safer.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; You can avoid the use of locks by &lt;a href=&quot;http://blog.doughellmann.com/2009/04/pymotw-multiprocessing-part-2.html&quot;&gt; using 2 queues&lt;/a&gt;.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 23 Jan 2011 00:00:00 +0100</pubDate>
-        <link>http://dannynavarro.net/2011/01/23/async-pyramid-example-done-right/</link>
-        <guid isPermaLink="true">http://dannynavarro.net/2011/01/23/async-pyramid-example-done-right/</guid>
-        
-        
-        <category>async</category>
-        
-        <category>hacking</category>
-        
-        <category>programming</category>
-        
-        <category>pyramid</category>
-        
-        <category>python</category>
         
       </item>
     
