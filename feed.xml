@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.0.1">Jekyll</generator><link href="http://dannynavarro.net/atom.xml" rel="self" type="application/atom+xml" /><link href="http://dannynavarro.net/" rel="alternate" type="text/html" /><updated>2016-01-21T12:43:55+01:00</updated><id>http://dannynavarro.net/</id><title>Danny Navarro&#39;s Blog</title><subtitle>Mostly Haskell ramblings</subtitle><entry><title>Picking Lower Bounds Versions for your Dependencies</title><link href="http://dannynavarro.net/2015/08/12/picking-lower-bounds-version-for-your-dependencies/" rel="alternate" type="text/html" title="Picking Lower Bounds Versions for your Dependencies" /><published>2015-08-12T15:10:56+02:00</published><updated>2015-08-12T15:10:56+02:00</updated><id>http://dannynavarro.net/2015/08/12/picking-lower-bounds-version-for-your-dependencies</id><content type="html" xml:base="http://dannynavarro.net/2015/08/12/picking-lower-bounds-version-for-your-dependencies/">&lt;p&gt;I always get an uneasy feeling when explaining this topic to new&lt;br /&gt;
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Danny Navarro&#39;s Blog</title>
+    <description>Mostly Haskell ramblings</description>
+    <link>http://dannynavarro.net/</link>
+    <atom:link href="http://dannynavarro.net/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 21 Jan 2016 12:43:55 +0100</pubDate>
+    <lastBuildDate>Thu, 21 Jan 2016 12:43:55 +0100</lastBuildDate>
+    <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>Picking Lower Bounds Versions for your Dependencies</title>
+        <description>&lt;p&gt;I always get an uneasy feeling when explaining this topic to new&lt;br /&gt;
 programmers. I limit myself to something along these lines: “In this case&lt;br /&gt;
 I’m choosing these versions because of &lt;em&gt;this&lt;/em&gt; and &lt;em&gt;that&lt;/em&gt;, were the&lt;br /&gt;
 circumstances different I would probably have chosen differently”. In&lt;br /&gt;
@@ -249,14 +262,22 @@ think it’s a big deal having to handle them.&lt;/p&gt;
       &lt;p&gt;yes, creating Nix expressions adds overhead, but believe me, it’s much more accessible than creating good deb or rpm source packages. &lt;a href=&quot;#fnref:d&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><summary>I always get an uneasy feeling when explaining this topic to new
-programmers. I limit myself to something along these lines: “In this case
-I’m choosing these versions because of this and that, were the
-circumstances different I would probably have chosen differently”. In
-these sessions I try to stick to the act of coding so I try to not digress
-too much into such hairy matters as version management. Nevertheless, I
-think a decent criterion for picking these versions is something important
-for a developer expected to work independently.</summary></entry><entry><title>Haskell role in FP paradigm shift</title><link href="http://dannynavarro.net/2014/04/08/haskell-role-in-fp-paradigm-shift/" rel="alternate" type="text/html" title="Haskell role in FP paradigm shift" /><published>2014-04-08T13:44:28+02:00</published><updated>2014-04-08T13:44:28+02:00</updated><id>http://dannynavarro.net/2014/04/08/haskell-role-in-fp-paradigm-shift</id><content type="html" xml:base="http://dannynavarro.net/2014/04/08/haskell-role-in-fp-paradigm-shift/">&lt;p&gt;I was listening to &lt;a href=&quot;https://en.wikipedia.org/wiki/Bruce_Tate&quot;&gt;Bruce Tate&lt;/a&gt; in &lt;a href=&quot;http://mostlyerlang.com/&quot;&gt;Mostly Erlang&lt;/a&gt; podcast, when, around&lt;br /&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Wed, 12 Aug 2015 15:10:56 +0200</pubDate>
+        <link>http://dannynavarro.net/2015/08/12/picking-lower-bounds-version-for-your-dependencies/</link>
+        <guid isPermaLink="true">http://dannynavarro.net/2015/08/12/picking-lower-bounds-version-for-your-dependencies/</guid>
+        
+        
+        <category>haskell</category>
+        
+        <category>sysadmin</category>
+        
+      </item>
+    
+      <item>
+        <title>Haskell role in FP paradigm shift</title>
+        <description>&lt;p&gt;I was listening to &lt;a href=&quot;https://en.wikipedia.org/wiki/Bruce_Tate&quot;&gt;Bruce Tate&lt;/a&gt; in &lt;a href=&quot;http://mostlyerlang.com/&quot;&gt;Mostly Erlang&lt;/a&gt; podcast, when, around&lt;br /&gt;
 the 57th minute of &lt;a href=&quot;http://mostlyerlang.com/2014/03/04/031-bruce-tate/&quot;&gt;the episode&lt;/a&gt;, the topic of the conversation&lt;br /&gt;
 became the feasibility of &lt;a href=&quot;https://en.wikipedia.org/wiki/Functional_programming&quot;&gt;FP&lt;/a&gt; becoming mainstream. He explains that &lt;a href=&quot;https://en.wikipedia.org/wiki/Functional_programming&quot;&gt;FP&lt;/a&gt;&lt;br /&gt;
 has not emerged yet, but it’s reluctantly about to do so, being the end of&lt;br /&gt;
@@ -318,12 +339,21 @@ becoming very relevant even if it doesn’t become the &lt;a href=&quot;https://
 killer features in the area of concurrent/parallel programming. Somehow,&lt;br /&gt;
 the vibrancy of the &lt;a href=&quot;http://www.haskell.org/&quot;&gt;Haskell&lt;/a&gt; community these days, reminds me of the&lt;br /&gt;
 [Python] community before Google made it popular. Will all&lt;br /&gt;
-this be enough to make &lt;a href=&quot;http://www.haskell.org/&quot;&gt;Haskell&lt;/a&gt; relevant? I guess time will tell.&lt;/p&gt;</content><summary>I was listening to Bruce Tate in Mostly Erlang podcast, when, around
-the 57th minute of the episode, the topic of the conversation
-became the feasibility of FP becoming mainstream. He explains that FP
-has not emerged yet, but it’s reluctantly about to do so, being the end of
-Moore’s law the main driver as concurrent/parallel programming becomes
-more critical.</summary></entry><entry><title>Podcast tribute</title><link href="http://dannynavarro.net/2014/03/26/podcast-tribute/" rel="alternate" type="text/html" title="Podcast tribute" /><published>2014-03-26T20:53:58+01:00</published><updated>2014-03-26T20:53:58+01:00</updated><id>http://dannynavarro.net/2014/03/26/podcast-tribute</id><content type="html" xml:base="http://dannynavarro.net/2014/03/26/podcast-tribute/">&lt;p&gt;These days, with the pervasiveness of the Internet, an impressive wave of&lt;br /&gt;
+this be enough to make &lt;a href=&quot;http://www.haskell.org/&quot;&gt;Haskell&lt;/a&gt; relevant? I guess time will tell.&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 08 Apr 2014 13:44:28 +0200</pubDate>
+        <link>http://dannynavarro.net/2014/04/08/haskell-role-in-fp-paradigm-shift/</link>
+        <guid isPermaLink="true">http://dannynavarro.net/2014/04/08/haskell-role-in-fp-paradigm-shift/</guid>
+        
+        
+        <category>haskell</category>
+        
+      </item>
+    
+      <item>
+        <title>Podcast tribute</title>
+        <description>&lt;p&gt;These days, with the pervasiveness of the Internet, an impressive wave of&lt;br /&gt;
 new spoken audio content is making steadily its way into the mainstream.&lt;br /&gt;
 I’ve always been a big fan of spoken radio, but now I find myself&lt;br /&gt;
 listening only to independent &lt;a href=&quot;https://en.wikipedia.org/wiki/Podcast&quot;&gt;podcasts&lt;/a&gt;, mostly hosted by&lt;br /&gt;
@@ -419,12 +449,24 @@ choose a single &lt;a href=&quot;https://bitcoin.org/&quot;&gt;Bitcoin&lt;/a&gt;
 
 &lt;!---
 vim: tw=74 spell
---&gt;</content><summary>These days, with the pervasiveness of the Internet, an impressive wave of
-new spoken audio content is making steadily its way into the mainstream.
-I’ve always been a big fan of spoken radio, but now I find myself
-listening only to independent podcasts, mostly hosted by
-amateurs, who are able to provide fresh and genuine content in a medium
-where innovation has been stagnant for many years.</summary></entry><entry><title>An opinionated importing style for Haskell</title><link href="http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/" rel="alternate" type="text/html" title="An opinionated importing style for Haskell" /><published>2014-03-17T21:17:15+01:00</published><updated>2014-03-17T21:17:15+01:00</updated><id>http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell</id><content type="html" xml:base="http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/">&lt;p&gt;Large part of &lt;a href=&quot;http://haskell.org&quot;&gt;Haskell&lt;/a&gt; code is just about imports. In many programming&lt;br /&gt;
+--&gt;
+</description>
+        <pubDate>Wed, 26 Mar 2014 20:53:58 +0100</pubDate>
+        <link>http://dannynavarro.net/2014/03/26/podcast-tribute/</link>
+        <guid isPermaLink="true">http://dannynavarro.net/2014/03/26/podcast-tribute/</guid>
+        
+        
+        <category>podcast</category>
+        
+        <category>fun</category>
+        
+        <category>history</category>
+        
+      </item>
+    
+      <item>
+        <title>An opinionated importing style for Haskell</title>
+        <description>&lt;p&gt;Large part of &lt;a href=&quot;http://haskell.org&quot;&gt;Haskell&lt;/a&gt; code is just about imports. In many programming&lt;br /&gt;
 languages there is no ambiguity left about how to import, but &lt;a href=&quot;http://haskell.org&quot;&gt;Haskell&lt;/a&gt;&lt;br /&gt;
 leaves some room for personal style in this regard. There are some&lt;br /&gt;
 recommendations out there about importing style, but most is left to&lt;br /&gt;
@@ -875,21 +917,20 @@ vim: textwidth=74
       &lt;p&gt;My modifications will surely break the code, this is just a sample demonstration. &lt;a href=&quot;#fnref:c&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><summary>Large part of Haskell code is just about imports. In many programming
-languages there is no ambiguity left about how to import, but Haskell
-leaves some room for personal style in this regard. There are some
-recommendations out there about importing style, but most is left to
-common sense. Your own judgment, once you are comfortable with Haskell,
-should be perfectly fine, but newcomers who care about style consistency
-might feel a bit lost when writing the import list for their own packages
-1, specially since there are many slightly different styles in the wild
-for Haskell imports. In this post, I’ll try to explain the rationale of
-the style I follow.
-
-
-  
+&lt;/div&gt;
+</description>
+        <pubDate>Mon, 17 Mar 2014 21:17:15 +0100</pubDate>
+        <link>http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/</link>
+        <guid isPermaLink="true">http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/</guid>
+        
+        
+        <category>haskell</category>
+        
+      </item>
     
-      For code contributions it’s easy, just follow what the original author is already doing. &amp;#8617;</summary></entry><entry><title>Improving readability with the Maybe Foldable instance</title><link href="http://dannynavarro.net/2014/03/12/improving-readability-with-the-maybe-foldable-instance/" rel="alternate" type="text/html" title="Improving readability with the Maybe Foldable instance" /><published>2014-03-12T12:00:00+01:00</published><updated>2014-03-12T12:00:00+01:00</updated><id>http://dannynavarro.net/2014/03/12/improving-readability-with-the-maybe-foldable-instance</id><content type="html" xml:base="http://dannynavarro.net/2014/03/12/improving-readability-with-the-maybe-foldable-instance/">&lt;p&gt;One recommendation you often hear when reaching an acceptable level of basic&lt;br /&gt;
+      <item>
+        <title>Improving readability with the Maybe Foldable instance</title>
+        <description>&lt;p&gt;One recommendation you often hear when reaching an acceptable level of basic&lt;br /&gt;
 Haskell is to make your code more polymorphic. The Haskell &lt;a href=&quot;http://hackage.haskell.org/package/base/docs/Prelude.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Prelude&lt;/code&gt;&lt;/a&gt; is&lt;br /&gt;
 heavily biased towards lists, so an immediate gain in polymorphism is to make&lt;br /&gt;
 your code work not only for lists but for any instance of &lt;a href=&quot;http://hackage.haskell.org/package/base/docs/Data-Traversable.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Traversable&lt;/code&gt;&lt;/a&gt; or&lt;br /&gt;
@@ -962,16 +1003,20 @@ readable.&lt;/p&gt;
       &lt;p&gt;Roughly speaking, the &lt;code class=&quot;highlighter-rouge&quot;&gt;Traversable&lt;/code&gt; instance would be used for operations that do something on each element of the structure while maintaining same structure in the output. A &lt;code class=&quot;highlighter-rouge&quot;&gt;Foldable&lt;/code&gt; instance would be used for collapsing the elements into anything else. &lt;a href=&quot;#fnref:a&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><summary>One recommendation you often hear when reaching an acceptable level of basic
-Haskell is to make your code more polymorphic. The Haskell Prelude is
-heavily biased towards lists, so an immediate gain in polymorphism is to make
-your code work not only for lists but for any instance of Traversable or
-Foldable.1
-
-
-  
+&lt;/div&gt;
+</description>
+        <pubDate>Wed, 12 Mar 2014 12:00:00 +0100</pubDate>
+        <link>http://dannynavarro.net/2014/03/12/improving-readability-with-the-maybe-foldable-instance/</link>
+        <guid isPermaLink="true">http://dannynavarro.net/2014/03/12/improving-readability-with-the-maybe-foldable-instance/</guid>
+        
+        
+        <category>haskell</category>
+        
+      </item>
     
-      Roughly speaking, the Traversable instance would be used for operations that do something on each element of the structure while maintaining same structure in the output. A Foldable instance would be used for collapsing the elements into anything else. &amp;#8617;</summary></entry><entry><title>Migrating to Octopress</title><link href="http://dannynavarro.net/2011/09/20/migrating-to-octopress/" rel="alternate" type="text/html" title="Migrating to Octopress" /><published>2011-09-20T19:07:00+02:00</published><updated>2011-09-20T19:07:00+02:00</updated><id>http://dannynavarro.net/2011/09/20/migrating-to-octopress</id><content type="html" xml:base="http://dannynavarro.net/2011/09/20/migrating-to-octopress/">&lt;p&gt;I finally found some time to migrate my blog to &lt;a href=&quot;http://wordpress.com/&quot;&gt;Octopress&lt;/a&gt; from&lt;br /&gt;
+      <item>
+        <title>Migrating to Octopress</title>
+        <description>&lt;p&gt;I finally found some time to migrate my blog to &lt;a href=&quot;http://wordpress.com/&quot;&gt;Octopress&lt;/a&gt; from&lt;br /&gt;
 &lt;a href=&quot;http://octopress.org/&quot;&gt;Wordpress.com&lt;/a&gt;. The critical reason to migrate from Wordpress has&lt;br /&gt;
 been the support for nice code syntax highlighting, something I&lt;br /&gt;
 couldn’t have wordpress.com, at least for free. I know there are very&lt;br /&gt;
@@ -1033,14 +1078,27 @@ Python remains my main working language.&lt;/p&gt;
 
 &lt;p&gt;In any case, I must say the service provided by wordpress.com has been&lt;br /&gt;
 quite good but this one of those cases where you have to say: &lt;em&gt;“Sorry,&lt;br /&gt;
-it’s not you, it’s just me”.&lt;/em&gt;&lt;/p&gt;</content><summary>I finally found some time to migrate my blog to Octopress from
-Wordpress.com. The critical reason to migrate from Wordpress has
-been the support for nice code syntax highlighting, something I
-couldn’t have wordpress.com, at least for free. I know there are very
-nice wordpress plugins for syntax highlighting but in order to use
-them I would have to host it myself. I don’t want to go through the
-hassle of maintaining a typical PHP/MySQL stack or to be worried about
-being slashdotted.</summary></entry><entry><title>Using custom events in Pyramid</title><link href="http://dannynavarro.net/2011/06/12/using-custom-events-in-pyramid/" rel="alternate" type="text/html" title="Using custom events in Pyramid" /><published>2011-06-12T00:00:00+02:00</published><updated>2011-06-12T00:00:00+02:00</updated><id>http://dannynavarro.net/2011/06/12/using-custom-events-in-pyramid</id><content type="html" xml:base="http://dannynavarro.net/2011/06/12/using-custom-events-in-pyramid/">&lt;p&gt;&lt;a href=&quot;http://docs.pylonsproject.org/docs/pyramid.html&quot;&gt;Pyramid&lt;/a&gt; is a &lt;a href=&quot;http://webpython.codepoint.net/wsgi_tutorial&quot;&gt;WSGI&lt;/a&gt; application framework that primarily follows a&lt;a href=&quot;http://docs.pylonsproject.org/projects/pyramid/1.0/narr/router.html&quot;&gt; request-response mechanism&lt;/a&gt;. However, if you need to work with events you can still &lt;a href=&quot;http://docs.pylonsproject.org/projects/pyramid/1.0/narr/events.html&quot;&gt;use them&lt;/a&gt;. It comes with &lt;a href=&quot;http://docs.pylonsproject.org/projects/pyramid/1.0/api/events.html#event-types&quot;&gt;some default event types&lt;/a&gt; that are emitted implicitely by Pyramid as long as you have a subscriber for them. For most applications the default event types are enough, but what if you want to write your custom event type and emit it explicitly from your code? It turns out that the &lt;a href=&quot;http://docs.pylonsproject.org/projects/pyramid/1.0/glossary.html#term-application-registry&quot;&gt;application registry&lt;/a&gt; that Pyramid uses by default comes with a handy &lt;a href=&quot;https://github.com/Pylons/pyramid/blob/master/pyramid/registry.py#L36&quot;&gt;&lt;em&gt;notify&lt;/em&gt; method&lt;/a&gt;. Pyramid &lt;a href=&quot;https://github.com/Pylons/pyramid/blob/master/pyramid/router.py#L77&quot;&gt;uses this method internally&lt;/a&gt;  for its default events. Here is how you would take advantage of it:&lt;/p&gt;
+it’s not you, it’s just me”.&lt;/em&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 20 Sep 2011 19:07:00 +0200</pubDate>
+        <link>http://dannynavarro.net/2011/09/20/migrating-to-octopress/</link>
+        <guid isPermaLink="true">http://dannynavarro.net/2011/09/20/migrating-to-octopress/</guid>
+        
+        
+        <category>blogging</category>
+        
+        <category>migration</category>
+        
+        <category>personal</category>
+        
+        <category>hacking</category>
+        
+      </item>
+    
+      <item>
+        <title>Using custom events in Pyramid</title>
+        <description>&lt;p&gt;&lt;a href=&quot;http://docs.pylonsproject.org/docs/pyramid.html&quot;&gt;Pyramid&lt;/a&gt; is a &lt;a href=&quot;http://webpython.codepoint.net/wsgi_tutorial&quot;&gt;WSGI&lt;/a&gt; application framework that primarily follows a&lt;a href=&quot;http://docs.pylonsproject.org/projects/pyramid/1.0/narr/router.html&quot;&gt; request-response mechanism&lt;/a&gt;. However, if you need to work with events you can still &lt;a href=&quot;http://docs.pylonsproject.org/projects/pyramid/1.0/narr/events.html&quot;&gt;use them&lt;/a&gt;. It comes with &lt;a href=&quot;http://docs.pylonsproject.org/projects/pyramid/1.0/api/events.html#event-types&quot;&gt;some default event types&lt;/a&gt; that are emitted implicitely by Pyramid as long as you have a subscriber for them. For most applications the default event types are enough, but what if you want to write your custom event type and emit it explicitly from your code? It turns out that the &lt;a href=&quot;http://docs.pylonsproject.org/projects/pyramid/1.0/glossary.html#term-application-registry&quot;&gt;application registry&lt;/a&gt; that Pyramid uses by default comes with a handy &lt;a href=&quot;https://github.com/Pylons/pyramid/blob/master/pyramid/registry.py#L36&quot;&gt;&lt;em&gt;notify&lt;/em&gt; method&lt;/a&gt;. Pyramid &lt;a href=&quot;https://github.com/Pylons/pyramid/blob/master/pyramid/router.py#L77&quot;&gt;uses this method internally&lt;/a&gt;  for its default events. Here is how you would take advantage of it:&lt;/p&gt;
 &lt;pre&gt;from pyramid.events import subscriber
 
 class MyCustomEventType(object):
@@ -1062,8 +1120,24 @@ def my_view(request):
 
 &lt;p&gt;Be aware though, that all these events are synchronous because Pyramid is primarily a request-response framework, all the events emitted block until the subscribers are done. If you want non-blocking events in Pyramid you could spawn a process from the subscriber or come with &lt;a href=&quot;http://blog.dannynavarro.net/2011/01/14/async-web-apps-with-pyramid/&quot;&gt;some other solution&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;But the events in Pyramid are just another functionality that it offers. Pyramid is not a event-oriented framework, if you want to go all the way with async events you should look into &lt;a href=&quot;http://twistedmatrix.com/trac/&quot;&gt;Twisted&lt;/a&gt; or &lt;a href=&quot;http://www.tornadoweb.org/&quot;&gt;Tornado&lt;/a&gt;.&lt;/p&gt;</content><summary>Pyramid is a WSGI application framework that primarily follows a request-response mechanism. However, if you need to work with events you can still use them. It comes with some default event types that are emitted implicitely by Pyramid as long as you have a subscriber for them. For most applications the default event types are enough, but what if you want to write your custom event type and emit it explicitly from your code? It turns out that the application registry that Pyramid uses by default comes with a handy notify method. Pyramid uses this method internally  for its default events. Here is how you would take advantage of it:
-from pyramid.events import subscriber</summary></entry><entry><title>Why Arch Linux</title><link href="http://dannynavarro.net/2011/05/21/why-arch-linux/" rel="alternate" type="text/html" title="Why Arch Linux" /><published>2011-05-21T00:00:00+02:00</published><updated>2011-05-21T00:00:00+02:00</updated><id>http://dannynavarro.net/2011/05/21/why-arch-linux</id><content type="html" xml:base="http://dannynavarro.net/2011/05/21/why-arch-linux/">&lt;p&gt;I have been using &lt;a href=&quot;http://www.archlinux.org/&quot;&gt;Arch Linux&lt;/a&gt; for 3 years now. I still use Debian and Ubuntu for the servers I administer but I acknowledge Arch Linux has taught many valuable lessons.&lt;/p&gt;
+&lt;p&gt;But the events in Pyramid are just another functionality that it offers. Pyramid is not a event-oriented framework, if you want to go all the way with async events you should look into &lt;a href=&quot;http://twistedmatrix.com/trac/&quot;&gt;Twisted&lt;/a&gt; or &lt;a href=&quot;http://www.tornadoweb.org/&quot;&gt;Tornado&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 12 Jun 2011 00:00:00 +0200</pubDate>
+        <link>http://dannynavarro.net/2011/06/12/using-custom-events-in-pyramid/</link>
+        <guid isPermaLink="true">http://dannynavarro.net/2011/06/12/using-custom-events-in-pyramid/</guid>
+        
+        
+        <category>hacking</category>
+        
+        <category>pyramid</category>
+        
+        <category>python</category>
+        
+      </item>
+    
+      <item>
+        <title>Why Arch Linux</title>
+        <description>&lt;p&gt;I have been using &lt;a href=&quot;http://www.archlinux.org/&quot;&gt;Arch Linux&lt;/a&gt; for 3 years now. I still use Debian and Ubuntu for the servers I administer but I acknowledge Arch Linux has taught many valuable lessons.&lt;/p&gt;
 
 &lt;p&gt;With Arch Linux there is very little in your system that you are not aware of. You have to configure everything yourself by editing config files. The process is not that hard because all those configuration files are meant to be tweaked. You also count with an &lt;a href=&quot;https://wiki.archlinux.org&quot;&gt;excellent wiki&lt;/a&gt; to help you.&lt;/p&gt;
 
@@ -1099,7 +1173,24 @@ from pyramid.events import subscriber</summary></entry><entry><title>Why Arch Li
 
 &lt;p&gt;It’s not only the packaging format itself, there is also the community and policy aspects. Editing your PKGBUILDs is something that every Arch Linux user does. For AUR there is very little regulating making the packaging smoother process at the expense of shifting the trust on the packages to the user. In general, most packages in AUR are good enough but for production machines I still value more the trust the Debian and Ubuntu package maintainers.&lt;/p&gt;
 
-&lt;p&gt;That’s where open source community shines, you have many choices.&lt;/p&gt;</content><summary>I have been using Arch Linux for 3 years now. I still use Debian and Ubuntu for the servers I administer but I acknowledge Arch Linux has taught many valuable lessons.</summary></entry><entry><title>Commenting out in Chamaleon templates</title><link href="http://dannynavarro.net/2011/05/18/commenting-out-in-chamaleon-templates/" rel="alternate" type="text/html" title="Commenting out in Chamaleon templates" /><published>2011-05-18T00:00:00+02:00</published><updated>2011-05-18T00:00:00+02:00</updated><id>http://dannynavarro.net/2011/05/18/commenting-out-in-chamaleon-templates</id><content type="html" xml:base="http://dannynavarro.net/2011/05/18/commenting-out-in-chamaleon-templates/">&lt;p&gt;If you want to prevent &lt;a href=&quot;http://chameleon.repoze.org/&quot; title=&quot;Chameleon is an excellent HTML templating engine&quot;&gt;Chameleon&lt;/a&gt; from rendering some portions of an HTML template you might be tempted to do something like this:&lt;/p&gt;
+&lt;p&gt;That’s where open source community shines, you have many choices.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 21 May 2011 00:00:00 +0200</pubDate>
+        <link>http://dannynavarro.net/2011/05/21/why-arch-linux/</link>
+        <guid isPermaLink="true">http://dannynavarro.net/2011/05/21/why-arch-linux/</guid>
+        
+        
+        <category>archlinux</category>
+        
+        <category>hacking</category>
+        
+        <category>linux</category>
+        
+      </item>
+    
+      <item>
+        <title>Commenting out in Chamaleon templates</title>
+        <description>&lt;p&gt;If you want to prevent &lt;a href=&quot;http://chameleon.repoze.org/&quot; title=&quot;Chameleon is an excellent HTML templating engine&quot;&gt;Chameleon&lt;/a&gt; from rendering some portions of an HTML template you might be tempted to do something like this:&lt;/p&gt;
 
 &lt;pre&gt;
 
@@ -1119,10 +1210,47 @@ from pyramid.events import subscriber</summary></entry><entry><title>Why Arch Li
 
 &lt;/pre&gt;
 
-&lt;p&gt;Chameleon ignore anything inside the condition block.&lt;/p&gt;</content><summary>If you want to prevent Chameleon from rendering some portions of an HTML template you might be tempted to do something like this:</summary></entry><entry><title>Moving to Spain</title><link href="http://dannynavarro.net/2011/05/15/moving-to-spain/" rel="alternate" type="text/html" title="Moving to Spain" /><published>2011-05-15T00:00:00+02:00</published><updated>2011-05-15T00:00:00+02:00</updated><id>http://dannynavarro.net/2011/05/15/moving-to-spain</id><content type="html" xml:base="http://dannynavarro.net/2011/05/15/moving-to-spain/">&lt;p&gt;After almost 3 years in The Netherlands working as &lt;a href=&quot;http://en.wikipedia.org/wiki/Proteomics&quot;&gt;proteomics&lt;/a&gt; informatician at &lt;a href=&quot;http://bioms.chem.uu.nl/&quot;&gt;Albert Heck’s lab&lt;/a&gt;, I’m moving to &lt;a href=&quot;http://en.wikipedia.org/wiki/Sevilla&quot;&gt;Seville&lt;/a&gt;, Spain, to work as a web developer for&lt;a href=&quot;http://yaco.es/&quot;&gt; Yaco Sistemas&lt;/a&gt;, a fresh and dynamic open source friendly company.&lt;/p&gt;
+&lt;p&gt;Chameleon ignore anything inside the condition block.&lt;/p&gt;
+</description>
+        <pubDate>Wed, 18 May 2011 00:00:00 +0200</pubDate>
+        <link>http://dannynavarro.net/2011/05/18/commenting-out-in-chamaleon-templates/</link>
+        <guid isPermaLink="true">http://dannynavarro.net/2011/05/18/commenting-out-in-chamaleon-templates/</guid>
+        
+        
+        <category>chameleon</category>
+        
+        <category>hacking</category>
+        
+        <category>html</category>
+        
+        <category>pyramid</category>
+        
+        <category>templating</category>
+        
+      </item>
+    
+      <item>
+        <title>Moving to Spain</title>
+        <description>&lt;p&gt;After almost 3 years in The Netherlands working as &lt;a href=&quot;http://en.wikipedia.org/wiki/Proteomics&quot;&gt;proteomics&lt;/a&gt; informatician at &lt;a href=&quot;http://bioms.chem.uu.nl/&quot;&gt;Albert Heck’s lab&lt;/a&gt;, I’m moving to &lt;a href=&quot;http://en.wikipedia.org/wiki/Sevilla&quot;&gt;Seville&lt;/a&gt;, Spain, to work as a web developer for&lt;a href=&quot;http://yaco.es/&quot;&gt; Yaco Sistemas&lt;/a&gt;, a fresh and dynamic open source friendly company.&lt;/p&gt;
 
 &lt;p&gt;This is an important shift in my career since I won’t be working on proteomics informatics and academic research anymore. I have mixed feelings about leaving proteomics. On one hand I like the area because there are plenty of tough challenges to be solved. But on the other hand I’m glad I can dedicate all my time to develop web applications, that might not be as sophisticated as proteomics software, but that will be immediately useful for the &lt;em&gt;masses&lt;/em&gt;. I love web development and the Python community but within proteomics I could only intersect with the Python web development community quite sporadically. Now I’ll have the chance to be part of it full time.&lt;/p&gt;
 
 &lt;p&gt;Personally, The Netherlands is the most comfortable and easy-going country I ever lived. Here I had the chance to work with very smart people and made friends that will never forget. What I have learned during these years is priceless.&lt;/p&gt;
 
-&lt;p&gt;But I can’t deny my origins, Spain is where I feel at home even if sometimes I don’t find it too exciting because I’m too familiar with the culture. However Seville is quite far from &lt;a title=&quot;Pamplona&quot; href=&quot;http://en.wikipedia.org/wiki/Pamplona&quot;&gt;my hometown&lt;/a&gt;, in the North of Spain. The culture in the South is very different from the North, so in a way, I’ll be another foreigner excited about the peculiarities I discover about Andalusian culture.&lt;/p&gt;</content><summary>After almost 3 years in The Netherlands working as proteomics informatician at Albert Heck’s lab, I’m moving to Seville, Spain, to work as a web developer for Yaco Sistemas, a fresh and dynamic open source friendly company.</summary></entry></feed>
+&lt;p&gt;But I can’t deny my origins, Spain is where I feel at home even if sometimes I don’t find it too exciting because I’m too familiar with the culture. However Seville is quite far from &lt;a title=&quot;Pamplona&quot; href=&quot;http://en.wikipedia.org/wiki/Pamplona&quot;&gt;my hometown&lt;/a&gt;, in the North of Spain. The culture in the South is very different from the North, so in a way, I’ll be another foreigner excited about the peculiarities I discover about Andalusian culture.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 15 May 2011 00:00:00 +0200</pubDate>
+        <link>http://dannynavarro.net/2011/05/15/moving-to-spain/</link>
+        <guid isPermaLink="true">http://dannynavarro.net/2011/05/15/moving-to-spain/</guid>
+        
+        
+        <category>personal</category>
+        
+        <category>spain</category>
+        
+        <category>yaco</category>
+        
+      </item>
+    
+  </channel>
+</rss>

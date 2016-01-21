@@ -11,18 +11,9 @@
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="canonical" href="http://dannynavarro.net/2015/08/12/picking-lower-bounds-version-for-your-dependencies/">
-  <link rel="alternate" type="application/rss+xml" title="Danny Navarro's Blog" href="http://dannynavarro.net/atom.xml" />
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-25821353-1', 'auto');
-    ga('send', 'pageview');
-
-  </script>
+  <link rel="alternate" type="application/rss+xml" title="Danny Navarro's Blog" href="http://dannynavarro.net/feed.xml">
 </head>
+
 
   <body>
 
@@ -40,10 +31,13 @@
           <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
         </svg>
       </a>
+
       <div class="trigger">
         
           
-          <a class="page-link" href="/atom.xml">Subscribe</a>
+          <a class="page-link" href="/feed.xml">Subscribe</a>
+          
+        
           
         
           
@@ -57,96 +51,97 @@
 
 </header>
 
+
     <div class="page-content">
       <div class="wrapper">
-        <div class="post">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title">Picking Lower Bounds Versions for your Dependencies</h1>
-    <p class="post-meta">Aug 12, 2015</p>
+    <h1 class="post-title" itemprop="name headline">Picking Lower Bounds Versions for your Dependencies</h1>
+    <p class="post-meta"><time datetime="2015-08-12T15:10:56+02:00" itemprop="datePublished">Aug 12, 2015</time></p>
   </header>
 
-  <article class="post-content">
-    <p>I always get an uneasy feeling when explaining this topic to new
-programmers. I limit myself to something along these lines: “In this case
-I’m choosing these versions because of <em>this</em> and <em>that</em>, were the
-circumstances different I would probably have chosen differently”. In
-these sessions I try to stick to the act of coding so I try to not digress
-too much into such hairy matters as version management. Nevertheless, I
-think a decent criterion for picking these versions is something important
+  <div class="post-content" itemprop="articleBody">
+    <p>I always get an uneasy feeling when explaining this topic to new<br />
+programmers. I limit myself to something along these lines: “In this case<br />
+I’m choosing these versions because of <em>this</em> and <em>that</em>, were the<br />
+circumstances different I would probably have chosen differently”. In<br />
+these sessions I try to stick to the act of coding so I try to not digress<br />
+too much into such hairy matters as version management. Nevertheless, I<br />
+think a decent criterion for picking these versions is something important<br />
 for a developer expected to work independently.</p>
 
-<p>I don’t think a precise guide could be written on the topic. The ability
-comes naturally with experience and some common sense. In this post I’ll try
-try to bring forward some factors to weight in when choosing the minimal
+<p>I don’t think a precise guide could be written on the topic. The ability<br />
+comes naturally with experience and some common sense. In this post I’ll try<br />
+try to bring forward some factors to weight in when choosing the minimal<br />
 dependency versions.</p>
 
-<p>For concrete examples I’m focusing on the Haskell ecosystem, where I’m
-spending most of my time these days, but I guess it could be directly
+<p>For concrete examples I’m focusing on the Haskell ecosystem, where I’m<br />
+spending most of my time these days, but I guess it could be directly<br />
 translated to other ecosystems.</p>
 
-<p>I’m assuming the word <em>package</em> is a unit of code shipped with a version
-number. In Haskell this is a <a href="https://www.haskell.org/cabal/">Cabal package</a>, but it could be a
+<p>I’m assuming the word <em>package</em> is a unit of code shipped with a version<br />
+number. In Haskell this is a <a href="https://www.haskell.org/cabal/">Cabal package</a>, but it could be a<br />
 <a href="http://pythonwheels.com/">Python wheel</a>, a <a href="http://guides.rubygems.org/rubygems-basics/">Ruby gem</a>, or a <a href="https://crates.io/">Rust crate</a>.</p>
 
 <h2 id="deployment">Deployment</h2>
 
-<p>There are 2 non-mutually exclusive broad categories here, although the
+<p>There are 2 non-mutually exclusive broad categories here, although the<br />
 distinction can get quite blurry.</p>
 
 <h3 id="push-based">Push-based</h3>
 
-<p>In this kind of deployment you are directly <em>pushing</em> your code into an
-environment where it’ll be built<sup id="fnref:e"><a href="#fn:e" class="footnote">1</a></sup> and executed. Here you have precise
+<p>In this kind of deployment you are directly <em>pushing</em> your code into an<br />
+environment where it’ll be built<sup id="fnref:e"><a href="#fn:e" class="footnote">1</a></sup> and executed. Here you have precise<br />
 knowledge of the environment where your code will run.</p>
 
-<p>This is the typical setting for web server applications. In this case, version
-bounds are not so important, it’s alright to just set the minimum versions
-to the ones you are using for development. However in this scenario it’s
-almost always a good idea to pin all the dependency when building. You
-want deterministic repeatable builds and avoid nasty surprises, specially
-when dependencies get updated. For most packaging systems there is always
-some mechanism for freezing versions outside the package specification.  In
-Haskell you can manually<sup id="fnref:f"><a href="#fn:f" class="footnote">2</a></sup> pin dependency versions in the <code>cabal.config</code> or you
+<p>This is the typical setting for web server applications. In this case, version<br />
+bounds are not so important, it’s alright to just set the minimum versions<br />
+to the ones you are using for development. However in this scenario it’s<br />
+almost always a good idea to pin all the dependency when building. You<br />
+want deterministic repeatable builds and avoid nasty surprises, specially<br />
+when dependencies get updated. For most packaging systems there is always<br />
+some mechanism for freezing versions outside the package specification.  In<br />
+Haskell you can manually<sup id="fnref:f"><a href="#fn:f" class="footnote">2</a></sup> pin dependency versions in the <code class="highlighter-rouge">cabal.config</code> or you<br />
 can use <a href="https://www.stackage.org/">Stackage</a> and <a href="https://github.com/commercialhaskell/stack">stack</a> to manage version dependency sets smoothly.</p>
 
-<p>At the package level you want to maintain maximum flexibility so that you can
-test different dependency versions easily, specially to get early warnings when
-dependencies are updated. You could think of the versions limits in the core
-package specification as the versions that will never be picked, no matter the
+<p>At the package level you want to maintain maximum flexibility so that you can<br />
+test different dependency versions easily, specially to get early warnings when<br />
+dependencies are updated. You could think of the versions limits in the core<br />
+package specification as the versions that will never be picked, no matter the<br />
 circumstance.</p>
 
 <h3 id="pull-based">Pull-based</h3>
 
-<p>In this case you are packing your code and uploading it to some kind of
-central package repository. Consumers will <em>pull</em> the package and install
-it on their system. Your code will run on systems that are outside of your
+<p>In this case you are packing your code and uploading it to some kind of<br />
+central package repository. Consumers will <em>pull</em> the package and install<br />
+it on their system. Your code will run on systems that are outside of your<br />
 control.</p>
 
-<p>A frequent use case is to support as many target users as possible.
-Often enough, the users will run your code on very heterogeneous
-environments and you don’t want them to step into any problems when trying
+<p>A frequent use case is to support as many target users as possible.<br />
+Often enough, the users will run your code on very heterogeneous<br />
+environments and you don’t want them to step into any problems when trying<br />
 your new shiny package.</p>
 
-<p>By default it’s wise to aim for low dependency versions, but you don’t need
-to go as far low as possible. It’s usually a good idea to target the
-lowest versions that are still getting maintenance upgrades (more about
-this later). For example, in the case of Haskell, unless you have a
-specific reason, I think it’s reasonable to tell your users that you are
-not supporting GHC-7.4.3 (Haskell compiler) anymore. You can select
-the version cut-off based on the fact that the oldest GHC version of the
-major Linux distributions, is <a href="https://packages.debian.org/jessie/ghc">GHC-7.6.3</a>, in Debian Jessie<sup id="fnref:a"><a href="#fn:a" class="footnote">3</a></sup>. But your
-mileage may vary, it all depends on the users you are targeting. The more
-data you have about them, the better you’d be able to make these kind of
+<p>By default it’s wise to aim for low dependency versions, but you don’t need<br />
+to go as far low as possible. It’s usually a good idea to target the<br />
+lowest versions that are still getting maintenance upgrades (more about<br />
+this later). For example, in the case of Haskell, unless you have a<br />
+specific reason, I think it’s reasonable to tell your users that you are<br />
+not supporting GHC-7.4.3 (Haskell compiler) anymore. You can select<br />
+the version cut-off based on the fact that the oldest GHC version of the<br />
+major Linux distributions, is <a href="https://packages.debian.org/jessie/ghc">GHC-7.6.3</a>, in Debian Jessie<sup id="fnref:a"><a href="#fn:a" class="footnote">3</a></sup>. But your<br />
+mileage may vary, it all depends on the users you are targeting. The more<br />
+data you have about them, the better you’d be able to make these kind of<br />
 decisions.</p>
 
-<p>In my experience, for pull-based packages, it’s best to build and test
-your code with both the maximum and minimum versions at the same time. If
-running both tests takes too long, you can move one test suite, the
-minimum one usually, to a <a href="https://en.wikipedia.org/wiki/Continuous_integration">CI</a> system. In any case, it only makes sense to test
-both the latest and the oldest sets of dependencies, don’t bother trying
-different set combinations unless you have a very specific reason, I’ll explain
-why below.
+<p>In my experience, for pull-based packages, it’s best to build and test<br />
+your code with both the maximum and minimum versions at the same time. If<br />
+running both tests takes too long, you can move one test suite, the<br />
+minimum one usually, to a <a href="https://en.wikipedia.org/wiki/Continuous_integration">CI</a> system. In any case, it only makes sense to test<br />
+both the latest and the oldest sets of dependencies, don’t bother trying<br />
+different set combinations unless you have a very specific reason, I’ll explain<br />
+why below.<br />
 <!---
 In the case of GHC, I often use Debian as the central authority I trust to
 set the minimum lower bounds. But your choice of maintenance authority can
@@ -159,142 +154,142 @@ off? But handling API upgrades is outside the scope of this post.
 
 <h2 id="release-channels">Release Channels</h2>
 
-<p>For new libraries there is just a single channel following the latest
-version, but for more mature ones you can usually identify at least an
-extra channel with more conservative releases. Notice here that even if
-the original authors don’t explicitly maintain multiple channels, you can
-still find downstream packagers that do keep releasing
-security/performance fixes while maintaining a frozen API. And even
-without 3rd party packagers it’s possible to distinguish virtual
-channels with some implicit knowledge gained by social means. For example,
-do you know which version is mostly used by the community? or what early
-adopters are reporting when trying newer versions? It’s good to follow bug
-reports, mailing lists or relevant forums to get a sense of the stability of
+<p>For new libraries there is just a single channel following the latest<br />
+version, but for more mature ones you can usually identify at least an<br />
+extra channel with more conservative releases. Notice here that even if<br />
+the original authors don’t explicitly maintain multiple channels, you can<br />
+still find downstream packagers that do keep releasing<br />
+security/performance fixes while maintaining a frozen API. And even<br />
+without 3rd party packagers it’s possible to distinguish virtual<br />
+channels with some implicit knowledge gained by social means. For example,<br />
+do you know which version is mostly used by the community? or what early<br />
+adopters are reporting when trying newer versions? It’s good to follow bug<br />
+reports, mailing lists or relevant forums to get a sense of the stability of<br />
 the packages.</p>
 
-<p>How aggressively new features get released on each channel vary greatly
-between authors and communities. Some communities are notoriously
-disciplined about maintaining strict release policies but you should
-always keep an eye for authors breaking ranks. In general, you can always
+<p>How aggressively new features get released on each channel vary greatly<br />
+between authors and communities. Some communities are notoriously<br />
+disciplined about maintaining strict release policies but you should<br />
+always keep an eye for authors breaking ranks. In general, you can always<br />
 assume that with new features inevitably come new bugs.</p>
 
-<p>Sometimes, the build with the minimum version dependencies represents the most
-stable <em>edition</em> of your code (instead of just providing extended backwards
-compatibility), so it’s a good rule of thumb to keep it in sync with a
-conservative but still active channel that you trust. If you find a <em>killer</em>
-feature that you absolutely need in production, you should be aware of the
-responsibilities coming with living in the bleeding-edge. For example, is the
-upstream author responsive to bug reports? Do I have the capability to fix bugs
-if push comes to shove?  Notice that, although ugly and cumbersome, there are
-mechanisms to get conditional compilation based on the dependency version being
+<p>Sometimes, the build with the minimum version dependencies represents the most<br />
+stable <em>edition</em> of your code (instead of just providing extended backwards<br />
+compatibility), so it’s a good rule of thumb to keep it in sync with a<br />
+conservative but still active channel that you trust. If you find a <em>killer</em><br />
+feature that you absolutely need in production, you should be aware of the<br />
+responsibilities coming with living in the bleeding-edge. For example, is the<br />
+upstream author responsive to bug reports? Do I have the capability to fix bugs<br />
+if push comes to shove?  Notice that, although ugly and cumbersome, there are<br />
+mechanisms to get conditional compilation based on the dependency version being<br />
 present while building. In Haskell this is done with <a href="http://projects.haskell.org/cpphs">CPP macros</a>.</p>
 
-<p>While thinking about this, it’s also a good moment to consider any security
-implications. Can you afford the risks of the bleeding-edge? Perhaps your
-application is a prototype, but are you sure it’ll remain one? What would need
+<p>While thinking about this, it’s also a good moment to consider any security<br />
+implications. Can you afford the risks of the bleeding-edge? Perhaps your<br />
+application is a prototype, but are you sure it’ll remain one? What would need<br />
 to be done if it goes into production?</p>
 
 <h2 id="known-working-sets">Known Working Sets</h2>
 
-<p>Identifying individual channels for each package doesn’t guarantee they
-will work together. What you need is a <em>distribution</em> of packages with
-versions that are frequently tested together for compatibility. These
+<p>Identifying individual channels for each package doesn’t guarantee they<br />
+will work together. What you need is a <em>distribution</em> of packages with<br />
+versions that are frequently tested together for compatibility. These<br />
 <em>distributions</em> usually have their own release channels as well.</p>
 
-<p>Theoretically, you could pick and choose different channels for each
-package, and although this approach may work for projects with few
-dependencies, in practice this quickly spirals out of control as the
-number dependencies grows. If you avoid running into <a href="https://en.wikipedia.org/wiki/Dependency_hell">dependency hell</a>, the
-combination of versions can make your build so unique that any potential bugs
-you find may be irrelevant or hard to reproduce for the rest of the community.
-By sticking to a trusted <em>distribution</em> you take advantage of more people
-looking for bugs in the same build you are working or if you discover the bugs
-yourself you’ll get better support if your working set of dependencies is a
-common one. This could be considered a weaker version of the <a href="https://en.wikipedia.org/wiki/Linus's_Law">Linus’s
+<p>Theoretically, you could pick and choose different channels for each<br />
+package, and although this approach may work for projects with few<br />
+dependencies, in practice this quickly spirals out of control as the<br />
+number dependencies grows. If you avoid running into <a href="https://en.wikipedia.org/wiki/Dependency_hell">dependency hell</a>, the<br />
+combination of versions can make your build so unique that any potential bugs<br />
+you find may be irrelevant or hard to reproduce for the rest of the community.<br />
+By sticking to a trusted <em>distribution</em> you take advantage of more people<br />
+looking for bugs in the same build you are working or if you discover the bugs<br />
+yourself you’ll get better support if your working set of dependencies is a<br />
+common one. This could be considered a weaker version of the <a href="https://en.wikipedia.org/wiki/Linus's_Law">Linus’s<br />
 Law</a>.</p>
 
-<p>When choosing a <em>distribution</em> it’s often helpful to distinguish 2 rough
-categories: language runtime specific but system agnostic, and system specific
+<p>When choosing a <em>distribution</em> it’s often helpful to distinguish 2 rough<br />
+categories: language runtime specific but system agnostic, and system specific<br />
 but language runtime agnostic<sup id="fnref:b"><a href="#fn:b" class="footnote">4</a></sup>.</p>
 
-<p>For example, in Haskell, <a href="http://www.stackage.org/lts">Stackage LTS</a>, or even the <a href="https://www.haskell.org/platform/">Haskell Platform</a>,
-can be considered examples of the first kind. No matter what OS or
-hardware architecture you are on (provided GHC supports it), if you pick
-the minimum versions from any of those sets, you can be pretty
-confident that there won’t be compatibility issues. This type of
-distributions work very well when your whole codebase is written for the
-same language runtime. However, when the number of dependencies not
-included in the distribution grows (for example, dependencies coming from
-a different language runtime), your chances of running into problems grows,
+<p>For example, in Haskell, <a href="http://www.stackage.org/lts">Stackage LTS</a>, or even the <a href="https://www.haskell.org/platform/">Haskell Platform</a>,<br />
+can be considered examples of the first kind. No matter what OS or<br />
+hardware architecture you are on (provided GHC supports it), if you pick<br />
+the minimum versions from any of those sets, you can be pretty<br />
+confident that there won’t be compatibility issues. This type of<br />
+distributions work very well when your whole codebase is written for the<br />
+same language runtime. However, when the number of dependencies not<br />
+included in the distribution grows (for example, dependencies coming from<br />
+a different language runtime), your chances of running into problems grows,<br />
 too.</p>
 
-<p>The other kind of <em>distributions</em> are the ones providing full system
-integration for a given hardware architecture, with kernel and userspace
-applications being released together. Here I have in mind the typical
+<p>The other kind of <em>distributions</em> are the ones providing full system<br />
+integration for a given hardware architecture, with kernel and userspace<br />
+applications being released together. Here I have in mind the typical<br />
 Linux distributions and the BSDs<sup id="fnref:c"><a href="#fn:c" class="footnote">5</a></sup>.</p>
 
-<p>System distributions provide the strongest guarantees that all moving
-parts work together, specially if you get your package included in the
-distribution. But doing so can be quite hard, you’ll have to make sure your
-packages adheres to all the distributions policies, which usually are
+<p>System distributions provide the strongest guarantees that all moving<br />
+parts work together, specially if you get your package included in the<br />
+distribution. But doing so can be quite hard, you’ll have to make sure your<br />
+packages adheres to all the distributions policies, which usually are<br />
 quite strict.</p>
 
-<p>That’s why integrating your code into an system distribution can sometimes
-add non-trivial overhead. Also, focusing on just one OS distribution can
-reduce drastically the users you can target. This is not an issue for push
+<p>That’s why integrating your code into an system distribution can sometimes<br />
+add non-trivial overhead. Also, focusing on just one OS distribution can<br />
+reduce drastically the users you can target. This is not an issue for push<br />
 based deployments though.</p>
 
-<p>Even if you don’t use system distributions directly, you can still extract
-a good known working set from the versions they selected.  You have to
-keep an eye on any patches the packagers may have introduced that are not
-included upstream. If those changes are not distribution specific, they
-are usually propagated upstream, but sometimes for whatever reason,
+<p>Even if you don’t use system distributions directly, you can still extract<br />
+a good known working set from the versions they selected.  You have to<br />
+keep an eye on any patches the packagers may have introduced that are not<br />
+included upstream. If those changes are not distribution specific, they<br />
+are usually propagated upstream, but sometimes for whatever reason,<br />
 upstream authors don’t accept them.</p>
 
 <h2 id="closing-thoughts">Closing thoughts</h2>
 
-<p>For the lower bounds of pull-based Haskell packages, I usually follow the
-Debian stable channel which usually has oldest set of versions still being
+<p>For the lower bounds of pull-based Haskell packages, I usually follow the<br />
+Debian stable channel which usually has oldest set of versions still being<br />
 maintained.</p>
 
-<p>For push based deployments, a very popular system distribution within the
-Haskell community is <a href="https://nixos.org/">NixOS</a>. Aside of the many advantages the <a href="https://nixos.org/nix/">Nix</a>
-package manager over conventional managers, from a curation perspective,
-the <a href="https://nixos.org/">NixOS</a> community is extremely responsive and provides a very smooth
+<p>For push based deployments, a very popular system distribution within the<br />
+Haskell community is <a href="https://nixos.org/">NixOS</a>. Aside of the many advantages the <a href="https://nixos.org/nix/">Nix</a><br />
+package manager over conventional managers, from a curation perspective,<br />
+the <a href="https://nixos.org/">NixOS</a> community is extremely responsive and provides a very smooth<br />
 barrier of entry for new Haskell packages<sup id="fnref:d"><a href="#fn:d" class="footnote">6</a></sup>.</p>
 
-<p>It’s also worth mentioning that the latest upstream versions of every
-dependencies can be considered a virtual quasi-distribution. Although this
-target obviously moves very fast, it might not be as chaotic as you might
-expect. Most upstream developers give priority to the latest version, so
-they usually make sure their software works well with the latest versions
-of other dependencies. This is not a bad choice for experimental and
-prototype projects, and even if you are relying exclusively on pinned
-versions, it’s always useful to test against the latest dependencies as a
-way of getting a heads up on what needs to be done to keep your code
+<p>It’s also worth mentioning that the latest upstream versions of every<br />
+dependencies can be considered a virtual quasi-distribution. Although this<br />
+target obviously moves very fast, it might not be as chaotic as you might<br />
+expect. Most upstream developers give priority to the latest version, so<br />
+they usually make sure their software works well with the latest versions<br />
+of other dependencies. This is not a bad choice for experimental and<br />
+prototype projects, and even if you are relying exclusively on pinned<br />
+versions, it’s always useful to test against the latest dependencies as a<br />
+way of getting a heads up on what needs to be done to keep your code<br />
 up-to-date.</p>
 
-<p>I deliberately omitted writing about new projects like <a href="https://www.docker.com/">Docker</a> or <a href="https://developer.ubuntu.com/en/snappy/">Snappy
-Ubuntu</a> that claim to solve many all our deployment issues with container
-superpowers. I do believe container based deployments, both for server and
-for end users, are the right trend but I’m still, as of today, not sold on
+<p>I deliberately omitted writing about new projects like <a href="https://www.docker.com/">Docker</a> or <a href="https://developer.ubuntu.com/en/snappy/">Snappy<br />
+Ubuntu</a> that claim to solve many all our deployment issues with container<br />
+superpowers. I do believe container based deployments, both for server and<br />
+for end users, are the right trend but I’m still, as of today, not sold on<br />
 using Docker for production. But that’s a story for another day.</p>
 
-<p>I also don’t want to get into the topic of upper version bounds because
-it’s a whole different debate, and there are many valid arguments pro and
-against. I personally lean towards not putting any restrictions because it
-makes upgrading new packages an easy process, even at the cost of having
-some users getting broken builds when new dependencies come out. This
-shouldn’t be a problem for production systems because I’m assuming prudent
-users should be using pinned versions and building their packages before
-deployment. However if for some reason, your package is broken and you
-know you can’t fix it soon enough, I’d say it’s OK to make a quick release
-with upper version bounds if you already know it will break. I know there
-are many counterarguments to my position, like for example, when you want
-to make sure a package released today will be buildable in 20 years at
-that particular version. I’d mark that old version as deprecated and
-forget about it, but that’s sacrilege for some. In the end this is all
-<a href="https://en.wiktionary.org/wiki/bikeshedding">bikeshedding</a> to me, so even if I’d rather have no upper limits, I don’t
+<p>I also don’t want to get into the topic of upper version bounds because<br />
+it’s a whole different debate, and there are many valid arguments pro and<br />
+against. I personally lean towards not putting any restrictions because it<br />
+makes upgrading new packages an easy process, even at the cost of having<br />
+some users getting broken builds when new dependencies come out. This<br />
+shouldn’t be a problem for production systems because I’m assuming prudent<br />
+users should be using pinned versions and building their packages before<br />
+deployment. However if for some reason, your package is broken and you<br />
+know you can’t fix it soon enough, I’d say it’s OK to make a quick release<br />
+with upper version bounds if you already know it will break. I know there<br />
+are many counterarguments to my position, like for example, when you want<br />
+to make sure a package released today will be buildable in 20 years at<br />
+that particular version. I’d mark that old version as deprecated and<br />
+forget about it, but that’s sacrilege for some. In the end this is all<br />
+<a href="https://en.wiktionary.org/wiki/bikeshedding">bikeshedding</a> to me, so even if I’d rather have no upper limits, I don’t<br />
 think it’s a big deal having to handle them.</p>
 
 <div class="footnotes">
@@ -303,7 +298,7 @@ think it’s a big deal having to handle them.</p>
       <p>Or wherever you build it, it should be equivalent to building it on the target system. <a href="#fnref:e" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:f">
-      <p>You could use <code>cabal freeze</code> for quick and dirty pinning, but don’t recommend it when strict control of versions is desired. <a href="#fnref:f" class="reversefootnote">&#8617;</a></p>
+      <p>You could use <code class="highlighter-rouge">cabal freeze</code> for quick and dirty pinning, but don’t recommend it when strict control of versions is desired. <a href="#fnref:f" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:a">
       <p>In Wheezy GHC-7.4.3, is still officially maintained in extended support if you really want to go back. <a href="#fnref:a" class="reversefootnote">&#8617;</a></p>
@@ -320,13 +315,26 @@ think it’s a big deal having to handle them.</p>
   </ol>
 </div>
 
-  </article>
+  </div>
 
-  <a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-url="http://dannynavarro.net/2015/08/12/picking-lower-bounds-version-for-your-dependencies/" data-text="Picking Lower Bounds Versions for your Dependencies by @vimes656 -" data-dnt="true">Twitter</a>
-  <div class="g-plus" data-action="share" data-href="http://dannynavarro.net/2015/08/12/picking-lower-bounds-version-for-your-dependencies/" data-annotation="none" data-width="" data-size="medium"></div>
-  <div id="disqus_thread"></div> <script type="text/javascript"> var disqus_shortname = 'dannynavarrosblog'; var disqus_url = 'http://dannynavarro.net/2015/08/12/picking-lower-bounds-version-for-your-dependencies/'; var disqus_identifier = 'http://dannynavarro.net/2015/08/12/picking-lower-bounds-version-for-your-dependencies/'; var disqus_title = 'Picking Lower Bounds Versions for your Dependencies'; (function () { var s = document.createElement('script'); s.async = true; s.type = 'text/javascript'; s.src = '//dannynavarrosblog.disqus.com/embed.js'; (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s); }()); </script> <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  
+<div class="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
 
+	    var disqus_shortname = 'dannynavarrosblog';
+
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+
+</article>
 
       </div>
     </div>
@@ -338,47 +346,35 @@ think it’s a big deal having to handle them.</p>
     <h2 class="footer-heading">Danny Navarro's Blog</h2>
 
     <div class="footer-col-wrapper">
-      <div class="footer-col  footer-col-1">
+      <div class="footer-col footer-col-1">
         <ul class="contact-list">
+          <li>Danny Navarro's Blog</li>
           <li><a href="mailto:j@dannynavarro.net">j@dannynavarro.net</a></li>
         </ul>
       </div>
 
-      <div class="footer-col  footer-col-2">
+      <div class="footer-col footer-col-2">
         <ul class="social-media-list">
           
           <li>
-            <a href="https://github.com/jdnavarro">
-              <span class="icon  icon--github">
-                <svg viewBox="0 0 16 16">
-                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
-                </svg>
-              </span>
+            <a href="https://github.com/jdnavarro"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">jdnavarro</span></a>
 
-              <span class="username">jdnavarro</span>
-            </a>
           </li>
           
 
           
           <li>
-            <a href="https://twitter.com/vimes656">
-              <span class="icon  icon--twitter">
-                <svg viewBox="0 0 16 16">
-                  <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
-                  c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
-                </svg>
-              </span>
+            <a href="https://twitter.com/vimes656"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">vimes656</span></a>
 
-              <span class="username">vimes656</span>
-            </a>
           </li>
           
         </ul>
       </div>
 
-      <div class="footer-col  footer-col-3">
-        <p class="text">Mostly Haskell ramblings</p>
+      <div class="footer-col footer-col-3">
+        <p>Mostly Haskell ramblings</p>
       </div>
     </div>
 
@@ -386,10 +382,6 @@ think it’s a big deal having to handle them.</p>
 
 </footer>
 
-  <link href='/stylesheets/all-904ee73bdde50735aa652b14aabe03b5.css' media='all' rel='stylesheet' type='text/css'>
-  <script async src='/javascripts/all-d260facd09f87a3424e14659736f1be9.js'></script>
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-  <script type="text/javascript"> (function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = 'https://apis.google.com/js/platform.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })(); </script>
 
   </body>
 
