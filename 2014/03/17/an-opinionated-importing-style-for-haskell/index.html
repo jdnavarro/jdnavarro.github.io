@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
   <head>
   <meta charset="utf-8">
@@ -7,35 +7,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>An opinionated importing style for Haskell</title>
-  <meta name="description" content="Large part of Haskell code is just about imports. In many programminglanguages there is no ambiguity left about how to import, but Haskellleaves some room fo...">
+  <meta name="description" content="Large part of Haskell code is just about imports. In many programming languages there is no ambiguity left about how to import, but Haskell leaves some room ...">
 
-  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/assets/main.css">
   <link rel="canonical" href="http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/">
-  <link rel="alternate" type="application/rss+xml" title="Danny Navarro's Blog" href="http://dannynavarro.net/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Danny Navarro&#39;s Blog" href="/feed.xml">
+  
+  
 </head>
 
 
   <body>
 
-    <header class="site-header">
+    <header class="site-header" role="banner">
 
   <div class="wrapper">
 
-    <a class="site-title" href="/">Danny Navarro's Blog</a>
+    <a class="site-title" href="/">Danny Navarro&#39;s Blog</a>
 
     <nav class="site-nav">
-      <a href="#" class="menu-icon">
-        <svg viewBox="0 0 18 15">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
           <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
           <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
           <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
         </svg>
-      </a>
+      </span>
 
       <div class="trigger">
         
-          
-          <a class="page-link" href="/feed.xml">Subscribe</a>
           
         
           
@@ -52,341 +52,341 @@
 </header>
 
 
-    <div class="page-content">
+    <main class="page-content" aria-label="Content">
       <div class="wrapper">
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">An opinionated importing style for Haskell</h1>
-    <p class="post-meta"><time datetime="2014-03-17T21:17:15+01:00" itemprop="datePublished">Mar 17, 2014</time></p>
+    <p class="post-meta"><time datetime="2014-03-17T17:17:15-03:00" itemprop="datePublished">Mar 17, 2014</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>Large part of <a href="http://haskell.org">Haskell</a> code is just about imports. In many programming<br />
-languages there is no ambiguity left about how to import, but <a href="http://haskell.org">Haskell</a><br />
-leaves some room for personal style in this regard. There are some<br />
-recommendations out there about importing style, but most is left to<br />
-common sense. Your own judgment, once you are comfortable with <a href="http://haskell.org">Haskell</a>,<br />
-should be perfectly fine, but newcomers who care about style consistency<br />
-might feel a bit lost when writing the import list for their own packages<br />
-<sup id="fnref:d"><a href="#fn:d" class="footnote">1</a></sup>, specially since there are many slightly different styles in the wild<br />
-for <a href="http://haskell.org">Haskell</a> imports. In this post, I’ll try to explain the rationale of<br />
+    <p>Large part of <a href="http://haskell.org">Haskell</a> code is just about imports. In many programming
+languages there is no ambiguity left about how to import, but <a href="http://haskell.org">Haskell</a>
+leaves some room for personal style in this regard. There are some
+recommendations out there about importing style, but most is left to
+common sense. Your own judgment, once you are comfortable with <a href="http://haskell.org">Haskell</a>,
+should be perfectly fine, but newcomers who care about style consistency
+might feel a bit lost when writing the import list for their own packages
+<sup id="fnref:d"><a href="#fn:d" class="footnote">1</a></sup>, specially since there are many slightly different styles in the wild
+for <a href="http://haskell.org">Haskell</a> imports. In this post, I’ll try to explain the rationale of
 the style I follow.</p>
 
-<p>One basic principle I’ll be following for all my criteria is that, like I<br />
-guess most programmers, code style is about reading code, not writing it.<br />
-When writing, you can make the assumption that someone editing the code<br />
-has access to editing tools, whereas this assumption doesn’t hold so<br />
+<p>One basic principle I’ll be following for all my criteria is that, like I
+guess most programmers, code style is about reading code, not writing it.
+When writing, you can make the assumption that someone editing the code
+has access to editing tools, whereas this assumption doesn’t hold so
 easily for the readers of your code.</p>
 
 <h2 id="explicit-imports">Explicit imports</h2>
 
-<p>Anyone reading the <a href="http://python.org">Python</a> <a href="http://docs.python.org/3/tutorial/index.html">official tutorial</a><br />
-for the first time has to read through this when reaching the section<br />
+<p>Anyone reading the <a href="http://python.org">Python</a> <a href="http://docs.python.org/3/tutorial/index.html">official tutorial</a>
+for the first time has to read through this when reaching the section
 about <a href="http://docs.python.org/3/tutorial/modules.html#modules">modules</a>:</p>
 
 <blockquote>
-  <p>There is even a variant to import all names that a module defines:<br />
-<code class="highlighter-rouge">python
-from fibo import *
-fib(500)
-</code><br />
-This imports all names except those beginning with an underscore (<code class="highlighter-rouge">_</code>). In<br />
-most cases Python programmers do not use this facility since it introduces an<br />
-unknown set of names into the interpreter, possibly hiding some things you<br />
+  <p>There is even a variant to import all names that a module defines:</p>
+  <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">fibo</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">fib</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</code></pre>
+  </div>
+  <p>This imports all names except those beginning with an underscore (<code class="highlighter-rouge">_</code>). In
+most cases Python programmers do not use this facility since it introduces an
+unknown set of names into the interpreter, possibly hiding some things you
 have already defined.</p>
 
-  <p>Note that in general <strong>the practice of importing <code class="highlighter-rouge">*</code> from a module or package is<br />
-frowned upon</strong>, since it often causes poorly readable code. However, it is okay<br />
+  <p>Note that in general <strong>the practice of importing <code class="highlighter-rouge">*</code> from a module or package is
+frowned upon</strong>, since it often causes poorly readable code. However, it is okay
 to use it to save typing in interactive sessions.</p>
 </blockquote>
 
-<p>This means that anything but a small <em>built-in</em> language core, which it<br />
-can be easily memorized, has to be explicitly exported to be in scope.<br />
-This is great for newcomers reading any Python code, you are always aware,<br />
+<p>This means that anything but a small <em>built-in</em> language core, which it
+can be easily memorized, has to be explicitly exported to be in scope.
+This is great for newcomers reading any Python code, you are always aware,
 with no extra tools, where everything is coming from.</p>
 
-<p>Considering that <a href="http://python.org">Python</a> is my programming language I learned first, you<br />
-can understand why I get a bit annoyed when I’m reading other language I’m<br />
-not so familiar with, and names just pop up in scope without knowing where<br />
-they come from. And no, I don’t want to use <a href="https://en.wikipedia.org/wiki/Ctags">ctags</a> or a full blown IDE<br />
+<p>Considering that <a href="http://python.org">Python</a> is my programming language I learned first, you
+can understand why I get a bit annoyed when I’m reading other language I’m
+not so familiar with, and names just pop up in scope without knowing where
+they come from. And no, I don’t want to use <a href="https://en.wikipedia.org/wiki/Ctags">ctags</a> or a full blown IDE
 every time I’m reading casually some code on the GitHub.</p>
 
-<p>So then, why <a href="http://haskell.org">Haskell</a>, a language with such a great reputation for being<br />
-so well designed, doesn’t follow these <a href="http://python.org">Python</a> principles, which look so<br />
-advantageously obvious? To be fair with <a href="http://haskell.org">Haskell</a>, we have to understand<br />
-that the class system in <a href="http://python.org">Python</a> is frequently <em>(ab)</em>used<sup id="fnref:a"><a href="#fn:a" class="footnote">2</a></sup> just for<br />
-organizational purposes. <a href="http://haskell.org">Haskell</a>, by being a <a href="https://en.wikipedia.org/wiki/Pure_functional_language">pure functional<br />
-programming language</a>, doesn’t add all the cruft of <a href="https://en.wikipedia.org/wiki/Class_(computer_programming)">OOP classes</a> just to<br />
-deal with this issue. Instead, it uses a very limited module system which<br />
-could be argued is a weakness of the language, but I believe it fits<br />
-nicely with the unofficial <a href="http://haskell.org">Haskell</a> slogan of <a href="http://www.reddit.com/r/programming/comments/77z8h/avoid_success_at_all_costs_the_unofficial_slogan/"><em>avoid success at all<br />
+<p>So then, why <a href="http://haskell.org">Haskell</a>, a language with such a great reputation for being
+so well designed, doesn’t follow these <a href="http://python.org">Python</a> principles, which look so
+advantageously obvious? To be fair with <a href="http://haskell.org">Haskell</a>, we have to understand
+that the class system in <a href="http://python.org">Python</a> is frequently <em>(ab)</em>used<sup id="fnref:a"><a href="#fn:a" class="footnote">2</a></sup> just for
+organizational purposes. <a href="http://haskell.org">Haskell</a>, by being a <a href="https://en.wikipedia.org/wiki/Pure_functional_language">pure functional
+programming language</a>, doesn’t add all the cruft of <a href="https://en.wikipedia.org/wiki/Class_(computer_programming)">OOP classes</a> just to
+deal with this issue. Instead, it uses a very limited module system which
+could be argued is a weakness of the language, but I believe it fits
+nicely with the unofficial <a href="http://haskell.org">Haskell</a> slogan of <a href="http://www.reddit.com/r/programming/comments/77z8h/avoid_success_at_all_costs_the_unofficial_slogan/"><em>avoid success at all
 costs</em></a>.</p>
 
-<p>From my understanding, this means that if there is not an optimal solution<br />
-for a core language feature, it’s preferable to keep the bare minimum<br />
-everyone agrees on and don’t try to impose a half-baked solution that will<br />
-have to be maintained forever for legacy reasons. Taking this into<br />
-account, I’d rather have a dumb module system easy to understand, than<br />
-having to deal forever with the complexity of historical design<br />
+<p>From my understanding, this means that if there is not an optimal solution
+for a core language feature, it’s preferable to keep the bare minimum
+everyone agrees on and don’t try to impose a half-baked solution that will
+have to be maintained forever for legacy reasons. Taking this into
+account, I’d rather have a dumb module system easy to understand, than
+having to deal forever with the complexity of historical design
 accidents.<sup id="fnref:b"><a href="#fn:b" class="footnote">3</a></sup></p>
 
-<p>So in <a href="http://haskell.org">Haskell</a> we have to bite the bullet and accept that the imports<br />
-lists are going to be quite complex, and making absolutely every import<br />
-explicit like in <a href="http://python.org">Python</a> would be too cumbersome on the programmer who is<br />
-coding, so we have to reach some kind of trade-off between explicitness<br />
+<p>So in <a href="http://haskell.org">Haskell</a> we have to bite the bullet and accept that the imports
+lists are going to be quite complex, and making absolutely every import
+explicit like in <a href="http://python.org">Python</a> would be too cumbersome on the programmer who is
+coding, so we have to reach some kind of trade-off between explicitness
 for the reader vs convenience for the writer.</p>
 
 <h3 id="internal-imports">Internal imports</h3>
 
-<p>A popular style recommendation like <a href="https://github.com/tibbe/haskell-style-guide/blob/master/haskell-style.md#imports">the one from Johan Tibell</a> is to import explicitly everything outside the package, and<br />
+<p>A popular style recommendation like <a href="https://github.com/tibbe/haskell-style-guide/blob/master/haskell-style.md#imports">the one from Johan Tibell</a> is to import explicitly everything outside the package, and
 make internal imports implicit.</p>
 
-<p>I consider Tibell’s way a good rule to follow for most projects. It’s a<br />
-good compromise because when reading a module from a givne package, it’s<br />
+<p>I consider Tibell’s way a good rule to follow for most projects. It’s a
+good compromise because when reading a module from a givne package, it’s
 reasonable to assume the rest of modules of such package are usually nearby.</p>
 
-<p>The other popular way <a href="https://ghc.haskell.org/trac/ghc/wiki/Commentary/CodingStyle#ExportsandImports">recommended in GHC</a> is to make<br />
-everything implicit. Breaking Tibell’s rule in the case of GHC may be<br />
-understandable because in a project as large as <a href="https://www.haskell.org/ghc">GHC</a>, the import lists<br />
-would tend to be quite complex. I’d also assume anyone trying to hack on<br />
-<a href="https://www.haskell.org/ghc">GHC</a> is above beginner’s level and should be familiar with internals of the<br />
-project. But for most projects, I think <a href="https://github.com/tibbe/haskell-style-guide/blob/master/haskell-style.md#imports">Tibell’s<br />
+<p>The other popular way <a href="https://ghc.haskell.org/trac/ghc/wiki/Commentary/CodingStyle#ExportsandImports">recommended in GHC</a> is to make
+everything implicit. Breaking Tibell’s rule in the case of GHC may be
+understandable because in a project as large as <a href="https://www.haskell.org/ghc">GHC</a>, the import lists
+would tend to be quite complex. I’d also assume anyone trying to hack on
+<a href="https://www.haskell.org/ghc">GHC</a> is above beginner’s level and should be familiar with internals of the
+project. But for most projects, I think <a href="https://github.com/tibbe/haskell-style-guide/blob/master/haskell-style.md#imports">Tibell’s
 recommendation</a> is a good default.</p>
 
-<p>It could be argued that if there are many internal modules being imported<br />
-in the same module, it could become difficult to follow from which module<br />
-comes each name. It’s true that this sometimes happens, but most of the<br />
-time I’d attribute to a <a href="https://en.wikipedia.org/wiki/Code_smell">smell</a>. When this happens, I’d look<br />
+<p>It could be argued that if there are many internal modules being imported
+in the same module, it could become difficult to follow from which module
+comes each name. It’s true that this sometimes happens, but most of the
+time I’d attribute to a <a href="https://en.wikipedia.org/wiki/Code_smell">smell</a>. When this happens, I’d look
 for the following:</p>
 
 <ul>
-  <li><em>Are modules not modular enough?</em> For good modularity the<br />
-communication between them should be as minimal as possible. Perhaps<br />
-the code needs to be rearranged in entirely different modules to<br />
+  <li><em>Are modules not modular enough?</em> For good modularity the
+communication between them should be as minimal as possible. Perhaps
+the code needs to be rearranged in entirely different modules to
 allow better separation of concerns.</li>
-  <li><em>Is the package too large?</em> Maybe it’s time to separate the packages in<br />
+  <li><em>Is the package too large?</em> Maybe it’s time to separate the packages in
 more subpackages.</li>
-  <li><em>Are you always importing a group of modules that somehow can be<br />
-logically grouped together?</em> All these modules could be consolidated in<br />
-a single module that just re-exports everything for the module group.<br />
+  <li><em>Are you always importing a group of modules that somehow can be
+logically grouped together?</em> All these modules could be consolidated in
+a single module that just re-exports everything for the module group.
 This, in fact, a very used pattern in <a href="http://haskell.org">Haskell</a> for code organization.</li>
 </ul>
 
-<p>The only exception to external explicit importing is <code class="highlighter-rouge">Prelude</code>, which is<br />
-almost always implicitly imported. <code class="highlighter-rouge">Prelude</code> is the closest you get to<br />
+<p>The only exception to external explicit importing is <code class="highlighter-rouge">Prelude</code>, which is
+almost always implicitly imported. <code class="highlighter-rouge">Prelude</code> is the closest you get to
 <code class="highlighter-rouge">built-ins</code> in <a href="http://haskell.org">Haskell</a>.</p>
 
-<p>Whenever I have some name clash with a <code class="highlighter-rouge">Prelude</code> name I don’t hesitate to<br />
-hide the <code class="highlighter-rouge">Prelude</code> version if the context makes it clear that the imported<br />
-name is not the same as the one in <code class="highlighter-rouge">Prelude</code>. For example, I’d hide the<br />
-<code class="highlighter-rouge">Prelude.span</code>, if I’m not using it and if the imported <code class="highlighter-rouge">span</code> deals, for<br />
-example, with an span HTML element. But I wouldn’t hide<br />
-<code class="highlighter-rouge">Prelude.writeFile</code> for <code class="highlighter-rouge">Data.Bytestring.writeFile</code> because it’d be<br />
-misleading. In case of not hiding, I’d use a qualified import, but I’ll<br />
+<p>Whenever I have some name clash with a <code class="highlighter-rouge">Prelude</code> name I don’t hesitate to
+hide the <code class="highlighter-rouge">Prelude</code> version if the context makes it clear that the imported
+name is not the same as the one in <code class="highlighter-rouge">Prelude</code>. For example, I’d hide the
+<code class="highlighter-rouge">Prelude.span</code>, if I’m not using it and if the imported <code class="highlighter-rouge">span</code> deals, for
+example, with an span HTML element. But I wouldn’t hide
+<code class="highlighter-rouge">Prelude.writeFile</code> for <code class="highlighter-rouge">Data.Bytestring.writeFile</code> because it’d be
+misleading. In case of not hiding, I’d use a qualified import, but I’ll
 comment more about them below.</p>
 
-<p>Some people also give the <code class="highlighter-rouge">built-in</code> status to other very frequently used<br />
-modules such as <code class="highlighter-rouge">Control.Monad</code> or <code class="highlighter-rouge">Data.Monoid</code> in the <a href="http://hackage.haskell.org/package/base"><code class="highlighter-rouge">base</code><br />
-package</a>. Even admitting that anyone with some experience with<br />
-<a href="http://haskell.org">Haskell</a> wouldn’t have any trouble with these imports being implicit, I<br />
-still import them explicitly. I consider that, for experienced programmers<br />
-who are not familiar with Haskell, the names in <code class="highlighter-rouge">Prelude</code> are enough to<br />
-keep in mind, so, in my opinion, asking to memorize more modules  rises<br />
-too much the barrier of entry. I suffered this myself when learning<br />
-<a href="http://haskell.org">Haskell</a> for the first time, so I swore to myself I wouldn’t do it in the<br />
+<p>Some people also give the <code class="highlighter-rouge">built-in</code> status to other very frequently used
+modules such as <code class="highlighter-rouge">Control.Monad</code> or <code class="highlighter-rouge">Data.Monoid</code> in the <a href="http://hackage.haskell.org/package/base"><code class="highlighter-rouge">base</code>
+package</a>. Even admitting that anyone with some experience with
+<a href="http://haskell.org">Haskell</a> wouldn’t have any trouble with these imports being implicit, I
+still import them explicitly. I consider that, for experienced programmers
+who are not familiar with Haskell, the names in <code class="highlighter-rouge">Prelude</code> are enough to
+keep in mind, so, in my opinion, asking to memorize more modules  rises
+too much the barrier of entry. I suffered this myself when learning
+<a href="http://haskell.org">Haskell</a> for the first time, so I swore to myself I wouldn’t do it in the
 future.</p>
 
 <h3 id="constructors">Constructors</h3>
 
-<p>The usual convention for importing type constructors is to import them<br />
-implicitly using the <code class="highlighter-rouge">(..)</code> notation, but I don’t follow this convention<br />
-because if many type constructors are brought into scope, we have the same<br />
+<p>The usual convention for importing type constructors is to import them
+implicitly using the <code class="highlighter-rouge">(..)</code> notation, but I don’t follow this convention
+because if many type constructors are brought into scope, we have the same
 problem as with the scope of functions.</p>
 
-<p>I only use <code class="highlighter-rouge">A(..)</code> if there is only a constructor for type <code class="highlighter-rouge">A</code> and it’s<br />
-named <code class="highlighter-rouge">A</code> as well, which is the usual convention. If that’s not the case I<br />
+<p>I only use <code class="highlighter-rouge">A(..)</code> if there is only a constructor for type <code class="highlighter-rouge">A</code> and it’s
+named <code class="highlighter-rouge">A</code> as well, which is the usual convention. If that’s not the case I
 also import the single constructor explicitly.<sup id="fnref:e"><a href="#fn:e" class="footnote">4</a></sup></p>
 
 <h3 id="qualified-imports">Qualified imports</h3>
 
-<p>They are frequently cited as the solution to module organization. However<br />
+<p>They are frequently cited as the solution to module organization. However
 I’m uneasy about them and try to use them the least I can.</p>
 
 <h4 id="maintainability">Maintainability</h4>
 
-<p>When there is a very long list of imports it’s often argued that it’s<br />
-better for maintainability to just use a single qualified import,<br />
-otherwise it’s too much work to change the list of imports anytime there<br />
-is an API change in an external module. But I think it’s the other way<br />
-around, maintaining that list makes sure you are using the API properly,<br />
-and if you get an error when upgrading the API, you are more likely to get<br />
-an import error which can be easily spotted. On the other hand, with a<br />
-qualified import, the module being upgraded can inadvertently introduce<br />
+<p>When there is a very long list of imports it’s often argued that it’s
+better for maintainability to just use a single qualified import,
+otherwise it’s too much work to change the list of imports anytime there
+is an API change in an external module. But I think it’s the other way
+around, maintaining that list makes sure you are using the API properly,
+and if you get an error when upgrading the API, you are more likely to get
+an import error which can be easily spotted. On the other hand, with a
+qualified import, the module being upgraded can inadvertently introduce
 names in scope provoking clash errors which may be harder to debug.</p>
 
-<p>It’s true that it’s a bit extra effort to be constantly maintaining a long<br />
-list of imports, but with a decent code editor it shouldn’t be too much of<br />
-a problem. I usually toggle between implicit and explicit imports while<br />
-finding out a good solution to some code I’m writing, when I’m satisfied I<br />
+<p>It’s true that it’s a bit extra effort to be constantly maintaining a long
+list of imports, but with a decent code editor it shouldn’t be too much of
+a problem. I usually toggle between implicit and explicit imports while
+finding out a good solution to some code I’m writing, when I’m satisfied I
 make sure everything is exported explicitly again.</p>
 
 <h4 id="letter-soup"><a href="https://en.wikipedia.org/wiki/Word_search">Letter soup</a></h4>
 
-<p>It’s quite usual to find qualified imports with a capital letter like:<br />
+<p>It’s quite usual to find qualified imports with a capital letter like:
 <code class="highlighter-rouge">import qualified Data.ByteString as B</code> or <code class="highlighter-rouge">import qualified
-Data.ByteString as S</code> or <code class="highlighter-rouge">import qualified Data.ByteString.Lazy as B</code> or<br />
+Data.ByteString as S</code> or <code class="highlighter-rouge">import qualified Data.ByteString.Lazy as B</code> or
 <code class="highlighter-rouge">import Data.Binary as B</code>… you get where I’m going.</p>
 
-<p>The problem with qualified names with just a few characters, it’s that the<br />
-chance of clashing is very high, so the same qualified import ends up with<br />
-different letters depending on the module, something I find confusing,<br />
-specially when you get used to associate a particular character to a<br />
-particular module. Aside of this, I don’t find aesthetically pleasing to<br />
-read all over the code single capital letters followed by some function,<br />
+<p>The problem with qualified names with just a few characters, it’s that the
+chance of clashing is very high, so the same qualified import ends up with
+different letters depending on the module, something I find confusing,
+specially when you get used to associate a particular character to a
+particular module. Aside of this, I don’t find aesthetically pleasing to
+read all over the code single capital letters followed by some function,
 but this may be just me.</p>
 
-<p>There are exceptions to this recommendation, of course, which I’ll explain<br />
+<p>There are exceptions to this recommendation, of course, which I’ll explain
 below.</p>
 
 <h4 id="verbosity">Verbosity</h4>
 
-<p>One obvious solution to the problem described below is to not use short<br />
-qualified names but full words like <code class="highlighter-rouge">ByteString</code> instead of <code class="highlighter-rouge">B</code>, <code class="highlighter-rouge">Binary</code><br />
-instead of <code class="highlighter-rouge">B</code> or <code class="highlighter-rouge">Text</code> instead of <code class="highlighter-rouge">T</code>. But then, what happens when you<br />
-have a module using everywhere <code class="highlighter-rouge">Data.ByteString</code> and<br />
-<code class="highlighter-rouge">Data.ByteString.Lazy</code>? Do you write prepend every function with<br />
-<code class="highlighter-rouge">ByteString</code> an <code class="highlighter-rouge">ByteStringLazy</code>? Common sense would tell us that this is<br />
-too verbose, specially for a language like <a href="http://haskell.org">Haskell</a> where terseness is<br />
-one of its most touted features. I’ll explain when to use long names for<br />
+<p>One obvious solution to the problem described below is to not use short
+qualified names but full words like <code class="highlighter-rouge">ByteString</code> instead of <code class="highlighter-rouge">B</code>, <code class="highlighter-rouge">Binary</code>
+instead of <code class="highlighter-rouge">B</code> or <code class="highlighter-rouge">Text</code> instead of <code class="highlighter-rouge">T</code>. But then, what happens when you
+have a module using everywhere <code class="highlighter-rouge">Data.ByteString</code> and
+<code class="highlighter-rouge">Data.ByteString.Lazy</code>? Do you write prepend every function with
+<code class="highlighter-rouge">ByteString</code> an <code class="highlighter-rouge">ByteStringLazy</code>? Common sense would tell us that this is
+too verbose, specially for a language like <a href="http://haskell.org">Haskell</a> where terseness is
+one of its most touted features. I’ll explain when to use long names for
 qualified imports below.</p>
 
 <h4 id="import-list-as-an-introduction">Import list as an introduction</h4>
 
-<p>When I’m opening a module, I like going through the list of imports to<br />
-prepare my mind for the context of the module. When I find something like<br />
-<code class="highlighter-rouge">import qualified Data.Binary as Binary</code>, the first thing I think to<br />
-myself is: <em>is this module going use just one function from <code class="highlighter-rouge">Binary</code> or is it<br />
-going to use many of them?</em>. I know I can have a quick glance at the rest<br />
-of the module to get an idea, but this adds just more friction for cases<br />
-where, for example, I want to quickly navigate through all the modules of<br />
+<p>When I’m opening a module, I like going through the list of imports to
+prepare my mind for the context of the module. When I find something like
+<code class="highlighter-rouge">import qualified Data.Binary as Binary</code>, the first thing I think to
+myself is: <em>is this module going use just one function from <code class="highlighter-rouge">Binary</code> or is it
+going to use many of them?</em>. I know I can have a quick glance at the rest
+of the module to get an idea, but this adds just more friction for cases
+where, for example, I want to quickly navigate through all the modules of
 a package in order to get quick overview.</p>
 
-<p>That’s why I prefer to have explicit lists, even when qualified imports<br />
-are being used. For such case, however, I acknowledge that I don’t always<br />
+<p>That’s why I prefer to have explicit lists, even when qualified imports
+are being used. For such case, however, I acknowledge that I don’t always
 follow my own advice. I consider them nice to have, not very important.</p>
 
 <h4 id="when-qualified-imports-are-ok">When qualified imports are OK</h4>
 
-<p>The first broad scenario has to do with <code class="highlighter-rouge">Prelude</code>. Is the module being<br />
-imported going to clash with several other functions from <code class="highlighter-rouge">Prelude</code> that<br />
-I’ll also be using or are difficult to distinguish by context? If this is<br />
-the case then I’ll try to use a qualified import, specially when the<br />
-original author recommends it. The usual suspects in this list are imports<br />
-like <code class="highlighter-rouge">Data.Foldable</code> (<code class="highlighter-rouge">F</code>), <code class="highlighter-rouge">Data.Traversable</code> (<code class="highlighter-rouge">T</code>), <code class="highlighter-rouge">bytestring</code> (<code class="highlighter-rouge">B</code>,<br />
-<code class="highlighter-rouge">B8</code>, <code class="highlighter-rouge">L</code>, <code class="highlighter-rouge">L8</code>), <code class="highlighter-rouge">text</code> (<code class="highlighter-rouge">T</code>, <code class="highlighter-rouge">TIO</code>, <code class="highlighter-rouge">TL</code>), <code class="highlighter-rouge">containers</code> (<code class="highlighter-rouge">Map</code>, <code class="highlighter-rouge">Set</code>),<br />
-<code class="highlighter-rouge">pipes</code> (<code class="highlighter-rouge">P</code>, <code class="highlighter-rouge">PP</code>), etc. I try to follow the same letter convention<br />
-everywhere. But notice that if I know I won’t use the <code class="highlighter-rouge">Prelude</code> version at<br />
-all and from the context it can be clearly distinguished that is not the<br />
-<code class="highlighter-rouge">Prelude</code> function, then I’ll hide it as I explained above for the <code class="highlighter-rouge">span</code><br />
-example. It’s import to notice that for these packages, the types can be<br />
+<p>The first broad scenario has to do with <code class="highlighter-rouge">Prelude</code>. Is the module being
+imported going to clash with several other functions from <code class="highlighter-rouge">Prelude</code> that
+I’ll also be using or are difficult to distinguish by context? If this is
+the case then I’ll try to use a qualified import, specially when the
+original author recommends it. The usual suspects in this list are imports
+like <code class="highlighter-rouge">Data.Foldable</code> (<code class="highlighter-rouge">F</code>), <code class="highlighter-rouge">Data.Traversable</code> (<code class="highlighter-rouge">T</code>), <code class="highlighter-rouge">bytestring</code> (<code class="highlighter-rouge">B</code>,
+<code class="highlighter-rouge">B8</code>, <code class="highlighter-rouge">L</code>, <code class="highlighter-rouge">L8</code>), <code class="highlighter-rouge">text</code> (<code class="highlighter-rouge">T</code>, <code class="highlighter-rouge">TIO</code>, <code class="highlighter-rouge">TL</code>), <code class="highlighter-rouge">containers</code> (<code class="highlighter-rouge">Map</code>, <code class="highlighter-rouge">Set</code>),
+<code class="highlighter-rouge">pipes</code> (<code class="highlighter-rouge">P</code>, <code class="highlighter-rouge">PP</code>), etc. I try to follow the same letter convention
+everywhere. But notice that if I know I won’t use the <code class="highlighter-rouge">Prelude</code> version at
+all and from the context it can be clearly distinguished that is not the
+<code class="highlighter-rouge">Prelude</code> function, then I’ll hide it as I explained above for the <code class="highlighter-rouge">span</code>
+example. It’s import to notice that for these packages, the types can be
 usually imported unqualified without any issue.</p>
 
-<p>The second scenario is when 2 imported modules clash with the same names.<br />
-In this case I’d use qualified names for just the conflicting functions.<br />
-For example, <code class="highlighter-rouge">Binary.decode</code> and <code class="highlighter-rouge">Cereal.decode</code>. If the modules are the<br />
-usual candidates for single letter qualified names like like <code class="highlighter-rouge">bytestring</code><br />
-and <code class="highlighter-rouge">text</code> I’ll keep using the single letter, otherwise I’d use a long<br />
+<p>The second scenario is when 2 imported modules clash with the same names.
+In this case I’d use qualified names for just the conflicting functions.
+For example, <code class="highlighter-rouge">Binary.decode</code> and <code class="highlighter-rouge">Cereal.decode</code>. If the modules are the
+usual candidates for single letter qualified names like like <code class="highlighter-rouge">bytestring</code>
+and <code class="highlighter-rouge">text</code> I’ll keep using the single letter, otherwise I’d use a long
 name.</p>
 
-<p>There is one last case where using long qualified names would be OK with<br />
-me. For example, when the function uses a very vague name where it’s<br />
-difficult to guess what’s really about, it may be appropriate to prepend<br />
-it with the module name. For example, the <code class="highlighter-rouge">get</code> and <code class="highlighter-rouge">put</code> functions from<br />
-the <code class="highlighter-rouge">State</code> monad are much easier to identify when writing them as<br />
+<p>There is one last case where using long qualified names would be OK with
+me. For example, when the function uses a very vague name where it’s
+difficult to guess what’s really about, it may be appropriate to prepend
+it with the module name. For example, the <code class="highlighter-rouge">get</code> and <code class="highlighter-rouge">put</code> functions from
+the <code class="highlighter-rouge">State</code> monad are much easier to identify when writing them as
 <code class="highlighter-rouge">State.get</code> and <code class="highlighter-rouge">State.put</code>.</p>
 
 <h2 id="order-of-imports">Order of imports</h2>
 
-<p>Some criteria for ordering imports is important because it makes it<br />
-possible to predict in which order modules appear. If you get used to<br />
-the same pattern of appearance, you can quickly find what’s in the module<br />
+<p>Some criteria for ordering imports is important because it makes it
+possible to predict in which order modules appear. If you get used to
+the same pattern of appearance, you can quickly find what’s in the module
 and what is not.</p>
 
 <h3 id="modules">Modules</h3>
 
-<p>In <a href="https://github.com/tibbe/haskell-style-guide/blob/master/haskell-style.md#imports">Tibell’s guide</a> it’s recommended to group the<br />
-imports by standard library, third party software, and local package<br />
-imports. I follow this too, but, firstly, I distinguish in the standard<br />
-library the modules coming from <a href="http://hackage.haskell.org/package/base"><code class="highlighter-rouge">base</code></a>, <a href="https://www.haskell.org/ghc">GHC</a> libraries and packages<br />
-belonging to the <a href="http://www.haskell.org/platform">Haskell Platform</a>. Secondly, where Tibell recommends to<br />
-sort alphabetically between groups, I try to follow the rule of which<br />
-package is (or should be) most frequently used overall, and within each<br />
-package which module is most prominent. When this is not obvious then<br />
+<p>In <a href="https://github.com/tibbe/haskell-style-guide/blob/master/haskell-style.md#imports">Tibell’s guide</a> it’s recommended to group the
+imports by standard library, third party software, and local package
+imports. I follow this too, but, firstly, I distinguish in the standard
+library the modules coming from <a href="http://hackage.haskell.org/package/base"><code class="highlighter-rouge">base</code></a>, <a href="https://www.haskell.org/ghc">GHC</a> libraries and packages
+belonging to the <a href="http://www.haskell.org/platform">Haskell Platform</a>. Secondly, where Tibell recommends to
+sort alphabetically between groups, I try to follow the rule of which
+package is (or should be) most frequently used overall, and within each
+package which module is most prominent. When this is not obvious then
 alphabetical sorting should be used.</p>
 
-<p>Of course, there is no precise way to define which package is more<br />
-frequently used. I’d leave this entirely to your own personal experience<br />
-but you can get some idea by checking the <a href="http://packdeps.haskellers.com">reverse dependencies</a> of a<br />
-package, or the downloads in <a href="http://hackage.haskell.org">Hackage</a>, or <code class="highlighter-rouge">grep &lt;module&gt; | wc</code> a bunch<br />
+<p>Of course, there is no precise way to define which package is more
+frequently used. I’d leave this entirely to your own personal experience
+but you can get some idea by checking the <a href="http://packdeps.haskellers.com">reverse dependencies</a> of a
+package, or the downloads in <a href="http://hackage.haskell.org">Hackage</a>, or <code class="highlighter-rouge">grep &lt;module&gt; | wc</code> a bunch
 popular packages.</p>
 
-<p>The main purpose of this rule is to try to make it easier to skim through<br />
-the most usual imports first and focus at the end on the rare module<br />
-exports. This is also important when trying to minimize dependencies, you<br />
+<p>The main purpose of this rule is to try to make it easier to skim through
+the most usual imports first and focus at the end on the rare module
+exports. This is also important when trying to minimize dependencies, you
 can quickly spot which ones you can try to drop.</p>
 
 <p>For example:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nn">Control.Applicative</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<div class="language-haskell highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nn">Control.Applicative</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="kr">import</span> <span class="nn">Control.Monad</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="kr">import</span> <span class="nn">Data.Monoid</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="kr">import</span> <span class="nn">Data.Foldable</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span>
 </code></pre>
 </div>
 
-<p>Here, I put <code class="highlighter-rouge">Applicative</code> before <code class="highlighter-rouge">Monad</code> because even though, in practice,<br />
-it might be less used, my own judgement tells me it’s more general than a<br />
-<code class="highlighter-rouge">Monad</code>, so it <em>should</em> be more frequent. Between the <code class="highlighter-rouge">Control</code> and the<br />
-<code class="highlighter-rouge">Data</code> module names I choose to sort them alphabetically, I don’t know<br />
-which one is most usual. Whatever you decide, it’s always better to stick<br />
+<p>Here, I put <code class="highlighter-rouge">Applicative</code> before <code class="highlighter-rouge">Monad</code> because even though, in practice,
+it might be less used, my own judgement tells me it’s more general than a
+<code class="highlighter-rouge">Monad</code>, so it <em>should</em> be more frequent. Between the <code class="highlighter-rouge">Control</code> and the
+<code class="highlighter-rouge">Data</code> module names I choose to sort them alphabetically, I don’t know
+which one is most usual. Whatever you decide, it’s always better to stick
 with the same preference everywhere.</p>
 
-<p>Notice also that I don’t take into account the length of the export list<br />
-or how frequent are the functions appear in the module itself. That would,<br />
-perhaps, be valid criteria but they wouldn’t make the import list very<br />
+<p>Notice also that I don’t take into account the length of the export list
+or how frequent are the functions appear in the module itself. That would,
+perhaps, be valid criteria but they wouldn’t make the import list very
 repeatable.</p>
 
 <h3 id="types-and-functions">Types and functions</h3>
 
-<p>I group first the <code class="highlighter-rouge">Types</code> with their constructors; next, <a href="http://www.haskell.org/haskellwiki/Infix_operator">infix functions</a><br />
+<p>I group first the <code class="highlighter-rouge">Types</code> with their constructors; next, <a href="http://www.haskell.org/haskellwiki/Infix_operator">infix functions</a>
 and lastly, all other functions.</p>
 
-<p>When there is a mixture of qualified and unqualified imports for the same<br />
-import I still group them together, with the unqualified names going<br />
-first. I don’t like having the qualified imports and unqualified imports<br />
-grouped separately because usually I find myself moving back and forth<br />
+<p>When there is a mixture of qualified and unqualified imports for the same
+import I still group them together, with the unqualified names going
+first. I don’t like having the qualified imports and unqualified imports
+grouped separately because usually I find myself moving back and forth
 some functions between them.</p>
 
-<p>There is an exception here though. When the module being imported is<br />
-re-exporting names defined in other modules I then group them after the<br />
+<p>There is an exception here though. When the module being imported is
+re-exporting names defined in other modules I then group them after the
 ones which are defined directly in the imported module.</p>
 
 <h2 id="formatting">Formatting</h2>
 
-<p>I use multiple lines when the list of imports overpasses the specified<br />
+<p>I use multiple lines when the list of imports overpasses the specified
 text width and a indentation of 2 spaces when happening.</p>
 
-<p>I also add spaces to module lists but not for constructors, just to give a<br />
+<p>I also add spaces to module lists but not for constructors, just to give a
 quick hint that they are constructors. For example:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nn">module1</span> <span class="p">(</span><span class="kt">A</span><span class="p">(</span><span class="kt">A1</span><span class="p">,</span><span class="kt">A2</span><span class="p">),</span> <span class="kt">B</span><span class="p">,</span> <span class="p">(</span><span class="o">-|-</span><span class="p">),</span> <span class="n">func1</span><span class="p">,</span> <span class="n">func2</span><span class="p">)</span>
+<div class="language-haskell highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nn">module1</span> <span class="p">(</span><span class="kt">A</span><span class="p">(</span><span class="kt">A1</span><span class="p">,</span><span class="kt">A2</span><span class="p">),</span> <span class="kt">B</span><span class="p">,</span> <span class="p">(</span><span class="o">-|-</span><span class="p">),</span> <span class="n">func1</span><span class="p">,</span> <span class="n">func2</span><span class="p">)</span>
 </code></pre>
 </div>
 
 <p>… unless the constructors are multiline, which is not that frequent though:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nn">module</span>
+<div class="language-haskell highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nn">module</span>
   <span class="p">(</span> <span class="kt">A</span> <span class="p">(</span> <span class="kt">A1</span>
       <span class="p">,</span> <span class="kt">A2</span>
       <span class="p">,</span> <span class="kt">AN</span>
@@ -397,17 +397,17 @@ quick hint that they are constructors. For example:</p>
 </code></pre>
 </div>
 
-<p>I know of editing tools to make vertical alignment very simple, but,<br />
-personally, I don’t find vertical alignment improving that much in<br />
+<p>I know of editing tools to make vertical alignment very simple, but,
+personally, I don’t find vertical alignment improving that much in
 readability. The words in the same line tend to be too separated.</p>
 
 <h2 id="canonical-example">Canonical example</h2>
 
-<p>The import style followed by <a href="http://haskell-distributed.github.io">Cloud Haskell</a> packages aligns quite well<br />
-with my particular style. This is a modified version taken from<br />
+<p>The import style followed by <a href="http://haskell-distributed.github.io">Cloud Haskell</a> packages aligns quite well
+with my particular style. This is a modified version taken from
 <a href="https://github.com/haskell-distributed/distributed-process/blob/master/src/Control/Distributed/Process/Node.hs#L16"><code class="highlighter-rouge">Control.Distributed.Process.Node</code></a>: <sup id="fnref:c"><a href="#fn:c" class="footnote">5</a></sup></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nn">Prelude</span> <span class="k">hiding</span> <span class="p">(</span><span class="nf">catch</span><span class="p">)</span>
+<div class="language-haskell highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nn">Prelude</span> <span class="k">hiding</span> <span class="p">(</span><span class="nf">catch</span><span class="p">)</span>
 <span class="c1">-- 'base' imports</span>
 <span class="kr">import</span> <span class="nn">Control.Category</span> <span class="p">((</span><span class="o">&gt;&gt;&gt;</span><span class="p">))</span>
 <span class="kr">import</span> <span class="nn">Control.Applicative</span> <span class="p">((</span><span class="o">&lt;$&gt;</span><span class="p">))</span>
@@ -470,26 +470,26 @@ with my particular style. This is a modified version taken from<br />
 
 <h2 id="conclusion">Conclusion</h2>
 
-<p>I was keeping all these rules in my head until after a constructive<br />
-discussion with <a href="http://ro-che.info">Roman Cheplyaka</a> about the topic, I decided to write them<br />
-down in a post that I could use as a reference for myself and for my<br />
-colleagues. But, by no means, I’m trying to claim my style is better than<br />
-any other, this is what I follow as of today, and will surely evolve as my<br />
+<p>I was keeping all these rules in my head until after a constructive
+discussion with <a href="http://ro-che.info">Roman Cheplyaka</a> about the topic, I decided to write them
+down in a post that I could use as a reference for myself and for my
+colleagues. But, by no means, I’m trying to claim my style is better than
+any other, this is what I follow as of today, and will surely evolve as my
 experience in <a href="http://haskell.org">Haskell</a> grows.</p>
 
-<p>If you just got into <a href="http://haskell.org">Haskell</a> and find yourself trying to follow some<br />
-consistent importing style through your code, but lack the hands-on<br />
-experience to assess what’s best for you (and if you are control freak<br />
-like me), you might want to follow this blindly until you have more skin<br />
-in the game and can make a more confident decision of what style you<br />
-prefer to stick with. One advantage of this style is that, even if other<br />
-Haskell programmers don’t like it because of its extra editing work, it’s<br />
+<p>If you just got into <a href="http://haskell.org">Haskell</a> and find yourself trying to follow some
+consistent importing style through your code, but lack the hands-on
+experience to assess what’s best for you (and if you are control freak
+like me), you might want to follow this blindly until you have more skin
+in the game and can make a more confident decision of what style you
+prefer to stick with. One advantage of this style is that, even if other
+Haskell programmers don’t like it because of its extra editing work, it’s
 still easily readable.</p>
 
-<p>But remember one thing, all this doesn’t matter if a project already<br />
-follows its own style. Consistency is always better for readability, even<br />
-if you don’t like the style. So always trust more your common sense than<br />
-any styling guide for which it’s impossible to define every scenario you<br />
+<p>But remember one thing, all this doesn’t matter if a project already
+follows its own style. Consistency is always better for readability, even
+if you don’t like the style. So always trust more your common sense than
+any styling guide for which it’s impossible to define every scenario you
 may encounter in real life.</p>
 
 <!---
@@ -518,38 +518,50 @@ vim: textwidth=74
   </div>
 
   
-<div class="comments">
-	<div id="disqus_thread"></div>
-	<script type="text/javascript">
+    
 
-	    var disqus_shortname = 'dannynavarrosblog';
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/';
+      this.page.identifier = 'http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/';
+    };
 
-	    (function() {
-	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-	    })();
+    (function() {
+      var d = document, s = d.createElement('script');
 
-	</script>
-	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
+      s.src = 'https://dannynavarrosblog.disqus.com/embed.js';
 
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+  
 </article>
 
       </div>
-    </div>
+    </main>
 
     <footer class="site-footer">
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">Danny Navarro's Blog</h2>
+    <h2 class="footer-heading">Danny Navarro&#39;s Blog</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
-          <li>Danny Navarro's Blog</li>
-          <li><a href="mailto:j@dannynavarro.net">j@dannynavarro.net</a></li>
+          <li>
+            
+              Danny Navarro&#39;s Blog
+            
+            </li>
+            
+            <li><a href="mailto:j@dannynavarro.net">j@dannynavarro.net</a></li>
+            
         </ul>
       </div>
 
@@ -557,7 +569,7 @@ vim: textwidth=74
         <ul class="social-media-list">
           
           <li>
-            <a href="https://github.com/jdnavarro"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+            <a href="https://github.com/jdnavarro"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
 </span><span class="username">jdnavarro</span></a>
 
           </li>
@@ -565,7 +577,7 @@ vim: textwidth=74
 
           
           <li>
-            <a href="https://twitter.com/vimes656"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+            <a href="https://twitter.com/vimes656"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
 </span><span class="username">vimes656</span></a>
 
           </li>
@@ -574,7 +586,7 @@ vim: textwidth=74
       </div>
 
       <div class="footer-col footer-col-3">
-        <p>Mostly Haskell ramblings</p>
+        <p>Mostly FP ramblings</p>
       </div>
     </div>
 
