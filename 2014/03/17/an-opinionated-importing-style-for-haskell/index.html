@@ -10,7 +10,7 @@
   <meta name="description" content="Large part of Haskell code is just about imports. In many programming languages there is no ambiguity left about how to import, but Haskell leaves some room ...">
 
   <link rel="stylesheet" href="/assets/main.css">
-  <link rel="canonical" href="http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/">
+  <link rel="canonical" href="https://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/">
   <link rel="alternate" type="application/rss+xml" title="Danny Navarro&#39;s Blog" href="/feed.xml">
   
   
@@ -22,33 +22,41 @@
     <header class="site-header" role="banner">
 
   <div class="wrapper">
-
+    
+    
     <a class="site-title" href="/">Danny Navarro&#39;s Blog</a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
 
-    <nav class="site-nav">
-      <span class="menu-icon">
-        <svg viewBox="0 0 18 15" width="18px" height="15px">
-          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
-          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
-          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
-        </svg>
-      </span>
-
-      <div class="trigger">
-        
+        <div class="trigger">
           
-        
+            
+            
           
-        
+            
+            
           
-        
+            
+            
           
-        
-      </div>
-    </nav>
-
+            
+            
+          
+        </div>
+      </nav>
+    
   </div>
-
 </header>
 
 
@@ -58,7 +66,12 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">An opinionated importing style for Haskell</h1>
-    <p class="post-meta"><time datetime="2014-03-17T17:17:15-03:00" itemprop="datePublished">Mar 17, 2014</time></p>
+    <p class="post-meta">
+      <time datetime="2014-03-17T17:17:15-03:00" itemprop="datePublished">
+        
+        Mar 17, 2014
+      </time>
+      </p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
@@ -87,10 +100,9 @@ about <a href="http://docs.python.org/3/tutorial/modules.html#modules">modules</
 
 <blockquote>
   <p>There is even a variant to import all names that a module defines:</p>
-  <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">fibo</span> <span class="kn">import</span> <span class="o">*</span>
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">fibo</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">fib</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
-</code></pre>
-  </div>
+</code></pre></div>  </div>
   <p>This imports all names except those beginning with an underscore (<code class="highlighter-rouge">_</code>). In
 most cases Python programmers do not use this facility since it introduces an
 unknown set of names into the interpreter, possibly hiding some things you
@@ -338,12 +350,11 @@ can quickly spot which ones you can try to drop.</p>
 
 <p>For example:</p>
 
-<div class="language-haskell highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nn">Control.Applicative</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<div class="language-haskell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">import</span> <span class="nn">Control.Applicative</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="kr">import</span> <span class="nn">Control.Monad</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="kr">import</span> <span class="nn">Data.Monoid</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="kr">import</span> <span class="nn">Data.Foldable</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Here, I put <code class="highlighter-rouge">Applicative</code> before <code class="highlighter-rouge">Monad</code> because even though, in practice,
 it might be less used, my own judgement tells me it’s more general than a
@@ -380,13 +391,12 @@ text width and a indentation of 2 spaces when happening.</p>
 <p>I also add spaces to module lists but not for constructors, just to give a
 quick hint that they are constructors. For example:</p>
 
-<div class="language-haskell highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nn">module1</span> <span class="p">(</span><span class="kt">A</span><span class="p">(</span><span class="kt">A1</span><span class="p">,</span><span class="kt">A2</span><span class="p">),</span> <span class="kt">B</span><span class="p">,</span> <span class="p">(</span><span class="o">-|-</span><span class="p">),</span> <span class="n">func1</span><span class="p">,</span> <span class="n">func2</span><span class="p">)</span>
-</code></pre>
-</div>
+<div class="language-haskell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">import</span> <span class="nn">module1</span> <span class="p">(</span><span class="kt">A</span><span class="p">(</span><span class="kt">A1</span><span class="p">,</span><span class="kt">A2</span><span class="p">),</span> <span class="kt">B</span><span class="p">,</span> <span class="p">(</span><span class="o">-|-</span><span class="p">),</span> <span class="n">func1</span><span class="p">,</span> <span class="n">func2</span><span class="p">)</span>
+</code></pre></div></div>
 
 <p>… unless the constructors are multiline, which is not that frequent though:</p>
 
-<div class="language-haskell highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nn">module</span>
+<div class="language-haskell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">import</span> <span class="nn">module</span>
   <span class="p">(</span> <span class="kt">A</span> <span class="p">(</span> <span class="kt">A1</span>
       <span class="p">,</span> <span class="kt">A2</span>
       <span class="p">,</span> <span class="kt">AN</span>
@@ -394,8 +404,7 @@ quick hint that they are constructors. For example:</p>
   <span class="p">,</span> <span class="kt">B</span>
   <span class="p">,</span> <span class="n">func1</span>
   <span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>I know of editing tools to make vertical alignment very simple, but,
 personally, I don’t find vertical alignment improving that much in
@@ -407,7 +416,7 @@ readability. The words in the same line tend to be too separated.</p>
 with my particular style. This is a modified version taken from
 <a href="https://github.com/haskell-distributed/distributed-process/blob/master/src/Control/Distributed/Process/Node.hs#L16"><code class="highlighter-rouge">Control.Distributed.Process.Node</code></a>: <sup id="fnref:c"><a href="#fn:c" class="footnote">5</a></sup></p>
 
-<div class="language-haskell highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nn">Prelude</span> <span class="k">hiding</span> <span class="p">(</span><span class="nf">catch</span><span class="p">)</span>
+<div class="language-haskell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">import</span> <span class="nn">Prelude</span> <span class="k">hiding</span> <span class="p">(</span><span class="nf">catch</span><span class="p">)</span>
 <span class="c1">-- 'base' imports</span>
 <span class="kr">import</span> <span class="nn">Control.Category</span> <span class="p">((</span><span class="o">&gt;&gt;&gt;</span><span class="p">))</span>
 <span class="kr">import</span> <span class="nn">Control.Applicative</span> <span class="p">((</span><span class="o">&lt;$&gt;</span><span class="p">))</span>
@@ -465,8 +474,7 @@ with my particular style. This is a modified version taken from
   <span class="p">,</span> <span class="n">address</span>
   <span class="p">,</span> <span class="n">close</span>
   <span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="conclusion">Conclusion</h2>
 
@@ -498,19 +506,19 @@ vim: textwidth=74
 <div class="footnotes">
   <ol>
     <li id="fn:d">
-      <p>For code contributions it’s easy, just follow what the original author is already doing. <a href="#fnref:d" class="reversefootnote">&#8617;</a></p>
+      <p>For code contributions it’s easy, just follow what the original author is already doing. <a href="#fnref:d" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:a">
-      <p>This could be arguable considered the main use case for OOP in most languages. <a href="#fnref:a" class="reversefootnote">&#8617;</a></p>
+      <p>This could be arguable considered the main use case for OOP in most languages. <a href="#fnref:a" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:b">
-      <p>There is <a href="http://plv.mpi-sws.org/backpack">some research</a> going on but still a long way to reach consensus. <a href="#fnref:b" class="reversefootnote">&#8617;</a></p>
+      <p>There is <a href="http://plv.mpi-sws.org/backpack">some research</a> going on but still a long way to reach consensus. <a href="#fnref:b" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:e">
-      <p>For exports I think it’s alright to always use <code class="highlighter-rouge">(..)</code>, the constructors are in the same module. <a href="#fnref:e" class="reversefootnote">&#8617;</a></p>
+      <p>For exports I think it’s alright to always use <code class="highlighter-rouge">(..)</code>, the constructors are in the same module. <a href="#fnref:e" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:c">
-      <p>My modifications will surely break the code, this is just a sample demonstration. <a href="#fnref:c" class="reversefootnote">&#8617;</a></p>
+      <p>My modifications will surely break the code, this is just a sample demonstration. <a href="#fnref:c" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -519,25 +527,6 @@ vim: textwidth=74
 
   
     
-
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_config = function () {
-      this.page.url = 'http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/';
-      this.page.identifier = 'http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/';
-    };
-
-    (function() {
-      var d = document, s = d.createElement('script');
-
-      s.src = 'https://dannynavarrosblog.disqus.com/embed.js';
-
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-
 
   
 </article>

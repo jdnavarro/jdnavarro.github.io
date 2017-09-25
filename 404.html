@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Async Pyramid example done right</title>
-  <meta name="description" content="After speaking with Marius Gedminas at freenode, he gave me enough hints to rewrite my previous async view example with locks instead of Value, which is pron...">
+  <title>Danny Navarro&#39;s Blog</title>
+  <meta name="description" content="Mostly FP ramblings">
 
   <link rel="stylesheet" href="/assets/main.css">
-  <link rel="canonical" href="https://dannynavarro.net/2011/01/23/async-pyramid-example-done-right/">
+  <link rel="canonical" href="https://dannynavarro.net/404.html">
   <link rel="alternate" type="application/rss+xml" title="Danny Navarro&#39;s Blog" href="/feed.xml">
   
   
@@ -62,69 +62,26 @@
 
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <style type="text/css" media="screen">
+  .container {
+    margin: 10px auto;
+    max-width: 600px;
+    text-align: center;
+  }
+  h1 {
+    margin: 30px 0;
+    font-size: 4em;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+</style>
 
-  <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">Async Pyramid example done right</h1>
-    <p class="post-meta">
-      <time datetime="2011-01-23T00:00:00-03:00" itemprop="datePublished">
-        
-        Jan 23, 2011
-      </time>
-      </p>
-  </header>
+<div class="container">
+  <h1>404</h1>
 
-  <div class="post-content" itemprop="articleBody">
-    <p>After speaking with <a href="http://mg.pov.lt/blog">Marius Gedminas</a> at freenode, he gave me enough hints to rewrite <a href="http://blog.dannynavarro.net/2011/01/14/async-web-apps-with-pyramid/">my previous async <i>view</i> example </a>with <i>locks</i> instead of <i>Value</i>, which is prone to race conditions. I also added a queue to allow jobs to wait for being processed.
-<br />
-<br /></p>
-<pre>from multiprocessing import Process, Lock, Queue
-
-job = 0
-q = Queue(maxsize=3)
-lock = Lock()
-
-def work():
-    import time; time.sleep(8)
-    job = q.get()
-    print("Job done: {0}".format(job))
-    print("Queue size: {0}\n".format(q.qsize()))
-    if not q.empty():
-        work()
-    else:
-        lock.release()
-
-def my_view(request):
-    global job
-    if not q.full():
-        job += 1
-        q.put(job)
-        # Not running
-        if lock.acquire(False):
-            Process(target=work).start()
-            print("Job {0} submitted and working on it".format(job))
-        else:
-            print("Job {0} submitted while working".format(job))
-    else:
-        print("Queue is full")
-    print("Queue size: {0}\n".format(q.qsize()))
-    return {'project':'asyncapp'}
-<br />
-</pre>
-
-<p>With every request a job is sent. Here the queue accepts 3 jobs. The recursion in <i>work</i> makes sure there is only 1 process working at a time.</p>
-
-<p>I will leave <a href="http://blog.dannynavarro.net/2011/01/14/async-web-apps-with-pyramid/">my previous example</a> with <i>Value</i> because it’s easier to understand but this version is much safer.</p>
-
-<p><strong>Update:</strong> You can avoid the use of locks by <a href="http://blog.doughellmann.com/2009/04/pymotw-multiprocessing-part-2.html"> using 2 queues</a>.</p>
-
-  </div>
-
-  
-    
-
-  
-</article>
+  <p><strong>Page not found :(</strong></p>
+  <p>The requested page could not be found.</p>
+</div>
 
       </div>
     </main>

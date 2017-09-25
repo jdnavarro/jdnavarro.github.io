@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://dannynavarro.net/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://dannynavarro.net/feed.xml" rel="self" type="application/atom+xml" /><link href="http://dannynavarro.net/" rel="alternate" type="text/html" /><updated>2016-11-20T10:16:27-03:00</updated><id>http://dannynavarro.net//</id><title type="html">Danny Navarro’s Blog</title><subtitle>Mostly FP ramblings</subtitle><entry><title type="html">Picking Lower Bounds Versions for your Dependencies</title><link href="http://dannynavarro.net/2015/08/12/picking-lower-bounds-version-for-your-dependencies/" rel="alternate" type="text/html" title="Picking Lower Bounds Versions for your Dependencies" /><published>2015-08-12T10:10:56-03:00</published><updated>2015-08-12T10:10:56-03:00</updated><id>http://dannynavarro.net/2015/08/12/picking-lower-bounds-version-for-your-dependencies</id><content type="html" xml:base="http://dannynavarro.net/2015/08/12/picking-lower-bounds-version-for-your-dependencies/">&lt;p&gt;I always get an uneasy feeling when explaining this topic to new
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.0">Jekyll</generator><link href="https://dannynavarro.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://dannynavarro.net/" rel="alternate" type="text/html" /><updated>2017-09-25T17:03:43-03:00</updated><id>https://dannynavarro.net/</id><title type="html">Danny Navarro’s Blog</title><subtitle>Mostly FP ramblings</subtitle><entry><title type="html">Picking Lower Bounds Versions for your Dependencies</title><link href="https://dannynavarro.net/2015/08/12/picking-lower-bounds-version-for-your-dependencies/" rel="alternate" type="text/html" title="Picking Lower Bounds Versions for your Dependencies" /><published>2015-08-12T10:10:56-03:00</published><updated>2015-08-12T10:10:56-03:00</updated><id>https://dannynavarro.net/2015/08/12/picking-lower-bounds-version-for-your-dependencies</id><content type="html" xml:base="https://dannynavarro.net/2015/08/12/picking-lower-bounds-version-for-your-dependencies/">&lt;p&gt;I always get an uneasy feeling when explaining this topic to new
 programmers. I limit myself to something along these lines: “In this case
 I’m choosing these versions because of &lt;em&gt;this&lt;/em&gt; and &lt;em&gt;that&lt;/em&gt;, were the
 circumstances different I would probably have chosen differently”. In
@@ -231,32 +231,25 @@ think it’s a big deal having to handle them.&lt;/p&gt;
 &lt;div class=&quot;footnotes&quot;&gt;
   &lt;ol&gt;
     &lt;li id=&quot;fn:e&quot;&gt;
-      &lt;p&gt;Or wherever you build it, it should be equivalent to building it on the target system. &lt;a href=&quot;#fnref:e&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;Or wherever you build it, it should be equivalent to building it on the target system. &lt;a href=&quot;#fnref:e&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:f&quot;&gt;
-      &lt;p&gt;You could use &lt;code class=&quot;highlighter-rouge&quot;&gt;cabal freeze&lt;/code&gt; for quick and dirty pinning, but don’t recommend it when strict control of versions is desired. &lt;a href=&quot;#fnref:f&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;You could use &lt;code class=&quot;highlighter-rouge&quot;&gt;cabal freeze&lt;/code&gt; for quick and dirty pinning, but don’t recommend it when strict control of versions is desired. &lt;a href=&quot;#fnref:f&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:a&quot;&gt;
-      &lt;p&gt;In Wheezy GHC-7.4.3, is still officially maintained in extended support if you really want to go back. &lt;a href=&quot;#fnref:a&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;In Wheezy GHC-7.4.3, is still officially maintained in extended support if you really want to go back. &lt;a href=&quot;#fnref:a&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:b&quot;&gt;
-      &lt;p&gt;A particular underrated package management system that is both language and OS portable is &lt;a href=&quot;https://www.pkgsrc.org/&quot;&gt;pkgsrc&lt;/a&gt;. Unfortunately, although Haskell curation is improving, it’s still far from other distributions. &lt;a href=&quot;#fnref:b&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;A particular underrated package management system that is both language and OS portable is &lt;a href=&quot;https://www.pkgsrc.org/&quot;&gt;pkgsrc&lt;/a&gt;. Unfortunately, although Haskell curation is improving, it’s still far from other distributions. &lt;a href=&quot;#fnref:b&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:c&quot;&gt;
-      &lt;p&gt;You could stretch the concept to include commercial app stores, or even runtime environments such as GNOME or frameworks like RxJS. &lt;a href=&quot;#fnref:c&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;You could stretch the concept to include commercial app stores, or even runtime environments such as GNOME or frameworks like RxJS. &lt;a href=&quot;#fnref:c&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:d&quot;&gt;
-      &lt;p&gt;yes, creating Nix expressions adds overhead, but believe me, it’s much more accessible than creating good deb or rpm source packages. &lt;a href=&quot;#fnref:d&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;yes, creating Nix expressions adds overhead, but believe me, it’s much more accessible than creating good deb or rpm source packages. &lt;a href=&quot;#fnref:d&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><summary type="html">I always get an uneasy feeling when explaining this topic to new
-programmers. I limit myself to something along these lines: “In this case
-I’m choosing these versions because of this and that, were the
-circumstances different I would probably have chosen differently”. In
-these sessions I try to stick to the act of coding so I try to not digress
-too much into such hairy matters as version management. Nevertheless, I
-think a decent criterion for picking these versions is something important
-for a developer expected to work independently.</summary></entry><entry><title type="html">Haskell role in FP paradigm shift</title><link href="http://dannynavarro.net/2014/04/08/haskell-role-in-fp-paradigm-shift/" rel="alternate" type="text/html" title="Haskell role in FP paradigm shift" /><published>2014-04-08T08:44:28-03:00</published><updated>2014-04-08T08:44:28-03:00</updated><id>http://dannynavarro.net/2014/04/08/haskell-role-in-fp-paradigm-shift</id><content type="html" xml:base="http://dannynavarro.net/2014/04/08/haskell-role-in-fp-paradigm-shift/">&lt;p&gt;I was listening to &lt;a href=&quot;https://en.wikipedia.org/wiki/Bruce_Tate&quot;&gt;Bruce Tate&lt;/a&gt; in &lt;a href=&quot;http://mostlyerlang.com/&quot;&gt;Mostly Erlang&lt;/a&gt; podcast, when, around
+&lt;/div&gt;</content><author><name></name></author><summary type="html">I always get an uneasy feeling when explaining this topic to new programmers. I limit myself to something along these lines: “In this case I’m choosing these versions because of this and that, were the circumstances different I would probably have chosen differently”. In these sessions I try to stick to the act of coding so I try to not digress too much into such hairy matters as version management. Nevertheless, I think a decent criterion for picking these versions is something important for a developer expected to work independently.</summary></entry><entry><title type="html">Haskell role in FP paradigm shift</title><link href="https://dannynavarro.net/2014/04/08/haskell-role-in-fp-paradigm-shift/" rel="alternate" type="text/html" title="Haskell role in FP paradigm shift" /><published>2014-04-08T08:44:28-03:00</published><updated>2014-04-08T08:44:28-03:00</updated><id>https://dannynavarro.net/2014/04/08/haskell-role-in-fp-paradigm-shift</id><content type="html" xml:base="https://dannynavarro.net/2014/04/08/haskell-role-in-fp-paradigm-shift/">&lt;p&gt;I was listening to &lt;a href=&quot;https://en.wikipedia.org/wiki/Bruce_Tate&quot;&gt;Bruce Tate&lt;/a&gt; in &lt;a href=&quot;http://mostlyerlang.com/&quot;&gt;Mostly Erlang&lt;/a&gt; podcast, when, around
 the 57th minute of &lt;a href=&quot;http://mostlyerlang.com/2014/03/04/031-bruce-tate/&quot;&gt;the episode&lt;/a&gt;, the topic of the conversation
 became the feasibility of &lt;a href=&quot;https://en.wikipedia.org/wiki/Functional_programming&quot;&gt;FP&lt;/a&gt; becoming mainstream. He explains that &lt;a href=&quot;https://en.wikipedia.org/wiki/Functional_programming&quot;&gt;FP&lt;/a&gt;
 has not emerged yet, but it’s reluctantly about to do so, being the end of
@@ -318,12 +311,7 @@ becoming very relevant even if it doesn’t become the &lt;a href=&quot;https://
 killer features in the area of concurrent/parallel programming. Somehow,
 the vibrancy of the &lt;a href=&quot;http://www.haskell.org/&quot;&gt;Haskell&lt;/a&gt; community these days, reminds me of the
 [Python] community before Google made it popular. Will all
-this be enough to make &lt;a href=&quot;http://www.haskell.org/&quot;&gt;Haskell&lt;/a&gt; relevant? I guess time will tell.&lt;/p&gt;</content><summary type="html">I was listening to Bruce Tate in Mostly Erlang podcast, when, around
-the 57th minute of the episode, the topic of the conversation
-became the feasibility of FP becoming mainstream. He explains that FP
-has not emerged yet, but it’s reluctantly about to do so, being the end of
-Moore’s law the main driver as concurrent/parallel programming becomes
-more critical.</summary></entry><entry><title type="html">Podcast tribute</title><link href="http://dannynavarro.net/2014/03/26/podcast-tribute/" rel="alternate" type="text/html" title="Podcast tribute" /><published>2014-03-26T16:53:58-03:00</published><updated>2014-03-26T16:53:58-03:00</updated><id>http://dannynavarro.net/2014/03/26/podcast-tribute</id><content type="html" xml:base="http://dannynavarro.net/2014/03/26/podcast-tribute/">&lt;p&gt;These days, with the pervasiveness of the Internet, an impressive wave of
+this be enough to make &lt;a href=&quot;http://www.haskell.org/&quot;&gt;Haskell&lt;/a&gt; relevant? I guess time will tell.&lt;/p&gt;</content><author><name></name></author><summary type="html">I was listening to Bruce Tate in Mostly Erlang podcast, when, around the 57th minute of the episode, the topic of the conversation became the feasibility of FP becoming mainstream. He explains that FP has not emerged yet, but it’s reluctantly about to do so, being the end of Moore’s law the main driver as concurrent/parallel programming becomes more critical.</summary></entry><entry><title type="html">Podcast tribute</title><link href="https://dannynavarro.net/2014/03/26/podcast-tribute/" rel="alternate" type="text/html" title="Podcast tribute" /><published>2014-03-26T16:53:58-03:00</published><updated>2014-03-26T16:53:58-03:00</updated><id>https://dannynavarro.net/2014/03/26/podcast-tribute</id><content type="html" xml:base="https://dannynavarro.net/2014/03/26/podcast-tribute/">&lt;p&gt;These days, with the pervasiveness of the Internet, an impressive wave of
 new spoken audio content is making steadily its way into the mainstream.
 I’ve always been a big fan of spoken radio, but now I find myself
 listening only to independent &lt;a href=&quot;https://en.wikipedia.org/wiki/Podcast&quot;&gt;podcasts&lt;/a&gt;, mostly hosted by
@@ -419,12 +407,7 @@ choose a single &lt;a href=&quot;https://bitcoin.org/&quot;&gt;Bitcoin&lt;/a&gt;
 
 &lt;!---
 vim: tw=74 spell
---&gt;</content><summary type="html">These days, with the pervasiveness of the Internet, an impressive wave of
-new spoken audio content is making steadily its way into the mainstream.
-I’ve always been a big fan of spoken radio, but now I find myself
-listening only to independent podcasts, mostly hosted by
-amateurs, who are able to provide fresh and genuine content in a medium
-where innovation has been stagnant for many years.</summary></entry><entry><title type="html">An opinionated importing style for Haskell</title><link href="http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/" rel="alternate" type="text/html" title="An opinionated importing style for Haskell" /><published>2014-03-17T17:17:15-03:00</published><updated>2014-03-17T17:17:15-03:00</updated><id>http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell</id><content type="html" xml:base="http://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/">&lt;p&gt;Large part of &lt;a href=&quot;http://haskell.org&quot;&gt;Haskell&lt;/a&gt; code is just about imports. In many programming
+--&gt;</content><author><name></name></author><summary type="html">These days, with the pervasiveness of the Internet, an impressive wave of new spoken audio content is making steadily its way into the mainstream. I’ve always been a big fan of spoken radio, but now I find myself listening only to independent podcasts, mostly hosted by amateurs, who are able to provide fresh and genuine content in a medium where innovation has been stagnant for many years.</summary></entry><entry><title type="html">An opinionated importing style for Haskell</title><link href="https://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/" rel="alternate" type="text/html" title="An opinionated importing style for Haskell" /><published>2014-03-17T17:17:15-03:00</published><updated>2014-03-17T17:17:15-03:00</updated><id>https://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell</id><content type="html" xml:base="https://dannynavarro.net/2014/03/17/an-opinionated-importing-style-for-haskell/">&lt;p&gt;Large part of &lt;a href=&quot;http://haskell.org&quot;&gt;Haskell&lt;/a&gt; code is just about imports. In many programming
 languages there is no ambiguity left about how to import, but &lt;a href=&quot;http://haskell.org&quot;&gt;Haskell&lt;/a&gt;
 leaves some room for personal style in this regard. There are some
 recommendations out there about importing style, but most is left to
@@ -449,10 +432,9 @@ about &lt;a href=&quot;http://docs.python.org/3/tutorial/modules.html#modules&qu
 
 &lt;blockquote&gt;
   &lt;p&gt;There is even a variant to import all names that a module defines:&lt;/p&gt;
-  &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;fibo&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;
+  &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;fibo&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;fib&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
   &lt;p&gt;This imports all names except those beginning with an underscore (&lt;code class=&quot;highlighter-rouge&quot;&gt;_&lt;/code&gt;). In
 most cases Python programmers do not use this facility since it introduces an
 unknown set of names into the interpreter, possibly hiding some things you
@@ -700,12 +682,11 @@ can quickly spot which ones you can try to drop.&lt;/p&gt;
 
 &lt;p&gt;For example:&lt;/p&gt;
 
-&lt;div class=&quot;language-haskell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Control.Applicative&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;div class=&quot;language-haskell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Control.Applicative&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Control.Monad&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Data.Monoid&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Data.Foldable&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Here, I put &lt;code class=&quot;highlighter-rouge&quot;&gt;Applicative&lt;/code&gt; before &lt;code class=&quot;highlighter-rouge&quot;&gt;Monad&lt;/code&gt; because even though, in practice,
 it might be less used, my own judgement tells me it’s more general than a
@@ -742,13 +723,12 @@ text width and a indentation of 2 spaces when happening.&lt;/p&gt;
 &lt;p&gt;I also add spaces to module lists but not for constructors, just to give a
 quick hint that they are constructors. For example:&lt;/p&gt;
 
-&lt;div class=&quot;language-haskell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;module1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;A1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;A2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-|-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;func1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;func2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;language-haskell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;module1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;A1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;A2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-|-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;func1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;func2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;… unless the constructors are multiline, which is not that frequent though:&lt;/p&gt;
 
-&lt;div class=&quot;language-haskell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;module&lt;/span&gt;
+&lt;div class=&quot;language-haskell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;module&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;A1&lt;/span&gt;
       &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;A2&lt;/span&gt;
       &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;AN&lt;/span&gt;
@@ -756,8 +736,7 @@ quick hint that they are constructors. For example:&lt;/p&gt;
   &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;B&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;func1&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;I know of editing tools to make vertical alignment very simple, but,
 personally, I don’t find vertical alignment improving that much in
@@ -769,7 +748,7 @@ readability. The words in the same line tend to be too separated.&lt;/p&gt;
 with my particular style. This is a modified version taken from
 &lt;a href=&quot;https://github.com/haskell-distributed/distributed-process/blob/master/src/Control/Distributed/Process/Node.hs#L16&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Control.Distributed.Process.Node&lt;/code&gt;&lt;/a&gt;: &lt;sup id=&quot;fnref:c&quot;&gt;&lt;a href=&quot;#fn:c&quot; class=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
-&lt;div class=&quot;language-haskell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Prelude&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;hiding&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;div class=&quot;language-haskell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Prelude&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;hiding&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;-- 'base' imports&lt;/span&gt;
 &lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Control.Category&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
 &lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Control.Applicative&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;$&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
@@ -827,8 +806,7 @@ with my particular style. This is a modified version taken from
   &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 
@@ -860,36 +838,22 @@ vim: textwidth=74
 &lt;div class=&quot;footnotes&quot;&gt;
   &lt;ol&gt;
     &lt;li id=&quot;fn:d&quot;&gt;
-      &lt;p&gt;For code contributions it’s easy, just follow what the original author is already doing. &lt;a href=&quot;#fnref:d&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;For code contributions it’s easy, just follow what the original author is already doing. &lt;a href=&quot;#fnref:d&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:a&quot;&gt;
-      &lt;p&gt;This could be arguable considered the main use case for OOP in most languages. &lt;a href=&quot;#fnref:a&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;This could be arguable considered the main use case for OOP in most languages. &lt;a href=&quot;#fnref:a&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:b&quot;&gt;
-      &lt;p&gt;There is &lt;a href=&quot;http://plv.mpi-sws.org/backpack&quot;&gt;some research&lt;/a&gt; going on but still a long way to reach consensus. &lt;a href=&quot;#fnref:b&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;There is &lt;a href=&quot;http://plv.mpi-sws.org/backpack&quot;&gt;some research&lt;/a&gt; going on but still a long way to reach consensus. &lt;a href=&quot;#fnref:b&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:e&quot;&gt;
-      &lt;p&gt;For exports I think it’s alright to always use &lt;code class=&quot;highlighter-rouge&quot;&gt;(..)&lt;/code&gt;, the constructors are in the same module. &lt;a href=&quot;#fnref:e&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;For exports I think it’s alright to always use &lt;code class=&quot;highlighter-rouge&quot;&gt;(..)&lt;/code&gt;, the constructors are in the same module. &lt;a href=&quot;#fnref:e&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:c&quot;&gt;
-      &lt;p&gt;My modifications will surely break the code, this is just a sample demonstration. &lt;a href=&quot;#fnref:c&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;My modifications will surely break the code, this is just a sample demonstration. &lt;a href=&quot;#fnref:c&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><summary type="html">Large part of Haskell code is just about imports. In many programming
-languages there is no ambiguity left about how to import, but Haskell
-leaves some room for personal style in this regard. There are some
-recommendations out there about importing style, but most is left to
-common sense. Your own judgment, once you are comfortable with Haskell,
-should be perfectly fine, but newcomers who care about style consistency
-might feel a bit lost when writing the import list for their own packages
-1, specially since there are many slightly different styles in the wild
-for Haskell imports. In this post, I’ll try to explain the rationale of
-the style I follow.
-
-
-  
-    
-      For code contributions it’s easy, just follow what the original author is already doing. &amp;#8617;</summary></entry><entry><title type="html">Improving readability with the Maybe Foldable instance</title><link href="http://dannynavarro.net/2014/03/12/improving-readability-with-the-maybe-foldable-instance/" rel="alternate" type="text/html" title="Improving readability with the Maybe Foldable instance" /><published>2014-03-12T08:00:00-03:00</published><updated>2014-03-12T08:00:00-03:00</updated><id>http://dannynavarro.net/2014/03/12/improving-readability-with-the-maybe-foldable-instance</id><content type="html" xml:base="http://dannynavarro.net/2014/03/12/improving-readability-with-the-maybe-foldable-instance/">&lt;p&gt;One recommendation you often hear when reaching an acceptable level of basic
+&lt;/div&gt;</content><author><name></name></author><summary type="html">Large part of Haskell code is just about imports. In many programming languages there is no ambiguity left about how to import, but Haskell leaves some room for personal style in this regard. There are some recommendations out there about importing style, but most is left to common sense. Your own judgment, once you are comfortable with Haskell, should be perfectly fine, but newcomers who care about style consistency might feel a bit lost when writing the import list for their own packages 1, specially since there are many slightly different styles in the wild for Haskell imports. In this post, I’ll try to explain the rationale of the style I follow. For code contributions it’s easy, just follow what the original author is already doing. &amp;#8617;</summary></entry><entry><title type="html">Improving readability with the Maybe Foldable instance</title><link href="https://dannynavarro.net/2014/03/12/improving-readability-with-the-maybe-foldable-instance/" rel="alternate" type="text/html" title="Improving readability with the Maybe Foldable instance" /><published>2014-03-12T08:00:00-03:00</published><updated>2014-03-12T08:00:00-03:00</updated><id>https://dannynavarro.net/2014/03/12/improving-readability-with-the-maybe-foldable-instance</id><content type="html" xml:base="https://dannynavarro.net/2014/03/12/improving-readability-with-the-maybe-foldable-instance/">&lt;p&gt;One recommendation you often hear when reaching an acceptable level of basic
 Haskell is to make your code more polymorphic. The Haskell &lt;a href=&quot;http://hackage.haskell.org/package/base/docs/Prelude.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Prelude&lt;/code&gt;&lt;/a&gt; is
 heavily biased towards lists, so an immediate gain in polymorphism is to make
 your code work not only for lists but for any instance of &lt;a href=&quot;http://hackage.haskell.org/package/base/docs/Data-Traversable.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Traversable&lt;/code&gt;&lt;/a&gt; or
@@ -898,7 +862,7 @@ your code work not only for lists but for any instance of &lt;a href=&quot;http:
 &lt;p&gt;Since a Haskell list is an instance of &lt;a href=&quot;http://hackage.haskell.org/package/base/docs/Data-Traversable.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Traversable&lt;/code&gt;&lt;/a&gt; and &lt;a href=&quot;http://hackage.haskell.org/package/base/docs/Data-Foldable.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Foldable&lt;/code&gt;&lt;/a&gt;, we can
 still operate as usual on lists with the new polymorphic code:&lt;/p&gt;
 
-&lt;div class=&quot;language-haskell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;qualified&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Data.Foldable&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;F&lt;/span&gt;
+&lt;div class=&quot;language-haskell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;qualified&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Data.Foldable&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;F&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mapM_&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'a'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'c'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;sc&quot;&gt;'a'&lt;/span&gt;
 &lt;span class=&quot;sc&quot;&gt;'b'&lt;/span&gt;
@@ -907,8 +871,7 @@ still operate as usual on lists with the new polymorphic code:&lt;/p&gt;
 &lt;span class=&quot;sc&quot;&gt;'a'&lt;/span&gt;
 &lt;span class=&quot;sc&quot;&gt;'b'&lt;/span&gt;
 &lt;span class=&quot;sc&quot;&gt;'c'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Notice here that we’ve gained the extra advantage of being able to use &lt;code class=&quot;highlighter-rouge&quot;&gt;Applicative&lt;/code&gt;
 instead of &lt;code class=&quot;highlighter-rouge&quot;&gt;Monad&lt;/code&gt;. Here, we don’t need the extra power of &lt;code class=&quot;highlighter-rouge&quot;&gt;Monad&lt;/code&gt;, and the
@@ -921,7 +884,7 @@ element if present or do the default &lt;code class=&quot;highlighter-rouge&quot
 &lt;code class=&quot;highlighter-rouge&quot;&gt;return&lt;/code&gt; respectively) if not present. How is this useful then? Have you ever
 found yourself writing case expressions like this?&lt;/p&gt;
 
-&lt;div class=&quot;language-haskell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;div class=&quot;language-haskell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;printM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;of&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;                     &lt;span class=&quot;kt&quot;&gt;Just&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;                     &lt;span class=&quot;kt&quot;&gt;Nothing&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;()&lt;/span&gt;
@@ -932,8 +895,7 @@ found yourself writing case expressions like this?&lt;/p&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;printM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m_&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;The function &lt;a href=&quot;http://hackage.haskell.org/package/base-4.6.0.1/docs/Data-Maybe.html#v:maybe&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;maybe&lt;/code&gt;&lt;/a&gt; would improve a bit, syntactically speaking: &lt;code class=&quot;highlighter-rouge&quot;&gt;maybe
 (return ()) print&lt;/code&gt;.&lt;/p&gt;
@@ -942,14 +904,13 @@ found yourself writing case expressions like this?&lt;/p&gt;
 behavior to me. Somehow, there should be a way to avoid it. Well, here is where
 &lt;a href=&quot;http://hackage.haskell.org/package/base/docs/Data-Foldable.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Foldable&lt;/code&gt;&lt;/a&gt; instance of &lt;code class=&quot;highlighter-rouge&quot;&gt;Maybe&lt;/code&gt; comes handy:&lt;/p&gt;
 
-&lt;div class=&quot;language-haskell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;XScopedTypeVariables&lt;/span&gt;
+&lt;div class=&quot;language-haskell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;XScopedTypeVariables&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;printM'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Maybe&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;IO&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;traverse_&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;printM'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m1&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;printM'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m_&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;To be fair, for this trivial example, it would be a bit frivolous to use the
 &lt;code class=&quot;highlighter-rouge&quot;&gt;Maybe&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Foldable&lt;/code&gt; instance just to avoid the case expression, but when you are
@@ -959,19 +920,10 @@ readable.&lt;/p&gt;
 &lt;div class=&quot;footnotes&quot;&gt;
   &lt;ol&gt;
     &lt;li id=&quot;fn:a&quot;&gt;
-      &lt;p&gt;Roughly speaking, the &lt;code class=&quot;highlighter-rouge&quot;&gt;Traversable&lt;/code&gt; instance would be used for operations that do something on each element of the structure while maintaining same structure in the output. A &lt;code class=&quot;highlighter-rouge&quot;&gt;Foldable&lt;/code&gt; instance would be used for collapsing the elements into anything else. &lt;a href=&quot;#fnref:a&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;Roughly speaking, the &lt;code class=&quot;highlighter-rouge&quot;&gt;Traversable&lt;/code&gt; instance would be used for operations that do something on each element of the structure while maintaining same structure in the output. A &lt;code class=&quot;highlighter-rouge&quot;&gt;Foldable&lt;/code&gt; instance would be used for collapsing the elements into anything else. &lt;a href=&quot;#fnref:a&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><summary type="html">One recommendation you often hear when reaching an acceptable level of basic
-Haskell is to make your code more polymorphic. The Haskell Prelude is
-heavily biased towards lists, so an immediate gain in polymorphism is to make
-your code work not only for lists but for any instance of Traversable or
-Foldable.1
-
-
-  
-    
-      Roughly speaking, the Traversable instance would be used for operations that do something on each element of the structure while maintaining same structure in the output. A Foldable instance would be used for collapsing the elements into anything else. &amp;#8617;</summary></entry><entry><title type="html">Migrating to Octopress</title><link href="http://dannynavarro.net/2011/09/20/migrating-to-octopress/" rel="alternate" type="text/html" title="Migrating to Octopress" /><published>2011-09-20T19:07:00-03:00</published><updated>2011-09-20T19:07:00-03:00</updated><id>http://dannynavarro.net/2011/09/20/migrating-to-octopress</id><content type="html" xml:base="http://dannynavarro.net/2011/09/20/migrating-to-octopress/">&lt;p&gt;I finally found some time to migrate my blog to &lt;a href=&quot;http://wordpress.com/&quot;&gt;Octopress&lt;/a&gt; from
+&lt;/div&gt;</content><author><name></name></author><summary type="html">One recommendation you often hear when reaching an acceptable level of basic Haskell is to make your code more polymorphic. The Haskell Prelude is heavily biased towards lists, so an immediate gain in polymorphism is to make your code work not only for lists but for any instance of Traversable or Foldable.1 Roughly speaking, the Traversable instance would be used for operations that do something on each element of the structure while maintaining same structure in the output. A Foldable instance would be used for collapsing the elements into anything else. &amp;#8617;</summary></entry><entry><title type="html">Migrating to Octopress</title><link href="https://dannynavarro.net/2011/09/20/migrating-to-octopress/" rel="alternate" type="text/html" title="Migrating to Octopress" /><published>2011-09-20T19:07:00-03:00</published><updated>2011-09-20T19:07:00-03:00</updated><id>https://dannynavarro.net/2011/09/20/migrating-to-octopress</id><content type="html" xml:base="https://dannynavarro.net/2011/09/20/migrating-to-octopress/">&lt;p&gt;I finally found some time to migrate my blog to &lt;a href=&quot;http://wordpress.com/&quot;&gt;Octopress&lt;/a&gt; from
 &lt;a href=&quot;http://octopress.org/&quot;&gt;Wordpress.com&lt;/a&gt;. The critical reason to migrate from Wordpress has
 been the support for nice code syntax highlighting, something I
 couldn’t have wordpress.com, at least for free. I know there are very
@@ -1033,14 +985,7 @@ Python remains my main working language.&lt;/p&gt;
 
 &lt;p&gt;In any case, I must say the service provided by wordpress.com has been
 quite good but this one of those cases where you have to say: &lt;em&gt;“Sorry,
-it’s not you, it’s just me”.&lt;/em&gt;&lt;/p&gt;</content><summary type="html">I finally found some time to migrate my blog to Octopress from
-Wordpress.com. The critical reason to migrate from Wordpress has
-been the support for nice code syntax highlighting, something I
-couldn’t have wordpress.com, at least for free. I know there are very
-nice wordpress plugins for syntax highlighting but in order to use
-them I would have to host it myself. I don’t want to go through the
-hassle of maintaining a typical PHP/MySQL stack or to be worried about
-being slashdotted.</summary></entry><entry><title type="html">Using custom events in Pyramid</title><link href="http://dannynavarro.net/2011/06/12/using-custom-events-in-pyramid/" rel="alternate" type="text/html" title="Using custom events in Pyramid" /><published>2011-06-12T00:00:00-04:00</published><updated>2011-06-12T00:00:00-04:00</updated><id>http://dannynavarro.net/2011/06/12/using-custom-events-in-pyramid</id><content type="html" xml:base="http://dannynavarro.net/2011/06/12/using-custom-events-in-pyramid/">&lt;p&gt;&lt;a href=&quot;http://docs.pylonsproject.org/docs/pyramid.html&quot;&gt;Pyramid&lt;/a&gt; is a &lt;a href=&quot;http://webpython.codepoint.net/wsgi_tutorial&quot;&gt;WSGI&lt;/a&gt; application framework that primarily follows a&lt;a href=&quot;http://docs.pylonsproject.org/projects/pyramid/1.0/narr/router.html&quot;&gt; request-response mechanism&lt;/a&gt;. However, if you need to work with events you can still &lt;a href=&quot;http://docs.pylonsproject.org/projects/pyramid/1.0/narr/events.html&quot;&gt;use them&lt;/a&gt;. It comes with &lt;a href=&quot;http://docs.pylonsproject.org/projects/pyramid/1.0/api/events.html#event-types&quot;&gt;some default event types&lt;/a&gt; that are emitted implicitely by Pyramid as long as you have a subscriber for them. For most applications the default event types are enough, but what if you want to write your custom event type and emit it explicitly from your code? It turns out that the &lt;a href=&quot;http://docs.pylonsproject.org/projects/pyramid/1.0/glossary.html#term-application-registry&quot;&gt;application registry&lt;/a&gt; that Pyramid uses by default comes with a handy &lt;a href=&quot;https://github.com/Pylons/pyramid/blob/master/pyramid/registry.py#L36&quot;&gt;&lt;em&gt;notify&lt;/em&gt; method&lt;/a&gt;. Pyramid &lt;a href=&quot;https://github.com/Pylons/pyramid/blob/master/pyramid/router.py#L77&quot;&gt;uses this method internally&lt;/a&gt;  for its default events. Here is how you would take advantage of it:&lt;/p&gt;
+it’s not you, it’s just me”.&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">I finally found some time to migrate my blog to Octopress from Wordpress.com. The critical reason to migrate from Wordpress has been the support for nice code syntax highlighting, something I couldn’t have wordpress.com, at least for free. I know there are very nice wordpress plugins for syntax highlighting but in order to use them I would have to host it myself. I don’t want to go through the hassle of maintaining a typical PHP/MySQL stack or to be worried about being slashdotted.</summary></entry><entry><title type="html">Using custom events in Pyramid</title><link href="https://dannynavarro.net/2011/06/12/using-custom-events-in-pyramid/" rel="alternate" type="text/html" title="Using custom events in Pyramid" /><published>2011-06-12T00:00:00-04:00</published><updated>2011-06-12T00:00:00-04:00</updated><id>https://dannynavarro.net/2011/06/12/using-custom-events-in-pyramid</id><content type="html" xml:base="https://dannynavarro.net/2011/06/12/using-custom-events-in-pyramid/">&lt;p&gt;&lt;a href=&quot;http://docs.pylonsproject.org/docs/pyramid.html&quot;&gt;Pyramid&lt;/a&gt; is a &lt;a href=&quot;http://webpython.codepoint.net/wsgi_tutorial&quot;&gt;WSGI&lt;/a&gt; application framework that primarily follows a&lt;a href=&quot;http://docs.pylonsproject.org/projects/pyramid/1.0/narr/router.html&quot;&gt; request-response mechanism&lt;/a&gt;. However, if you need to work with events you can still &lt;a href=&quot;http://docs.pylonsproject.org/projects/pyramid/1.0/narr/events.html&quot;&gt;use them&lt;/a&gt;. It comes with &lt;a href=&quot;http://docs.pylonsproject.org/projects/pyramid/1.0/api/events.html#event-types&quot;&gt;some default event types&lt;/a&gt; that are emitted implicitely by Pyramid as long as you have a subscriber for them. For most applications the default event types are enough, but what if you want to write your custom event type and emit it explicitly from your code? It turns out that the &lt;a href=&quot;http://docs.pylonsproject.org/projects/pyramid/1.0/glossary.html#term-application-registry&quot;&gt;application registry&lt;/a&gt; that Pyramid uses by default comes with a handy &lt;a href=&quot;https://github.com/Pylons/pyramid/blob/master/pyramid/registry.py#L36&quot;&gt;&lt;em&gt;notify&lt;/em&gt; method&lt;/a&gt;. Pyramid &lt;a href=&quot;https://github.com/Pylons/pyramid/blob/master/pyramid/router.py#L77&quot;&gt;uses this method internally&lt;/a&gt;  for its default events. Here is how you would take advantage of it:&lt;/p&gt;
 &lt;pre&gt;from pyramid.events import subscriber
 
 class MyCustomEventType(object):
@@ -1062,8 +1007,7 @@ def my_view(request):
 
 &lt;p&gt;Be aware though, that all these events are synchronous because Pyramid is primarily a request-response framework, all the events emitted block until the subscribers are done. If you want non-blocking events in Pyramid you could spawn a process from the subscriber or come with &lt;a href=&quot;http://blog.dannynavarro.net/2011/01/14/async-web-apps-with-pyramid/&quot;&gt;some other solution&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;But the events in Pyramid are just another functionality that it offers. Pyramid is not a event-oriented framework, if you want to go all the way with async events you should look into &lt;a href=&quot;http://twistedmatrix.com/trac/&quot;&gt;Twisted&lt;/a&gt; or &lt;a href=&quot;http://www.tornadoweb.org/&quot;&gt;Tornado&lt;/a&gt;.&lt;/p&gt;</content><summary type="html">Pyramid is a WSGI application framework that primarily follows a request-response mechanism. However, if you need to work with events you can still use them. It comes with some default event types that are emitted implicitely by Pyramid as long as you have a subscriber for them. For most applications the default event types are enough, but what if you want to write your custom event type and emit it explicitly from your code? It turns out that the application registry that Pyramid uses by default comes with a handy notify method. Pyramid uses this method internally  for its default events. Here is how you would take advantage of it:
-from pyramid.events import subscriber</summary></entry><entry><title type="html">Why Arch Linux</title><link href="http://dannynavarro.net/2011/05/21/why-arch-linux/" rel="alternate" type="text/html" title="Why Arch Linux" /><published>2011-05-21T00:00:00-04:00</published><updated>2011-05-21T00:00:00-04:00</updated><id>http://dannynavarro.net/2011/05/21/why-arch-linux</id><content type="html" xml:base="http://dannynavarro.net/2011/05/21/why-arch-linux/">&lt;p&gt;I have been using &lt;a href=&quot;http://www.archlinux.org/&quot;&gt;Arch Linux&lt;/a&gt; for 3 years now. I still use Debian and Ubuntu for the servers I administer but I acknowledge Arch Linux has taught many valuable lessons.&lt;/p&gt;
+&lt;p&gt;But the events in Pyramid are just another functionality that it offers. Pyramid is not a event-oriented framework, if you want to go all the way with async events you should look into &lt;a href=&quot;http://twistedmatrix.com/trac/&quot;&gt;Twisted&lt;/a&gt; or &lt;a href=&quot;http://www.tornadoweb.org/&quot;&gt;Tornado&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">Pyramid is a WSGI application framework that primarily follows a request-response mechanism. However, if you need to work with events you can still use them. It comes with some default event types that are emitted implicitely by Pyramid as long as you have a subscriber for them. For most applications the default event types are enough, but what if you want to write your custom event type and emit it explicitly from your code? It turns out that the application registry that Pyramid uses by default comes with a handy notify method. Pyramid uses this method internally  for its default events. Here is how you would take advantage of it: from pyramid.events import subscriber</summary></entry><entry><title type="html">Why Arch Linux</title><link href="https://dannynavarro.net/2011/05/21/why-arch-linux/" rel="alternate" type="text/html" title="Why Arch Linux" /><published>2011-05-21T00:00:00-04:00</published><updated>2011-05-21T00:00:00-04:00</updated><id>https://dannynavarro.net/2011/05/21/why-arch-linux</id><content type="html" xml:base="https://dannynavarro.net/2011/05/21/why-arch-linux/">&lt;p&gt;I have been using &lt;a href=&quot;http://www.archlinux.org/&quot;&gt;Arch Linux&lt;/a&gt; for 3 years now. I still use Debian and Ubuntu for the servers I administer but I acknowledge Arch Linux has taught many valuable lessons.&lt;/p&gt;
 
 &lt;p&gt;With Arch Linux there is very little in your system that you are not aware of. You have to configure everything yourself by editing config files. The process is not that hard because all those configuration files are meant to be tweaked. You also count with an &lt;a href=&quot;https://wiki.archlinux.org&quot;&gt;excellent wiki&lt;/a&gt; to help you.&lt;/p&gt;
 
@@ -1099,7 +1043,7 @@ from pyramid.events import subscriber</summary></entry><entry><title type="html"
 
 &lt;p&gt;It’s not only the packaging format itself, there is also the community and policy aspects. Editing your PKGBUILDs is something that every Arch Linux user does. For AUR there is very little regulating making the packaging smoother process at the expense of shifting the trust on the packages to the user. In general, most packages in AUR are good enough but for production machines I still value more the trust the Debian and Ubuntu package maintainers.&lt;/p&gt;
 
-&lt;p&gt;That’s where open source community shines, you have many choices.&lt;/p&gt;</content><summary type="html">I have been using Arch Linux for 3 years now. I still use Debian and Ubuntu for the servers I administer but I acknowledge Arch Linux has taught many valuable lessons.</summary></entry><entry><title type="html">Commenting out in Chamaleon templates</title><link href="http://dannynavarro.net/2011/05/18/commenting-out-in-chamaleon-templates/" rel="alternate" type="text/html" title="Commenting out in Chamaleon templates" /><published>2011-05-18T00:00:00-04:00</published><updated>2011-05-18T00:00:00-04:00</updated><id>http://dannynavarro.net/2011/05/18/commenting-out-in-chamaleon-templates</id><content type="html" xml:base="http://dannynavarro.net/2011/05/18/commenting-out-in-chamaleon-templates/">&lt;p&gt;If you want to prevent &lt;a href=&quot;http://chameleon.repoze.org/&quot; title=&quot;Chameleon is an excellent HTML templating engine&quot;&gt;Chameleon&lt;/a&gt; from rendering some portions of an HTML template you might be tempted to do something like this:&lt;/p&gt;
+&lt;p&gt;That’s where open source community shines, you have many choices.&lt;/p&gt;</content><author><name></name></author><summary type="html">I have been using Arch Linux for 3 years now. I still use Debian and Ubuntu for the servers I administer but I acknowledge Arch Linux has taught many valuable lessons.</summary></entry><entry><title type="html">Commenting out in Chamaleon templates</title><link href="https://dannynavarro.net/2011/05/18/commenting-out-in-chamaleon-templates/" rel="alternate" type="text/html" title="Commenting out in Chamaleon templates" /><published>2011-05-18T00:00:00-04:00</published><updated>2011-05-18T00:00:00-04:00</updated><id>https://dannynavarro.net/2011/05/18/commenting-out-in-chamaleon-templates</id><content type="html" xml:base="https://dannynavarro.net/2011/05/18/commenting-out-in-chamaleon-templates/">&lt;p&gt;If you want to prevent &lt;a href=&quot;http://chameleon.repoze.org/&quot; title=&quot;Chameleon is an excellent HTML templating engine&quot;&gt;Chameleon&lt;/a&gt; from rendering some portions of an HTML template you might be tempted to do something like this:&lt;/p&gt;
 
 &lt;pre&gt;
 &amp;lt;/br&amp;gt;
@@ -1119,10 +1063,10 @@ from pyramid.events import subscriber</summary></entry><entry><title type="html"
 &amp;lt;/br&amp;gt;
 &lt;/pre&gt;
 
-&lt;p&gt;Chameleon ignore anything inside the condition block.&lt;/p&gt;</content><summary type="html">If you want to prevent Chameleon from rendering some portions of an HTML template you might be tempted to do something like this:</summary></entry><entry><title type="html">Moving to Spain</title><link href="http://dannynavarro.net/2011/05/15/moving-to-spain/" rel="alternate" type="text/html" title="Moving to Spain" /><published>2011-05-15T00:00:00-04:00</published><updated>2011-05-15T00:00:00-04:00</updated><id>http://dannynavarro.net/2011/05/15/moving-to-spain</id><content type="html" xml:base="http://dannynavarro.net/2011/05/15/moving-to-spain/">&lt;p&gt;After almost 3 years in The Netherlands working as &lt;a href=&quot;http://en.wikipedia.org/wiki/Proteomics&quot;&gt;proteomics&lt;/a&gt; informatician at &lt;a href=&quot;http://bioms.chem.uu.nl/&quot;&gt;Albert Heck’s lab&lt;/a&gt;, I’m moving to &lt;a href=&quot;http://en.wikipedia.org/wiki/Sevilla&quot;&gt;Seville&lt;/a&gt;, Spain, to work as a web developer for&lt;a href=&quot;http://yaco.es/&quot;&gt; Yaco Sistemas&lt;/a&gt;, a fresh and dynamic open source friendly company.&lt;/p&gt;
+&lt;p&gt;Chameleon ignore anything inside the condition block.&lt;/p&gt;</content><author><name></name></author><summary type="html">If you want to prevent Chameleon from rendering some portions of an HTML template you might be tempted to do something like this:</summary></entry><entry><title type="html">Moving to Spain</title><link href="https://dannynavarro.net/2011/05/15/moving-to-spain/" rel="alternate" type="text/html" title="Moving to Spain" /><published>2011-05-15T00:00:00-04:00</published><updated>2011-05-15T00:00:00-04:00</updated><id>https://dannynavarro.net/2011/05/15/moving-to-spain</id><content type="html" xml:base="https://dannynavarro.net/2011/05/15/moving-to-spain/">&lt;p&gt;After almost 3 years in The Netherlands working as &lt;a href=&quot;http://en.wikipedia.org/wiki/Proteomics&quot;&gt;proteomics&lt;/a&gt; informatician at &lt;a href=&quot;http://bioms.chem.uu.nl/&quot;&gt;Albert Heck’s lab&lt;/a&gt;, I’m moving to &lt;a href=&quot;http://en.wikipedia.org/wiki/Sevilla&quot;&gt;Seville&lt;/a&gt;, Spain, to work as a web developer for&lt;a href=&quot;http://yaco.es/&quot;&gt; Yaco Sistemas&lt;/a&gt;, a fresh and dynamic open source friendly company.&lt;/p&gt;
 
 &lt;p&gt;This is an important shift in my career since I won’t be working on proteomics informatics and academic research anymore. I have mixed feelings about leaving proteomics. On one hand I like the area because there are plenty of tough challenges to be solved. But on the other hand I’m glad I can dedicate all my time to develop web applications, that might not be as sophisticated as proteomics software, but that will be immediately useful for the &lt;em&gt;masses&lt;/em&gt;. I love web development and the Python community but within proteomics I could only intersect with the Python web development community quite sporadically. Now I’ll have the chance to be part of it full time.&lt;/p&gt;
 
 &lt;p&gt;Personally, The Netherlands is the most comfortable and easy-going country I ever lived. Here I had the chance to work with very smart people and made friends that will never forget. What I have learned during these years is priceless.&lt;/p&gt;
 
-&lt;p&gt;But I can’t deny my origins, Spain is where I feel at home even if sometimes I don’t find it too exciting because I’m too familiar with the culture. However Seville is quite far from &lt;a title=&quot;Pamplona&quot; href=&quot;http://en.wikipedia.org/wiki/Pamplona&quot;&gt;my hometown&lt;/a&gt;, in the North of Spain. The culture in the South is very different from the North, so in a way, I’ll be another foreigner excited about the peculiarities I discover about Andalusian culture.&lt;/p&gt;</content><summary type="html">After almost 3 years in The Netherlands working as proteomics informatician at Albert Heck’s lab, I’m moving to Seville, Spain, to work as a web developer for Yaco Sistemas, a fresh and dynamic open source friendly company.</summary></entry></feed>
+&lt;p&gt;But I can’t deny my origins, Spain is where I feel at home even if sometimes I don’t find it too exciting because I’m too familiar with the culture. However Seville is quite far from &lt;a title=&quot;Pamplona&quot; href=&quot;http://en.wikipedia.org/wiki/Pamplona&quot;&gt;my hometown&lt;/a&gt;, in the North of Spain. The culture in the South is very different from the North, so in a way, I’ll be another foreigner excited about the peculiarities I discover about Andalusian culture.&lt;/p&gt;</content><author><name></name></author><summary type="html">After almost 3 years in The Netherlands working as proteomics informatician at Albert Heck’s lab, I’m moving to Seville, Spain, to work as a web developer for Yaco Sistemas, a fresh and dynamic open source friendly company.</summary></entry></feed>
